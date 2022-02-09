@@ -1,6 +1,7 @@
 #pragma once
 #include "..\..\Audio\AudioManager.h"
 #include "..\..\Input\InputDevice.h"
+#include "..\..\GameSystem\GameObject\GameObjectManager.h"
 
 #include <string>
 
@@ -10,6 +11,12 @@ namespace GE
 	{
 		AudioManager* audioManager;
 		InputDevice* inputDevice;
+
+		SceneInitializer()
+			: audioManager(nullptr)
+			, inputDevice(nullptr)
+		{
+		}
 	};
 
 	struct ChangeSceneInfo
@@ -17,6 +24,13 @@ namespace GE
 		std::string name;
 		bool flag;
 		bool initNextSceneFlag;
+
+		ChangeSceneInfo()
+			: name({})
+			, flag(false)
+			, initNextSceneFlag(false)
+		{
+		}
 	};
 
 	class Scene
@@ -29,14 +43,15 @@ namespace GE
 		ChangeSceneInfo changeSceneInfo;
 		AudioManager* audioManager;
 		InputDevice* inputDevice;
+		GameObjectManager gameObjectManager;
 	public:
 		Scene();
 		Scene(const std::string& sceneName);
-		virtual ~Scene();
-		virtual void Initialize();
-		virtual void Update(float deltaTime);
-		virtual void Draw();
-		virtual void LateDraw();
+		virtual ~Scene() {}
+		virtual void Initialize() {}
+		virtual void Update(float deltaTime){}
+		virtual void Draw() {}
+		virtual void LateDraw() {}
 
 		const std::string& GetSceneName();
 		bool IsTerminateApplication();

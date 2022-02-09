@@ -8,29 +8,10 @@ GE::Scene::Scene()
 GE::Scene::Scene(const std::string& sceneName)
 	: name(sceneName)
 	, isTerminateApplication(false)
+	, isSetInitializer(false)
 	, audioManager(nullptr)
 	, inputDevice(nullptr)
-{
-}
-
-GE::Scene::~Scene()
-{
-}
-
-void GE::Scene::Initialize()
-{
-
-}
-
-void GE::Scene::Update(float deltaTime)
-{
-}
-
-void GE::Scene::Draw()
-{
-}
-
-void GE::Scene::LateDraw()
+	, gameObjectManager(GameObjectManager())
 {
 }
 
