@@ -4,6 +4,7 @@
 #include "..\Graphics\Window.h"
 #include "..\Input\InputDevice.h"
 #include "..\Audio\AudioManager.h"
+#include "..\GameSystem\Scene\SceneManager.h"
 
 namespace GE
 {
@@ -15,6 +16,7 @@ namespace GE
 		Window mainWindow;
 		InputDevice* inputDevice;
 		AudioManager audioManager;
+		SceneManager sceneManager;
 	public:
 		Application();
 		Application(const Math::Vector2& size,const std::string& title);

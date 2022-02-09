@@ -1,4 +1,5 @@
 #include "..\..\Header\Application\Application.h"
+#include "..\..\Header\GameSystem\Scene\SampleScene.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080),"no title")
@@ -32,11 +33,16 @@ bool GE::Application::LoadContents()
 	testBGM->Start();
 	testBGM->SetVolume(0.05f);
 
+	auto* testScene = sceneManager.AddScene(new SampleScene("SampleScene"));
+
 	return true;
 }
 
 bool GE::Application::Initialize()
 {
+	SceneInitializer sceneInitializer = { &audioManager,inputDevice };
+	sceneManager.Initialize(sceneInitializer);
+
 	return true;
 }
 

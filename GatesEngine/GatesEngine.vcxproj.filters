@@ -1,191 +1,227 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="ソース ファイル">
+    <Filter Include="Source">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="ヘッダー ファイル">
+    <Filter Include="Source\Graphics">
+      <UniqueIdentifier>{a14fe830-61e3-4b17-ad6f-4c9309c7a627}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Input">
+      <UniqueIdentifier>{d4f29678-d443-4140-887b-c57058f176b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Audio">
+      <UniqueIdentifier>{79859eda-6e1e-43ae-a75c-1bef75b993d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameSystem">
+      <UniqueIdentifier>{dccfe9df-95ce-4948-8a90-f57f9b06ba93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameSystem\Scene">
+      <UniqueIdentifier>{a38c2ef1-e099-4013-84a8-0bc5adeb146f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameSystem\Conponent">
+      <UniqueIdentifier>{16b46a75-30ff-43ff-bf56-4ba5adc48fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameSystem\GameObject">
+      <UniqueIdentifier>{0c145c6b-e422-403a-b323-5ecb177e9b0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Util">
+      <UniqueIdentifier>{051a8cef-e017-4629-a31b-03492560162f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Util\Math">
+      <UniqueIdentifier>{9ad60499-fa3f-4954-8c41-fe38855a5dff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Application">
+      <UniqueIdentifier>{7c2060ee-3f79-4ebd-8205-860244692d2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Input">
+    <Filter Include="Header\Input">
       <UniqueIdentifier>{0aac418b-26e7-4984-a4ac-783e5d8a00fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Audio">
+    <Filter Include="Header\Audio">
       <UniqueIdentifier>{a8923f8d-ce7a-4723-9ac5-8c13c6e9e6c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\GameSystem">
+    <Filter Include="Header\GameSystem">
       <UniqueIdentifier>{95459304-7715-4591-ae34-a4ad79a97583}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\Util">
+    <Filter Include="Header\GameSystem\Scene">
+      <UniqueIdentifier>{0f44abb3-3d2b-4ac2-8192-6ae385631e93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\GameSystem\GameObject">
+      <UniqueIdentifier>{95d54d0b-c522-434c-8c64-a7f7e805f7b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\GameSystem\Component">
+      <UniqueIdentifier>{4df7d552-899e-4c8f-8502-2062f540c04c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Util">
       <UniqueIdentifier>{b0ba0140-4638-4851-9094-0e6758bc1bf5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Graphics">
-      <UniqueIdentifier>{a14fe830-61e3-4b17-ad6f-4c9309c7a627}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Graphics">
-      <UniqueIdentifier>{aa65162e-7e05-44b5-a5ae-dad52d42e167}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Input">
-      <UniqueIdentifier>{d4f29678-d443-4140-887b-c57058f176b0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Audio">
-      <UniqueIdentifier>{79859eda-6e1e-43ae-a75c-1bef75b993d3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\GameSystem">
-      <UniqueIdentifier>{dccfe9df-95ce-4948-8a90-f57f9b06ba93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Util">
-      <UniqueIdentifier>{051a8cef-e017-4629-a31b-03492560162f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\Application">
-      <UniqueIdentifier>{7c2060ee-3f79-4ebd-8205-860244692d2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Application">
-      <UniqueIdentifier>{a4da27ef-bf0d-4834-81d0-9186029d6de4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\Util\Math">
+    <Filter Include="Header\Util\Math">
       <UniqueIdentifier>{ea735a4e-6c66-4307-9aca-2b8663e81558}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Util\Math">
-      <UniqueIdentifier>{9ad60499-fa3f-4954-8c41-fe38855a5dff}</UniqueIdentifier>
+    <Filter Include="Header\Graphics">
+      <UniqueIdentifier>{aa65162e-7e05-44b5-a5ae-dad52d42e167}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Application">
+      <UniqueIdentifier>{a4da27ef-bf0d-4834-81d0-9186029d6de4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Application\Application.h">
-      <Filter>ヘッダー ファイル\Application</Filter>
+      <Filter>Header\Application</Filter>
     </ClInclude>
     <ClInclude Include="Header\Graphics\Window.h">
-      <Filter>ヘッダー ファイル\Graphics</Filter>
+      <Filter>Header\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Math\Axis.h">
-      <Filter>ヘッダー ファイル\Util\Math</Filter>
+      <Filter>Header\Util\Math</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Math\Easing.h">
-      <Filter>ヘッダー ファイル\Util\Math</Filter>
+      <Filter>Header\Util\Math</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Math\Math.h">
-      <Filter>ヘッダー ファイル\Util\Math</Filter>
+      <Filter>Header\Util\Math</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Math\Matrix4.h">
-      <Filter>ヘッダー ファイル\Util\Math</Filter>
+      <Filter>Header\Util\Math</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Math\Quaternion.h">
-      <Filter>ヘッダー ファイル\Util\Math</Filter>
+      <Filter>Header\Util\Math</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Math\Transform.h">
-      <Filter>ヘッダー ファイル\Util\Math</Filter>
+      <Filter>Header\Util\Math</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Math\Vector2.h">
-      <Filter>ヘッダー ファイル\Util\Math</Filter>
+      <Filter>Header\Util\Math</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Math\Vector3.h">
-      <Filter>ヘッダー ファイル\Util\Math</Filter>
+      <Filter>Header\Util\Math</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Math\Vector4.h">
-      <Filter>ヘッダー ファイル\Util\Math</Filter>
+      <Filter>Header\Util\Math</Filter>
     </ClInclude>
     <ClInclude Include="Header\Input\InputDevice.h">
-      <Filter>ヘッダー ファイル\Input</Filter>
+      <Filter>Header\Input</Filter>
     </ClInclude>
     <ClInclude Include="Header\Input\Keyboard.h">
-      <Filter>ヘッダー ファイル\Input</Filter>
+      <Filter>Header\Input</Filter>
     </ClInclude>
     <ClInclude Include="Header\Input\Keys.h">
-      <Filter>ヘッダー ファイル\Input</Filter>
+      <Filter>Header\Input</Filter>
     </ClInclude>
     <ClInclude Include="Header\Input\Mouse.h">
-      <Filter>ヘッダー ファイル\Input</Filter>
+      <Filter>Header\Input</Filter>
     </ClInclude>
     <ClInclude Include="Header\Input\MouseButtons.h">
-      <Filter>ヘッダー ファイル\Input</Filter>
+      <Filter>Header\Input</Filter>
     </ClInclude>
     <ClInclude Include="Header\Input\XInputController.h">
-      <Filter>ヘッダー ファイル\Input</Filter>
+      <Filter>Header\Input</Filter>
     </ClInclude>
     <ClInclude Include="Header\Input\XInputControllerButton.h">
-      <Filter>ヘッダー ファイル\Input</Filter>
+      <Filter>Header\Input</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Random.h">
-      <Filter>ヘッダー ファイル\Util</Filter>
+      <Filter>Header\Util</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Timer.h">
-      <Filter>ヘッダー ファイル\Util</Filter>
+      <Filter>Header\Util</Filter>
     </ClInclude>
     <ClInclude Include="Header\Util\Utility.h">
-      <Filter>ヘッダー ファイル\Util</Filter>
+      <Filter>Header\Util</Filter>
     </ClInclude>
     <ClInclude Include="Header\Audio\Audio.h">
-      <Filter>ヘッダー ファイル\Audio</Filter>
+      <Filter>Header\Audio</Filter>
     </ClInclude>
     <ClInclude Include="Header\Audio\AudioManager.h">
-      <Filter>ヘッダー ファイル\Audio</Filter>
+      <Filter>Header\Audio</Filter>
     </ClInclude>
     <ClInclude Include="Header\Audio\WaveAudioData.h">
-      <Filter>ヘッダー ファイル\Audio</Filter>
+      <Filter>Header\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameSystem\Scene\Scene.h">
+      <Filter>Header\GameSystem\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameSystem\Scene\SceneManager.h">
+      <Filter>Header\GameSystem\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameSystem\Scene\SampleScene.h">
+      <Filter>Header\GameSystem\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
-      <Filter>ソース ファイル\Application</Filter>
+      <Filter>Source\Application</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Window.cpp">
-      <Filter>ソース ファイル\Graphics</Filter>
+      <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Math\Easing.cpp">
-      <Filter>ソース ファイル\Util\Math</Filter>
+      <Filter>Source\Util\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Math\Math.cpp">
-      <Filter>ソース ファイル\Util\Math</Filter>
+      <Filter>Source\Util\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Math\Matrix4.cpp">
-      <Filter>ソース ファイル\Util\Math</Filter>
+      <Filter>Source\Util\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Math\Quaternion.cpp">
-      <Filter>ソース ファイル\Util\Math</Filter>
+      <Filter>Source\Util\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Math\Transform.cpp">
-      <Filter>ソース ファイル\Util\Math</Filter>
+      <Filter>Source\Util\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Math\Vector2.cpp">
-      <Filter>ソース ファイル\Util\Math</Filter>
+      <Filter>Source\Util\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Math\Vector3.cpp">
-      <Filter>ソース ファイル\Util\Math</Filter>
+      <Filter>Source\Util\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Math\Vector4.cpp">
-      <Filter>ソース ファイル\Util\Math</Filter>
+      <Filter>Source\Util\Math</Filter>
     </ClCompile>
     <ClCompile Include="Source\Input\InputDevice.cpp">
-      <Filter>ソース ファイル\Input</Filter>
+      <Filter>Source\Input</Filter>
     </ClCompile>
     <ClCompile Include="Source\Input\Keyboard.cpp">
-      <Filter>ソース ファイル\Input</Filter>
+      <Filter>Source\Input</Filter>
     </ClCompile>
     <ClCompile Include="Source\Input\Mouse.cpp">
-      <Filter>ソース ファイル\Input</Filter>
+      <Filter>Source\Input</Filter>
     </ClCompile>
     <ClCompile Include="Source\Input\XInputController.cpp">
-      <Filter>ソース ファイル\Input</Filter>
+      <Filter>Source\Input</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Random.cpp">
-      <Filter>ソース ファイル\Util</Filter>
+      <Filter>Source\Util</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Timer.cpp">
-      <Filter>ソース ファイル\Util</Filter>
+      <Filter>Source\Util</Filter>
     </ClCompile>
     <ClCompile Include="Source\Util\Utility.cpp">
-      <Filter>ソース ファイル\Util</Filter>
+      <Filter>Source\Util</Filter>
     </ClCompile>
     <ClCompile Include="Source\Audio\Audio.cpp">
-      <Filter>ソース ファイル\Audio</Filter>
+      <Filter>Source\Audio</Filter>
     </ClCompile>
     <ClCompile Include="Source\Audio\AudioManager.cpp">
-      <Filter>ソース ファイル\Audio</Filter>
+      <Filter>Source\Audio</Filter>
     </ClCompile>
     <ClCompile Include="Source\Audio\WaveAudioData.cpp">
-      <Filter>ソース ファイル\Audio</Filter>
+      <Filter>Source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameSystem\Scene\Scene.cpp">
+      <Filter>Source\GameSystem\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameSystem\Scene\SceneManager.cpp">
+      <Filter>Source\GameSystem\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameSystem\Scene\SampleScene.cpp">
+      <Filter>Source\GameSystem\Scene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

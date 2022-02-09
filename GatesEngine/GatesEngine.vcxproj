@@ -23,6 +23,9 @@
     <ClInclude Include="Header\Audio\Audio.h" />
     <ClInclude Include="Header\Audio\AudioManager.h" />
     <ClInclude Include="Header\Audio\WaveAudioData.h" />
+    <ClInclude Include="Header\GameSystem\Scene\SampleScene.h" />
+    <ClInclude Include="Header\GameSystem\Scene\Scene.h" />
+    <ClInclude Include="Header\GameSystem\Scene\SceneManager.h" />
     <ClInclude Include="Header\Graphics\Window.h" />
     <ClInclude Include="Header\Input\InputDevice.h" />
     <ClInclude Include="Header\Input\Keyboard.h" />
@@ -49,6 +52,9 @@
     <ClCompile Include="Source\Audio\Audio.cpp" />
     <ClCompile Include="Source\Audio\AudioManager.cpp" />
     <ClCompile Include="Source\Audio\WaveAudioData.cpp" />
+    <ClCompile Include="Source\GameSystem\Scene\SampleScene.cpp" />
+    <ClCompile Include="Source\GameSystem\Scene\Scene.cpp" />
+    <ClCompile Include="Source\GameSystem\Scene\SceneManager.cpp" />
     <ClCompile Include="Source\Graphics\Window.cpp" />
     <ClCompile Include="Source\Input\InputDevice.cpp" />
     <ClCompile Include="Source\Input\Keyboard.cpp" />
