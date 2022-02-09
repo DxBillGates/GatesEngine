@@ -19,6 +19,7 @@ GE::Application::Application(const Math::Vector2& size, const std::string& title
 	mainWindow.PreviewWindow();
 
 	inputDevice->Create(mainWindow.GetHandle(), mainWindow.GetHInstance());
+	graphicsDevice.Create(size, mainWindow.GetHandle());
 
 	Audio::SetAudioEngine();
 }

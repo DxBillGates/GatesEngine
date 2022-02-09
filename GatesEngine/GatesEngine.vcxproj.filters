@@ -164,6 +164,24 @@
     <ClInclude Include="Header\GameFramework\Component\SampleComponent.h">
       <Filter>Header\GameFramework\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Graphics\GraphicsDeviceDx12.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\RenderTarget.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\DepthStencil.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\COMRelease.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\IDepthStencil.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\IRenderTarget.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -246,6 +264,15 @@
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\SampleComponent.cpp">
       <Filter>Source\GameFramework\Conponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\GraphicsDeviceDx12.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\DepthStencil.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\RenderTarget.cpp">
+      <Filter>Source\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 #include "..\Input\InputDevice.h"
 #include "..\Audio\AudioManager.h"
 #include "..\GameFramework\Scene\SceneManager.h"
+#include "..\Graphics\GraphicsDeviceDx12.h"
 
 namespace GE
 {
@@ -17,6 +18,7 @@ namespace GE
 		InputDevice* inputDevice;
 		AudioManager audioManager;
 		SceneManager sceneManager;
+		GraphicsDeviceDx12 graphicsDevice;
 	public:
 		Application();
 		Application(const Math::Vector2& size,const std::string& title);

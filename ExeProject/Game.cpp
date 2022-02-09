@@ -37,5 +37,8 @@ bool Game::Update()
 bool Game::Draw()
 {
 	Application::Draw();
+	graphicsDevice.ClearDefaultRenderTarget();
+	graphicsDevice.SetDefaultRenderTarget();
+	graphicsDevice.ScreenFlip();
 	return true;
 }

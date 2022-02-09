@@ -30,6 +30,12 @@
     <ClInclude Include="Header\GameFramework\Scene\SampleScene.h" />
     <ClInclude Include="Header\GameFramework\Scene\Scene.h" />
     <ClInclude Include="Header\GameFramework\Scene\SceneManager.h" />
+    <ClInclude Include="Header\Graphics\COMRelease.h" />
+    <ClInclude Include="Header\Graphics\DepthStencil.h" />
+    <ClInclude Include="Header\Graphics\GraphicsDeviceDx12.h" />
+    <ClInclude Include="Header\Graphics\IDepthStencil.h" />
+    <ClInclude Include="Header\Graphics\IRenderTarget.h" />
+    <ClInclude Include="Header\Graphics\RenderTarget.h" />
     <ClInclude Include="Header\Graphics\Window.h" />
     <ClInclude Include="Header\Input\InputDevice.h" />
     <ClInclude Include="Header\Input\Keyboard.h" />
@@ -63,6 +69,9 @@
     <ClCompile Include="Source\GameFramework\Scene\SampleScene.cpp" />
     <ClCompile Include="Source\GameFramework\Scene\Scene.cpp" />
     <ClCompile Include="Source\GameFramework\Scene\SceneManager.cpp" />
+    <ClCompile Include="Source\Graphics\DepthStencil.cpp" />
+    <ClCompile Include="Source\Graphics\GraphicsDeviceDx12.cpp" />
+    <ClCompile Include="Source\Graphics\RenderTarget.cpp" />
     <ClCompile Include="Source\Graphics\Window.cpp" />
     <ClCompile Include="Source\Input\InputDevice.cpp" />
     <ClCompile Include="Source\Input\Keyboard.cpp" />
