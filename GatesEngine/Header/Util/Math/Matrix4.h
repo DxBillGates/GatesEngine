@@ -141,7 +141,7 @@ namespace GE
 			/// このインスタンスの各軸を返す
 			/// </summary>
 			/// <returns></returns>
-			const Axis& GetAxis() const;
+			Axis GetAxis() const;
 
 			/// <summary>
 			/// 位置、視点位置、上ベクトルを指定してビュー行列を生成する関数

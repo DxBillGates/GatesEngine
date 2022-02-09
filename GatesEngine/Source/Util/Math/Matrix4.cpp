@@ -198,7 +198,7 @@ float GE::Math::Matrix4x4::Determinant(const Matrix4x4 & m)
 	return result;
 }
 
-const GE::Math::Axis& GE::Math::Matrix4x4::GetAxis() const
+GE::Math::Axis GE::Math::Matrix4x4::GetAxis() const
 {
 	return GetAxis(*this);
 }
