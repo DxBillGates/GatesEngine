@@ -4,7 +4,7 @@
 #include "..\Graphics\Window.h"
 #include "..\Input\InputDevice.h"
 #include "..\Audio\AudioManager.h"
-#include "..\GameSystem\Scene\SceneManager.h"
+#include "..\GameFramework\Scene\SceneManager.h"
 
 namespace GE
 {

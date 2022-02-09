@@ -1,4 +1,4 @@
-#include "..\..\..\Header\GameSystem\Component\Component.h"
+#include "..\..\..\Header\GameFramework\Component\Component.h"
 
 GE::Component::Component()
 	: gameObject(nullptr)

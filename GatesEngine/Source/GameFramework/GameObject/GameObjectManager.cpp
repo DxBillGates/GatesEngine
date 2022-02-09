@@ -1,4 +1,4 @@
-#include "..\..\..\Header\GameSystem\GameObject\GameObjectManager.h"
+#include "..\..\..\Header\GameFramework\GameObject\GameObjectManager.h"
 
 GE::GameObjectManager::GameObjectManager()
 {

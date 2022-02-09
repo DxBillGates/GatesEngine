@@ -1,0 +1,19 @@
+#pragma once
+#include "Component.h"
+#include "..\..\Input\InputDevice.h"
+
+namespace GE
+{
+	class SampleComponent : public Component
+	{
+	private:
+		InputDevice* inputDevice;
+	public:
+		SampleComponent();
+		~SampleComponent();
+		void Awake() override;
+		void Start() override;
+		void Update(float deltaTime) override;
+		void Draw() override;
+	};
+}

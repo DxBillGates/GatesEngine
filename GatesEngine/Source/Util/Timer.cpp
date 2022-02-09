@@ -1,4 +1,6 @@
 #include "..\..\Header\Util\Timer.h"
+#include "..\..\Header\Util\Utility.h"
+
 #include <stdio.h>
 #include <string>
 #pragma comment(lib,"winmm.lib")
@@ -49,7 +51,7 @@ void GE::Util::Timer::End(bool isShow, const char* addComment)
 	QueryPerformanceCounter(&endBuffer);
 	double elapsedTime = static_cast<double>(endBuffer.QuadPart - startBuffer.QuadPart) / static_cast<double>(timeFreq.QuadPart);
 	float fps = 1.0f / (float)elapsedTime;
-	if (isShow)printf("%3.5fms : %3.0f :%s\n", (float)(elapsedTime * 1000), fps, addComment);
+	if (isShow)Utility::Printf("%3.5fms : %3.0f : %s\n", (float)(elapsedTime * 1000), fps, addComment);
 }
 
 bool GE::Util::Timer::Update()
@@ -73,12 +75,11 @@ bool GE::Util::Timer::Update()
 	fps = 1.0f / frameTime;
 	elapsedApplicationTime += (float)frameTime;
 #ifdef _DEBUG
-	if (isShow)printf("%3.3ffps\n", fps);
+	if (isShow)Utility::Printf("%f\n", fps);
 #else
 	char numStr[16];
 	sprintf_s(numStr, "fps:%d\n", (int)fps);
 	OutputDebugString(numStr);
-	//if (isShow)printf("%3.3ffps\n", fps);
 #endif
 
 	return false;
@@ -88,4 +89,6 @@ void GE::Util::Timer::SetFrameRate(float value)
 {
 	setFrameRate = value;
 	isSetFrameRate = true;
+
+	Utility::Printf("è„å¿Ç%ffpsÇ…ê›íËÇµÇ‹ÇµÇΩÅB\n", value);
 }

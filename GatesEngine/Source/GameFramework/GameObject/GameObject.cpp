@@ -1,5 +1,5 @@
-#include "..\..\..\Header\GameSystem\GameObject\GameObject.h"
-#include "..\..\..\Header\GameSystem\Component\Component.h"
+#include "..\..\..\Header\GameFramework\GameObject\GameObject.h"
+#include "..\..\..\Header\GameFramework\Component\Component.h"
 
 GE::GameObject::GameObject(const std::string& name, const std::string& tag)
 	: parent(nullptr)

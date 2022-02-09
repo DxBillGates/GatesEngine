@@ -30,10 +30,12 @@ bool Game::Initialize()
 
 bool Game::Update()
 {
+	Application::Update();
 	return true;
 }
 
 bool Game::Draw()
 {
+	Application::Draw();
 	return true;
 }

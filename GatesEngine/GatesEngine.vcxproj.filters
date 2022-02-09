@@ -14,18 +14,6 @@
     <Filter Include="Source\Audio">
       <UniqueIdentifier>{79859eda-6e1e-43ae-a75c-1bef75b993d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\GameSystem">
-      <UniqueIdentifier>{dccfe9df-95ce-4948-8a90-f57f9b06ba93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\GameSystem\Scene">
-      <UniqueIdentifier>{a38c2ef1-e099-4013-84a8-0bc5adeb146f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\GameSystem\Conponent">
-      <UniqueIdentifier>{16b46a75-30ff-43ff-bf56-4ba5adc48fcc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\GameSystem\GameObject">
-      <UniqueIdentifier>{0c145c6b-e422-403a-b323-5ecb177e9b0b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\Util">
       <UniqueIdentifier>{051a8cef-e017-4629-a31b-03492560162f}</UniqueIdentifier>
     </Filter>
@@ -45,18 +33,6 @@
     <Filter Include="Header\Audio">
       <UniqueIdentifier>{a8923f8d-ce7a-4723-9ac5-8c13c6e9e6c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header\GameSystem">
-      <UniqueIdentifier>{95459304-7715-4591-ae34-a4ad79a97583}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header\GameSystem\Scene">
-      <UniqueIdentifier>{0f44abb3-3d2b-4ac2-8192-6ae385631e93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header\GameSystem\GameObject">
-      <UniqueIdentifier>{95d54d0b-c522-434c-8c64-a7f7e805f7b4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header\GameSystem\Component">
-      <UniqueIdentifier>{4df7d552-899e-4c8f-8502-2062f540c04c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header\Util">
       <UniqueIdentifier>{b0ba0140-4638-4851-9094-0e6758bc1bf5}</UniqueIdentifier>
     </Filter>
@@ -68,6 +44,30 @@
     </Filter>
     <Filter Include="Header\Application">
       <UniqueIdentifier>{a4da27ef-bf0d-4834-81d0-9186029d6de4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\GameFramework">
+      <UniqueIdentifier>{95459304-7715-4591-ae34-a4ad79a97583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\GameFramework\Scene">
+      <UniqueIdentifier>{0f44abb3-3d2b-4ac2-8192-6ae385631e93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\GameFramework\GameObject">
+      <UniqueIdentifier>{95d54d0b-c522-434c-8c64-a7f7e805f7b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\GameFramework\Component">
+      <UniqueIdentifier>{4df7d552-899e-4c8f-8502-2062f540c04c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameFramework">
+      <UniqueIdentifier>{dccfe9df-95ce-4948-8a90-f57f9b06ba93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameFramework\Scene">
+      <UniqueIdentifier>{a38c2ef1-e099-4013-84a8-0bc5adeb146f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameFramework\Conponent">
+      <UniqueIdentifier>{16b46a75-30ff-43ff-bf56-4ba5adc48fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameFramework\GameObject">
+      <UniqueIdentifier>{0c145c6b-e422-403a-b323-5ecb177e9b0b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -143,14 +143,26 @@
     <ClInclude Include="Header\Audio\WaveAudioData.h">
       <Filter>Header\Audio</Filter>
     </ClInclude>
-    <ClInclude Include="Header\GameSystem\Scene\Scene.h">
-      <Filter>Header\GameSystem\Scene</Filter>
+    <ClInclude Include="Header\GameFramework\Scene\Scene.h">
+      <Filter>Header\GameFramework\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Header\GameSystem\Scene\SceneManager.h">
-      <Filter>Header\GameSystem\Scene</Filter>
+    <ClInclude Include="Header\GameFramework\Scene\SceneManager.h">
+      <Filter>Header\GameFramework\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Header\GameSystem\Scene\SampleScene.h">
-      <Filter>Header\GameSystem\Scene</Filter>
+    <ClInclude Include="Header\GameFramework\Scene\SampleScene.h">
+      <Filter>Header\GameFramework\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameFramework\GameObject\GameObject.h">
+      <Filter>Header\GameFramework\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameFramework\GameObject\GameObjectManager.h">
+      <Filter>Header\GameFramework\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameFramework\Component\Component.h">
+      <Filter>Header\GameFramework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameFramework\Component\SampleComponent.h">
+      <Filter>Header\GameFramework\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -214,14 +226,26 @@
     <ClCompile Include="Source\Audio\WaveAudioData.cpp">
       <Filter>Source\Audio</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameSystem\Scene\Scene.cpp">
-      <Filter>Source\GameSystem\Scene</Filter>
+    <ClCompile Include="Source\GameFramework\Scene\Scene.cpp">
+      <Filter>Source\GameFramework\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameSystem\Scene\SceneManager.cpp">
-      <Filter>Source\GameSystem\Scene</Filter>
+    <ClCompile Include="Source\GameFramework\Scene\SceneManager.cpp">
+      <Filter>Source\GameFramework\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\GameSystem\Scene\SampleScene.cpp">
-      <Filter>Source\GameSystem\Scene</Filter>
+    <ClCompile Include="Source\GameFramework\Scene\SampleScene.cpp">
+      <Filter>Source\GameFramework\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\GameObject\GameObject.cpp">
+      <Filter>Source\GameFramework\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\GameObject\GameObjectManager.cpp">
+      <Filter>Source\GameFramework\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\Component\Component.cpp">
+      <Filter>Source\GameFramework\Conponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\Component\SampleComponent.cpp">
+      <Filter>Source\GameFramework\Conponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 #include "..\..\Header\Application\Application.h"
-#include "..\..\Header\GameSystem\Scene\SampleScene.h"
+#include "..\..\Header\GameFramework\Scene\SampleScene.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080),"no title")
@@ -13,6 +13,7 @@ GE::Application::Application(const Math::Vector2& size, const std::string& title
 	, audioManager(AudioManager())
 {
 	timer.SetFrameRate(144);
+	timer.SetIsShow(false);
 
 	mainWindow.Create(size,title);
 	mainWindow.PreviewWindow();
@@ -34,6 +35,7 @@ bool GE::Application::LoadContents()
 	testBGM->SetVolume(0.05f);
 
 	auto* testScene = sceneManager.AddScene(new SampleScene("SampleScene"));
+	sceneManager.ChangeScene("SampleScene");
 
 	return true;
 }
@@ -48,11 +50,14 @@ bool GE::Application::Initialize()
 
 bool GE::Application::Update()
 {
+	sceneManager.Update(timer.GetElapsedTime());
 	return true;
 }
 
 bool GE::Application::Draw()
 {
+	sceneManager.Draw();
+	sceneManager.LateDraw();
 	return true;
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "..\..\Audio\AudioManager.h"
 #include "..\..\Input\InputDevice.h"
-#include "..\..\GameSystem\GameObject\GameObjectManager.h"
+#include "..\..\GameFramework\GameObject\GameObjectManager.h"
 
 #include <string>
 
@@ -15,6 +15,12 @@ namespace GE
 		SceneInitializer()
 			: audioManager(nullptr)
 			, inputDevice(nullptr)
+		{
+		}
+
+		SceneInitializer(AudioManager* audioManager, InputDevice* inputDevice)
+			: audioManager(audioManager)
+			, inputDevice(inputDevice)
 		{
 		}
 	};

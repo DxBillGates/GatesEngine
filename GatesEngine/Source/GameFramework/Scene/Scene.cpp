@@ -1,4 +1,4 @@
-#include "..\..\..\Header\GameSystem\Scene\Scene.h"
+#include "..\..\..\Header\GameFramework\Scene\Scene.h"
 
 GE::Scene::Scene() 
 	: Scene("unregister name scene")

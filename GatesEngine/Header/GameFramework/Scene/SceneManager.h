@@ -23,6 +23,7 @@ namespace GE
 		Scene* ChangeScene(const std::string& sceneName);
 		Scene* GetCurrentScene();
 		Scene* GetBeforeScene();
+		Scene* GetAddScene();
 		Scene* GetScene(const std::string& sceneName);
 	};
 }

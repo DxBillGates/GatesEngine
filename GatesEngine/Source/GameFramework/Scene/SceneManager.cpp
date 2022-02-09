@@ -1,8 +1,9 @@
-#include "..\..\..\Header\GameSystem\Scene\SceneManager.h"
+#include "..\..\..\Header\GameFramework\Scene\SceneManager.h"
 
 GE::SceneManager::SceneManager()
 	: currentScene(nullptr)
 	, beforeScene(nullptr)
+	, addScene(nullptr)
 {
 }
 
@@ -86,6 +87,11 @@ GE::Scene* GE::SceneManager::GetCurrentScene()
 GE::Scene* GE::SceneManager::GetBeforeScene()
 {
 	return beforeScene;
+}
+
+GE::Scene* GE::SceneManager::GetAddScene()
+{
+	return addScene;
 }
 
 GE::Scene* GE::SceneManager::GetScene(const std::string& sceneName)
