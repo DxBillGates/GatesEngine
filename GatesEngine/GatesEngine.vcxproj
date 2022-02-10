@@ -37,9 +37,12 @@
     <ClInclude Include="Header\Graphics\ICBufferAllocater.h" />
     <ClInclude Include="Header\Graphics\IDepthStencil.h" />
     <ClInclude Include="Header\Graphics\IRenderTarget.h" />
+    <ClInclude Include="Header\Graphics\IRootSignature.h" />
     <ClInclude Include="Header\Graphics\IShader.h" />
     <ClInclude Include="Header\Graphics\IShaderResourceHeap.h" />
     <ClInclude Include="Header\Graphics\RenderTarget.h" />
+    <ClInclude Include="Header\Graphics\RootSignature.h" />
+    <ClInclude Include="Header\Graphics\RootSignatureManager.h" />
     <ClInclude Include="Header\Graphics\Shader.h" />
     <ClInclude Include="Header\Graphics\ShaderResourceHeap.h" />
     <ClInclude Include="Header\Graphics\Window.h" />
@@ -79,6 +82,8 @@
     <ClCompile Include="Source\Graphics\DepthStencil.cpp" />
     <ClCompile Include="Source\Graphics\GraphicsDeviceDx12.cpp" />
     <ClCompile Include="Source\Graphics\RenderTarget.cpp" />
+    <ClCompile Include="Source\Graphics\RootSignature.cpp" />
+    <ClCompile Include="Source\Graphics\RootSignatureManager.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />
     <ClCompile Include="Source\Graphics\ShaderResourceHeap.cpp" />
     <ClCompile Include="Source\Graphics\Window.cpp" />

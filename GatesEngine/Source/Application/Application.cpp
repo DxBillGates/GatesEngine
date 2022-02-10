@@ -1,6 +1,7 @@
 #include "..\..\Header\Application\Application.h"
 #include "..\..\Header\GameFramework\Scene\SampleScene.h"
 #include "..\..\Header\Graphics\Shader.h"
+#include "..\..\Header\Graphics\RootSignature.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080),"no title")
@@ -40,6 +41,11 @@ bool GE::Application::LoadContents()
 	auto* testScene = sceneManager.AddScene(new SampleScene("SampleScene"));
 	sceneManager.ChangeScene("SampleScene");
 
+	// demo rootSignatureì¬
+	auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
+	RootSignature* testRootSignature = new RootSignature();
+	testRootSignature->Create(graphicsDevice.GetDevice(), { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::SRV });
+	rootSignatureManager->Add(&(*testRootSignature), "CBVCBVSRV");
 	return true;
 }
 

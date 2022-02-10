@@ -107,6 +107,9 @@ GE::GraphicsDeviceDx12::GraphicsDeviceDx12()
 	, depthStencil(DepthStencil())
 	, fence(nullptr)
 	, fenceValue(0)
+	, shaderResourceHeap(ShaderResourceHeap())
+	, cbufferAllocater(CBufferAllocater())
+	, rootSignatureManager(RootSignatureManager())
 {
 }
 
@@ -313,4 +316,29 @@ void GE::GraphicsDeviceDx12::SetViewport(const Math::Vector2& size, const Math::
 {
 	viewPort = { 0,0,(float)size.x,(float)size.y,0,1.0f };
 	rect = { 0,0,(int)size.x,(int)size.y };
+}
+
+ID3D12Device* GE::GraphicsDeviceDx12::GetDevice()
+{
+	return device;
+}
+
+ID3D12GraphicsCommandList* GE::GraphicsDeviceDx12::GetCmdList()
+{
+	return cmdList;
+}
+
+GE::ShaderResourceHeap* GE::GraphicsDeviceDx12::GetShaderResourceHeap()
+{
+	return &shaderResourceHeap;
+}
+
+GE::CBufferAllocater* GE::GraphicsDeviceDx12::GetCBufferAllocater()
+{
+	return &cbufferAllocater;
+}
+
+GE::RootSignatureManager* GE::GraphicsDeviceDx12::GetRootSignatureManager()
+{
+	return &rootSignatureManager;
 }

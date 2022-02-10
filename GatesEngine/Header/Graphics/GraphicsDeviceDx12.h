@@ -6,6 +6,7 @@
 #include "DepthStencil.h"
 #include "ShaderResourceHeap.h"
 #include "CBufferAllocater.h"
+#include "RootSignatureManager.h"
 
 #include <d3d12.h>
 #include <dxgi1_6.h>
@@ -33,6 +34,7 @@ namespace GE
 
 		ShaderResourceHeap shaderResourceHeap;
 		CBufferAllocater cbufferAllocater;
+		RootSignatureManager rootSignatureManager;
 	private:
 		void CreateDxgiFactory();
 		void CreateDevice();
@@ -58,5 +60,11 @@ namespace GE
 		bool ScreenFlip();
 		void SetResourceBarrier(ID3D12Resource* resource, D3D12_RESOURCE_STATES before, D3D12_RESOURCE_STATES after);
 		void SetViewport(const Math::Vector2& size, const Math::Vector2& pos = {});
+
+		ID3D12Device* GetDevice();
+		ID3D12GraphicsCommandList* GetCmdList();
+		ShaderResourceHeap* GetShaderResourceHeap();
+		CBufferAllocater* GetCBufferAllocater();
+		RootSignatureManager* GetRootSignatureManager();
 	};
 }

@@ -200,6 +200,15 @@
     <ClInclude Include="Header\Graphics\Shader.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Graphics\IRootSignature.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\RootSignature.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\RootSignatureManager.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -299,6 +308,12 @@
       <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Shader.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\RootSignature.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\RootSignatureManager.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
   </ItemGroup>

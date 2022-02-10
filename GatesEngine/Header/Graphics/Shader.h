@@ -19,6 +19,7 @@ namespace GE
 		void CompileShaderFileWithoutFormat(const std::wstring& filename, const std::string& shaderTarget);
 
 		// interface
+
 		ID3DBlob* GetShaderBinaryData() override;
 	};
 }
