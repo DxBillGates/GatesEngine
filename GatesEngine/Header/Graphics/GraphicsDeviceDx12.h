@@ -51,8 +51,8 @@ namespace GE
 		void ClearDepthStencil(IDepthStencil* depthStencil);
 		void SetDefaultRenderTarget();
 		void SetDefaultRenderTargetWithoutDSV();
-		void SetRenderTarget(RenderTarget* renderTarget,DepthStencil* depthStencil);
-		void SetRenderTargetWithoutDSV(RenderTarget* renderTarget);
+		void SetRenderTarget(IRenderTarget* renderTarget,IDepthStencil* depthStencil);
+		void SetRenderTargetWithoutDSV(IRenderTarget* renderTarget);
 		void SetShaderResourceDescriptorHeap();
 		void ResetCBufferAllocater();
 		bool ScreenFlip();

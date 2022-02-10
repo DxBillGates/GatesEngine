@@ -217,7 +217,7 @@ void GE::GraphicsDeviceDx12::SetDefaultRenderTargetWithoutDSV()
 	cmdList->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
 }
 
-void GE::GraphicsDeviceDx12::SetRenderTarget(RenderTarget* renderTarget, DepthStencil* depthStencil)
+void GE::GraphicsDeviceDx12::SetRenderTarget(IRenderTarget* renderTarget,IDepthStencil* depthStencil)
 {
 	if (!renderTarget || !depthStencil)assert(true);
 
@@ -239,7 +239,7 @@ void GE::GraphicsDeviceDx12::SetRenderTarget(RenderTarget* renderTarget, DepthSt
 	cmdList->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
 }
 
-void GE::GraphicsDeviceDx12::SetRenderTargetWithoutDSV(RenderTarget* renderTarget)
+void GE::GraphicsDeviceDx12::SetRenderTargetWithoutDSV(IRenderTarget* renderTarget)
 {
 	if (!renderTarget)assert(true);
 
