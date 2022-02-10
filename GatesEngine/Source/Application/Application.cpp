@@ -46,6 +46,7 @@ bool GE::Application::LoadContents()
 	RootSignature* testRootSignature = new RootSignature();
 	testRootSignature->Create(graphicsDevice.GetDevice(), { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::SRV });
 	rootSignatureManager->Add(&(*testRootSignature), "CBVCBVSRV");
+
 	return true;
 }
 
