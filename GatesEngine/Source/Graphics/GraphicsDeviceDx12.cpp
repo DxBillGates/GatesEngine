@@ -141,6 +141,12 @@ bool GE::GraphicsDeviceDx12::Create(const Math::Vector2& viewportSize, HWND hwnd
 	CreateDSV();
 	CreateFence();
 
+	shaderResourceHeap.SetGraphicsDevice(device, cmdList);
+	shaderResourceHeap.Create(Math::Vector3(2560, 256, 256));
+
+	cbufferAllocater.SetGraphicsDevice(device, cmdList, &shaderResourceHeap);
+	cbufferAllocater.Create();
+
 	return true;
 }
 
@@ -252,6 +258,16 @@ void GE::GraphicsDeviceDx12::SetRenderTargetWithoutDSV(RenderTarget* renderTarge
 	cmdList->RSSetViewports(1, &viewport);
 	cmdList->RSSetScissorRects(1, &_rect);
 	cmdList->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
+}
+
+void GE::GraphicsDeviceDx12::SetShaderResourceDescriptorHeap()
+{
+	shaderResourceHeap.Set();
+}
+
+void GE::GraphicsDeviceDx12::ResetCBufferAllocater()
+{
+	cbufferAllocater.ResetCurrentUsedNumber();
 }
 
 bool GE::GraphicsDeviceDx12::ScreenFlip()

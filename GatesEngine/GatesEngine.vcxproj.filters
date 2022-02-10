@@ -182,6 +182,18 @@
     <ClInclude Include="Header\Graphics\IRenderTarget.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Graphics\CBufferAllocater.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\ShaderResourceHeap.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\IShaderResourceHeap.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\ICBufferAllocater.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -272,6 +284,12 @@
       <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\RenderTarget.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\ShaderResourceHeap.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\CBufferAllocater.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
   </ItemGroup>

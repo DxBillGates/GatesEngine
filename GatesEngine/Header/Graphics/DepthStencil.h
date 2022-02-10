@@ -14,6 +14,8 @@ namespace GE
 		DepthStencil();
 		~DepthStencil();
 		void Create(const Math::Vector2& size,ID3D12Device* device);
+
+		// interface
 		D3D12_CPU_DESCRIPTOR_HANDLE GetHandle() override;
 	};
 }

@@ -38,6 +38,8 @@ bool Game::Draw()
 {
 	graphicsDevice.ClearDefaultRenderTarget();
 	graphicsDevice.SetDefaultRenderTarget();
+	graphicsDevice.SetShaderResourceDescriptorHeap();
+	graphicsDevice.ResetCBufferAllocater();
 	Application::Draw();
 	graphicsDevice.ScreenFlip();
 	return true;

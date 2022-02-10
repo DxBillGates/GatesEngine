@@ -4,6 +4,8 @@
 
 #include "RenderTarget.h"
 #include "DepthStencil.h"
+#include "ShaderResourceHeap.h"
+#include "CBufferAllocater.h"
 
 #include <d3d12.h>
 #include <dxgi1_6.h>
@@ -28,6 +30,9 @@ namespace GE
 		DepthStencil depthStencil;
 		ID3D12Fence* fence;
 		UINT64 fenceValue;
+
+		ShaderResourceHeap shaderResourceHeap;
+		CBufferAllocater cbufferAllocater;
 	private:
 		void CreateDxgiFactory();
 		void CreateDevice();
@@ -48,6 +53,8 @@ namespace GE
 		void SetDefaultRenderTargetWithoutDSV();
 		void SetRenderTarget(RenderTarget* renderTarget,DepthStencil* depthStencil);
 		void SetRenderTargetWithoutDSV(RenderTarget* renderTarget);
+		void SetShaderResourceDescriptorHeap();
+		void ResetCBufferAllocater();
 		bool ScreenFlip();
 		void SetResourceBarrier(ID3D12Resource* resource, D3D12_RESOURCE_STATES before, D3D12_RESOURCE_STATES after);
 		void SetViewport(const Math::Vector2& size, const Math::Vector2& pos = {});

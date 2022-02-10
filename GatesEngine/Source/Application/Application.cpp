@@ -30,6 +30,7 @@ GE::Application::~Application()
 
 bool GE::Application::LoadContents()
 {
+	// sample bgm ƒ[ƒh•Ä¶
 	auto* testBGMData = audioManager.AddAudioData(new AudioData("Resources/Audio/testBGM_sharou.wav"), "testBGMData");
 	auto* testBGM = audioManager.AddAudio(new Audio(testBGMData, "testBGM"));
 	testBGM->Start();
