@@ -54,24 +54,26 @@ void GE::RootSignature::Create(ID3D12Device* device, const std::vector<Descripto
 
 	int cbvCount, srvCount, uavCount;
 	cbvCount = srvCount = uavCount = 0;
-
-	// descRangeTypeにあったDescriptorRangeを設定
-	int i = 0;
 	bool isSampler = false;
-	for (const auto& descRangeType : descriptorRangeTypes)
-	{
-		if (descRangeType == DescriptorRangeType::CBV)CreateDescriptorRange(descRanges[i], descRangeType, cbvCount);
-		else if (descRangeType == DescriptorRangeType::SRV)
-		{
-			CreateDescriptorRange(descRanges[i], descRangeType, srvCount);
-			isSampler = true;
-		}
-		else if (descRangeType == DescriptorRangeType::UAV)CreateDescriptorRange(descRanges[i], descRangeType, uavCount);
 
-		rootParams[i].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
-		rootParams[i].DescriptorTable.pDescriptorRanges = &descRanges[i];
-		rootParams[i].DescriptorTable.NumDescriptorRanges = 1;
-		rootParams[i].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+	{
+		// descRangeTypeにあったDescriptorRangeを設定
+		int i = 0;
+		for (const auto& descRangeType : descriptorRangeTypes)
+		{
+			if (descRangeType == DescriptorRangeType::CBV)CreateDescriptorRange(descRanges[i], descRangeType, cbvCount);
+			else if (descRangeType == DescriptorRangeType::SRV)
+			{
+				CreateDescriptorRange(descRanges[i], descRangeType, srvCount);
+				isSampler = true;
+			}
+			else if (descRangeType == DescriptorRangeType::UAV)CreateDescriptorRange(descRanges[i], descRangeType, uavCount);
+
+			rootParams[i].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+			rootParams[i].DescriptorTable.pDescriptorRanges = &descRanges[i];
+			rootParams[i].DescriptorTable.NumDescriptorRanges = 1;
+			rootParams[i].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+		}
 	}
 
 	// スタティックサンプラの設定

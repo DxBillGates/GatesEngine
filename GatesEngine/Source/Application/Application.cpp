@@ -2,6 +2,7 @@
 #include "..\..\Header\GameFramework\Scene\SampleScene.h"
 #include "..\..\Header\Graphics\Shader.h"
 #include "..\..\Header\Graphics\RootSignature.h"
+#include "..\..\Header\Graphics\GraphicsPipeline.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080),"no title")
@@ -41,11 +42,21 @@ bool GE::Application::LoadContents()
 	auto* testScene = sceneManager.AddScene(new SampleScene("SampleScene"));
 	sceneManager.ChangeScene("SampleScene");
 
-	// demo rootSignatureì¬
-	auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
-	RootSignature* testRootSignature = new RootSignature();
-	testRootSignature->Create(graphicsDevice.GetDevice(), { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::SRV });
-	rootSignatureManager->Add(&(*testRootSignature), "CBVCBVSRV");
+	//// demo rootSignatureì¬
+	//auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
+	//RootSignature* testRootSignature = new RootSignature();
+	//testRootSignature->Create(graphicsDevice.GetDevice(), { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::SRV });
+	//rootSignatureManager->Add(testRootSignature, "CBVCBVSRV");
+
+	//// demo graphicsPipelineì¬
+	//auto* graphicsPipelineManager = graphicsDevice.GetGraphicsPipelineManager();
+	//Shader testVShader;
+	//testVShader.CompileShaderFile(L"testVS.hlsl", "vs_5_0");
+	//Shader testPShader;
+	//testPShader.CompileShaderFile(L"testPS.hlsl", "ps_5_0");
+	//GraphicsPipeline* testPipeline = new GraphicsPipeline({ &testVShader,nullptr,nullptr,nullptr,&testPShader });
+	//testPipeline->Create(graphicsDevice.GetDevice(), {GraphicsPipelineInputLayout::POSITION},testRootSignature, {});
+	//graphicsPipelineManager->Add(testPipeline, "testShader");
 
 	return true;
 }

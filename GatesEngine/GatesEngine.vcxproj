@@ -34,8 +34,11 @@
     <ClInclude Include="Header\Graphics\COMRelease.h" />
     <ClInclude Include="Header\Graphics\DepthStencil.h" />
     <ClInclude Include="Header\Graphics\GraphicsDeviceDx12.h" />
+    <ClInclude Include="Header\Graphics\GraphicsPipeline.h" />
+    <ClInclude Include="Header\Graphics\GraphicsPipelineManager.h" />
     <ClInclude Include="Header\Graphics\ICBufferAllocater.h" />
     <ClInclude Include="Header\Graphics\IDepthStencil.h" />
+    <ClInclude Include="Header\Graphics\IGraphicsPipeline.h" />
     <ClInclude Include="Header\Graphics\IRenderTarget.h" />
     <ClInclude Include="Header\Graphics\IRootSignature.h" />
     <ClInclude Include="Header\Graphics\IShader.h" />
@@ -81,6 +84,8 @@
     <ClCompile Include="Source\Graphics\CBufferAllocater.cpp" />
     <ClCompile Include="Source\Graphics\DepthStencil.cpp" />
     <ClCompile Include="Source\Graphics\GraphicsDeviceDx12.cpp" />
+    <ClCompile Include="Source\Graphics\GraphicsPipeline.cpp" />
+    <ClCompile Include="Source\Graphics\GraphicsPipelineManager.cpp" />
     <ClCompile Include="Source\Graphics\RenderTarget.cpp" />
     <ClCompile Include="Source\Graphics\RootSignature.cpp" />
     <ClCompile Include="Source\Graphics\RootSignatureManager.cpp" />

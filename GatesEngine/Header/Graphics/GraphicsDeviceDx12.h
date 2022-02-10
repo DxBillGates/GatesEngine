@@ -7,6 +7,7 @@
 #include "ShaderResourceHeap.h"
 #include "CBufferAllocater.h"
 #include "RootSignatureManager.h"
+#include "GraphicsPipelineManager.h"
 
 #include <d3d12.h>
 #include <dxgi1_6.h>
@@ -35,6 +36,7 @@ namespace GE
 		ShaderResourceHeap shaderResourceHeap;
 		CBufferAllocater cbufferAllocater;
 		RootSignatureManager rootSignatureManager;
+		GraphicsPipelineManager graphicsPipelineManager;
 	private:
 		void CreateDxgiFactory();
 		void CreateDevice();
@@ -66,5 +68,6 @@ namespace GE
 		ShaderResourceHeap* GetShaderResourceHeap();
 		CBufferAllocater* GetCBufferAllocater();
 		RootSignatureManager* GetRootSignatureManager();
+		GraphicsPipelineManager* GetGraphicsPipelineManager();
 	};
 }

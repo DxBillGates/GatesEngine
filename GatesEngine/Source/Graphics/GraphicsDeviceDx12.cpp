@@ -110,6 +110,7 @@ GE::GraphicsDeviceDx12::GraphicsDeviceDx12()
 	, shaderResourceHeap(ShaderResourceHeap())
 	, cbufferAllocater(CBufferAllocater())
 	, rootSignatureManager(RootSignatureManager())
+	, graphicsPipelineManager(GraphicsPipelineManager())
 {
 }
 
@@ -341,4 +342,9 @@ GE::CBufferAllocater* GE::GraphicsDeviceDx12::GetCBufferAllocater()
 GE::RootSignatureManager* GE::GraphicsDeviceDx12::GetRootSignatureManager()
 {
 	return &rootSignatureManager;
+}
+
+GE::GraphicsPipelineManager* GE::GraphicsDeviceDx12::GetGraphicsPipelineManager()
+{
+	return &graphicsPipelineManager;
 }
