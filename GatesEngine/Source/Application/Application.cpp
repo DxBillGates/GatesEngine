@@ -1,5 +1,6 @@
 #include "..\..\Header\Application\Application.h"
 #include "..\..\Header\GameFramework\Scene\SampleScene.h"
+#include "..\..\Header\Graphics\Shader.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080),"no title")

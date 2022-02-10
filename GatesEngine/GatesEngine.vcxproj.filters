@@ -194,6 +194,12 @@
     <ClInclude Include="Header\Graphics\ICBufferAllocater.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Graphics\IShader.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\Shader.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -290,6 +296,9 @@
       <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\CBufferAllocater.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Shader.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
   </ItemGroup>

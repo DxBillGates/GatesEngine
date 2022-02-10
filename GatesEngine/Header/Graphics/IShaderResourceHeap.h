@@ -8,6 +8,7 @@ namespace GE
 	class IShaderResourceHeap
 	{
 	public:
+		virtual ~IShaderResourceHeap() {}
 		virtual D3D12_CPU_DESCRIPTOR_HANDLE GetCPUHandle() = 0;
 		virtual D3D12_GPU_DESCRIPTOR_HANDLE GetGPUHandle() = 0;
 		virtual D3D12_GPU_DESCRIPTOR_HANDLE GetGPUHandleForCBV(int value) = 0;
