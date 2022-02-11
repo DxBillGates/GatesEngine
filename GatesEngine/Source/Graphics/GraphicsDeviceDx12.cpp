@@ -348,3 +348,8 @@ GE::GraphicsPipelineManager* GE::GraphicsDeviceDx12::GetGraphicsPipelineManager(
 {
 	return &graphicsPipelineManager;
 }
+
+GE::MeshManager* GE::GraphicsDeviceDx12::GetMeshManager()
+{
+	return &meshManager;
+}

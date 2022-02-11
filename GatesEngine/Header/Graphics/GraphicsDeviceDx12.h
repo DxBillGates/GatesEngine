@@ -8,6 +8,7 @@
 #include "CBufferAllocater.h"
 #include "RootSignatureManager.h"
 #include "GraphicsPipelineManager.h"
+#include "MeshManager.h"
 
 #include <d3d12.h>
 #include <dxgi1_6.h>
@@ -37,6 +38,7 @@ namespace GE
 		CBufferAllocater cbufferAllocater;
 		RootSignatureManager rootSignatureManager;
 		GraphicsPipelineManager graphicsPipelineManager;
+		MeshManager meshManager;
 	private:
 		void CreateDxgiFactory();
 		void CreateDevice();
@@ -69,5 +71,6 @@ namespace GE
 		CBufferAllocater* GetCBufferAllocater();
 		RootSignatureManager* GetRootSignatureManager();
 		GraphicsPipelineManager* GetGraphicsPipelineManager();
+		MeshManager* GetMeshManager();
 	};
 }

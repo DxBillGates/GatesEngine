@@ -3,6 +3,11 @@
 #include "..\..\Header\Graphics\Shader.h"
 #include "..\..\Header\Graphics\RootSignature.h"
 #include "..\..\Header\Graphics\GraphicsPipeline.h"
+#include "..\..\Header\Graphics\MeshManager.h"
+#include "..\..\Header\Graphics\Mesh.h"
+#include "..\..\Header\Graphics\MeshData.h"
+#include "..\..\Header\Graphics\VertexData.h"
+#include "..\..\Header\Graphics\MeshCreater.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080),"no title")
@@ -41,6 +46,48 @@ bool GE::Application::LoadContents()
 
 	auto* testScene = sceneManager.AddScene(new SampleScene("SampleScene"));
 	sceneManager.ChangeScene("SampleScene");
+
+	MeshManager* meshManager = graphicsDevice.GetMeshManager();
+	Mesh* mesh;
+	// 板ポリ生成
+	MeshData<Vertex_UV_Normal> meshDataPlane;
+	MeshCreater::CreatePlane(meshDataPlane);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshDataPlane);
+	meshManager->Add(mesh, "Plane");
+
+	MeshData<Vertex_UV> meshData2DPlane;
+	MeshCreater::Create2DPlane(meshData2DPlane);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshData2DPlane);
+	meshManager->Add(mesh, "2DPlane");
+
+	MeshData<Vertex_UV> meshData2DPlanePivot;
+	MeshCreater::Create2DPlane(meshData2DPlanePivot, { 1 }, { 1 }, {-1,0});
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshData2DPlanePivot);
+	meshManager->Add(mesh, "2DPlanePivot");
+
+	// グリッド生成
+	MeshData<Vertex_Color> meshDataGrid;
+	MeshCreater::CreateGrid(meshDataGrid);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshDataGrid);
+	meshManager->Add(mesh, "Grid");
+
+	// lineCube生成
+	MeshData<Vertex_Color> meshDataLineCube;
+	MeshCreater::CreateLineCube(meshDataLineCube);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshDataLineCube);
+	meshManager->Add(mesh, "LineCube");
+
+	// lineCircle生成
+	MeshData<Vertex_Color> meshDataLineCircle;
+	MeshCreater::CreateLineCircle(meshDataLineCircle);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshDataLineCircle);
+	meshManager->Add(mesh, "LineCircle");
 
 	//// demo rootSignature作成
 	//auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
