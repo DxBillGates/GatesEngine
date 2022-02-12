@@ -89,6 +89,49 @@ bool GE::Application::LoadContents()
 	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshDataLineCircle);
 	meshManager->Add(mesh, "LineCircle");
 
+	// modelì«Ç›çûÇ›
+	MeshData<Vertex_UV_Normal> modelDataCube;
+	MeshCreater::LoadObjModelData("Resources/Model/cube",modelDataCube);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataCube);
+	meshManager->Add(mesh, "Cube");
+
+	MeshData<Vertex_UV_Normal> modelDataSphere;
+	MeshCreater::LoadObjModelData("Resources/Model/sphere", modelDataSphere);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataSphere);
+	meshManager->Add(mesh, "Sphere");
+
+	MeshData<Vertex_UV_Normal> modelDataPlatonic;
+	MeshCreater::LoadObjModelData("Resources/Model/platonic", modelDataPlatonic);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataPlatonic);
+	meshManager->Add(mesh, "Platonic");
+
+	MeshData<Vertex_UV_Normal> modelDataCorn;
+	MeshCreater::LoadObjModelData("Resources/Model/corn", modelDataCorn);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataCorn);
+	meshManager->Add(mesh, "Corn");
+
+	MeshData<Vertex_UV_Normal> modelDataCylinder;
+	MeshCreater::LoadObjModelData("Resources/Model/cylinder", modelDataCylinder);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataCylinder);
+	meshManager->Add(mesh, "Cylinder");
+
+	MeshData<Vertex_UV_Normal> modelDataSkydome;
+	MeshCreater::LoadObjModelData("Resources/Model/skydome", modelDataSkydome);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataSkydome);
+	meshManager->Add(mesh, "Skydome");
+
+	MeshData<Vertex_UV_Normal> modelDataTorus;
+	MeshCreater::LoadObjModelData("Resources/Model/skydome", modelDataTorus);
+	mesh = new Mesh();
+	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataTorus);
+	meshManager->Add(mesh, "Torus");
+
 	//// demo rootSignatureçÏê¨
 	//auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
 	//RootSignature* testRootSignature = new RootSignature();

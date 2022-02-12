@@ -166,7 +166,7 @@ void GE::MeshCreater::LoadObjModelData(const std::string& filename, MeshData<Ver
 	std::vector<Vertex_UV_Normal>* vertices = meshData.GetVertices();
 	std::vector<unsigned int>* indices = meshData.GetIndices();
 
-	std::string  filepath = "Resources/Model/" + filename + ".obj";
+	std::string  filepath = filename + ".obj";
 	std::vector<Math::Vector3> positions;
 	std::vector<Math::Vector2> uvies;
 	std::vector<Math::Vector3> normals;
