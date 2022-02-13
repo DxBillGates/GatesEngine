@@ -113,6 +113,8 @@ GE::GraphicsDeviceDx12::GraphicsDeviceDx12()
 	, cbufferAllocater(CBufferAllocater())
 	, rootSignatureManager(RootSignatureManager())
 	, graphicsPipelineManager(GraphicsPipelineManager())
+	, meshManager(MeshManager())
+	, textureManager(TextureManager())
 {
 }
 
@@ -363,6 +365,11 @@ GE::MeshManager* GE::GraphicsDeviceDx12::GetMeshManager()
 	return &meshManager;
 }
 
+GE::TextureManager* GE::GraphicsDeviceDx12::GetTextureManager()
+{
+	return &textureManager;
+}
+
 void GE::GraphicsDeviceDx12::SetShader(const std::string& shaderName, bool isWireframe)
 {
 	IGraphicsPipeline* usePipeline = graphicsPipelineManager.Get(shaderName);
@@ -382,4 +389,14 @@ void GE::GraphicsDeviceDx12::SetShader(const std::string& shaderName, bool isWir
 	else if (topologyType == GraphicsPipelinePrimitiveTopolotyType::PATCH)primitiveType = D3D_PRIMITIVE_TOPOLOGY_4_CONTROL_POINT_PATCHLIST;
 
 	cmdList->IASetPrimitiveTopology(primitiveType);
+}
+
+void GE::GraphicsDeviceDx12::SetTexture(const std::string& texName, int descIndex)
+{
+	cmdList->SetGraphicsRootDescriptorTable(descIndex, shaderResourceHeap.GetGPUHandleForSRV(textureManager.Get(texName)->GetSRVNumber()));
+}
+
+void GE::GraphicsDeviceDx12::DrawMesh(const std::string& meshName, int instanceCount)
+{
+	meshManager.Get(meshName)->Draw(instanceCount);
 }

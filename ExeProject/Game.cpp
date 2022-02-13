@@ -52,12 +52,12 @@ bool Game::Draw()
 	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(1, &cameraInfo, sizeof(GE::CameraInfo));
 	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(2, &material, sizeof(GE::Material));
 	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(3, &directionalLight, sizeof(GE::DirectionalLightInfo));
-	graphicsDevice.GetMeshManager()->Get("Sphere")->Draw();
+	graphicsDevice.DrawMesh("Sphere");
 
 	graphicsDevice.SetShader("DefaultLineShader");
 	modelMatrix = GE::Math::Matrix4x4::Identity();
 	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4));
-	graphicsDevice.GetMeshManager()->Get("Grid")->Draw();
+	graphicsDevice.DrawMesh("Grid");
 
 	Application::Draw();
 	graphicsDevice.ScreenFlip();

@@ -9,6 +9,7 @@
 #include "RootSignatureManager.h"
 #include "GraphicsPipelineManager.h"
 #include "MeshManager.h"
+#include "TextureManager.h"
 
 #include <d3d12.h>
 #include <dxgi1_6.h>
@@ -39,6 +40,7 @@ namespace GE
 		RootSignatureManager rootSignatureManager;
 		GraphicsPipelineManager graphicsPipelineManager;
 		MeshManager meshManager;
+		TextureManager textureManager;
 	private:
 		void CreateDxgiFactory();
 		void CreateDevice();
@@ -72,7 +74,10 @@ namespace GE
 		RootSignatureManager* GetRootSignatureManager();
 		GraphicsPipelineManager* GetGraphicsPipelineManager();
 		MeshManager* GetMeshManager();
+		TextureManager* GetTextureManager();
 
 		void SetShader(const std::string& shaderName,bool isWireframe = false);
+		void SetTexture(const std::string& texName, int descIndex);
+		void DrawMesh(const std::string& meshName,int instanceCount = 1);
 	};
 }

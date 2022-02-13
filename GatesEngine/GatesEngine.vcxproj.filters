@@ -254,6 +254,15 @@
     <ClInclude Include="Header\Graphics\Camera3DDebug.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Graphics\ITexture.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\Texture.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\TextureManager.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -380,6 +389,12 @@
       <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Camera3D.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Texture.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\TextureManager.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
   </ItemGroup>

@@ -22,6 +22,5 @@ namespace GE
 		virtual void CreateCBV(const D3D12_CONSTANT_BUFFER_VIEW_DESC& cbvDesc,D3D12_CPU_DESCRIPTOR_HANDLE handle) = 0;
 		virtual void CreateSRV(ID3D12Resource* buffer,const D3D12_SHADER_RESOURCE_VIEW_DESC& srvDesc) = 0;
 		virtual void CreateUAV(ID3D12Resource* buffer,const D3D12_UNORDERED_ACCESS_VIEW_DESC& uavDesc) = 0;
-
 	};
 }
