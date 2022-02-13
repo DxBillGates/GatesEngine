@@ -8,6 +8,7 @@
 #include "..\..\Header\Graphics\MeshData.h"
 #include "..\..\Header\Graphics\VertexData.h"
 #include "..\..\Header\Graphics\MeshCreater.h"
+#include "..\..\Header\Graphics\Camera3DDebug.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080),"no title")
@@ -19,6 +20,9 @@ GE::Application::Application(const Math::Vector2& size, const std::string& title
 	, mainWindow(Window())
 	, inputDevice(InputDevice::GetInstance())
 	, audioManager(AudioManager())
+	, sceneManager(SceneManager())
+	, graphicsDevice(GraphicsDeviceDx12())
+	, mainCamera(nullptr)
 {
 	timer.SetFrameRate(144);
 	timer.SetIsShow(false);
@@ -30,10 +34,13 @@ GE::Application::Application(const Math::Vector2& size, const std::string& title
 	graphicsDevice.Create(size, mainWindow.GetHandle());
 
 	Audio::SetAudioEngine();
+
+	mainCamera = new Camera3DDebug();
 }
 
 GE::Application::~Application()
 {
+	delete mainCamera;
 }
 
 bool GE::Application::LoadContents()
@@ -132,21 +139,23 @@ bool GE::Application::LoadContents()
 	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataTorus);
 	meshManager->Add(mesh, "Torus");
 
-	//// demo rootSignatureì¬
-	//auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
-	//RootSignature* testRootSignature = new RootSignature();
-	//testRootSignature->Create(graphicsDevice.GetDevice(), { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::SRV });
-	//rootSignatureManager->Add(testRootSignature, "CBVCBVSRV");
+	// shader compile
+	Shader defaultMeshVertexShader;
+	defaultMeshVertexShader.CompileShaderFileWithoutFormat(L"DefaultMeshVertexShader", "vs_5_0");
+	Shader defaultMeshPixelShader;
+	defaultMeshPixelShader.CompileShaderFileWithoutFormat(L"DefaultMeshPixelShader", "ps_5_0");
 
-	//// demo graphicsPipelineì¬
-	//auto* graphicsPipelineManager = graphicsDevice.GetGraphicsPipelineManager();
-	//Shader testVShader;
-	//testVShader.CompileShaderFile(L"testVS.hlsl", "vs_5_0");
-	//Shader testPShader;
-	//testPShader.CompileShaderFile(L"testPS.hlsl", "ps_5_0");
-	//GraphicsPipeline* testPipeline = new GraphicsPipeline({ &testVShader,nullptr,nullptr,nullptr,&testPShader });
-	//testPipeline->Create(graphicsDevice.GetDevice(), {GraphicsPipelineInputLayout::POSITION},testRootSignature, {});
-	//graphicsPipelineManager->Add(testPipeline, "testShader");
+	// rootSignatureì¬
+	auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
+	RootSignature* defaultMeshRootSignature = new RootSignature();
+	defaultMeshRootSignature->Create(graphicsDevice.GetDevice(), { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV });
+	rootSignatureManager->Add(defaultMeshRootSignature, "CBV4");
+
+	// demo graphicsPipelineì¬
+	auto* graphicsPipelineManager = graphicsDevice.GetGraphicsPipelineManager();
+	GraphicsPipeline* testPipeline = new GraphicsPipeline({ &defaultMeshVertexShader,nullptr,nullptr,nullptr,&defaultMeshPixelShader });
+	testPipeline->Create(graphicsDevice.GetDevice(), { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV ,GraphicsPipelineInputLayout::NORMAL }, defaultMeshRootSignature, {});
+	graphicsPipelineManager->Add(testPipeline, "DefaultMeshShader");
 
 	return true;
 }
@@ -156,12 +165,14 @@ bool GE::Application::Initialize()
 	SceneInitializer sceneInitializer = { &audioManager,inputDevice };
 	sceneManager.Initialize(sceneInitializer);
 
+	mainCamera->Initialize();
 	return true;
 }
 
 bool GE::Application::Update()
 {
 	sceneManager.Update(timer.GetElapsedTime());
+	mainCamera->Update();
 	return true;
 }
 

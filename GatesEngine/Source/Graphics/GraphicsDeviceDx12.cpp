@@ -1,5 +1,7 @@
 #include "..\..\Header\Graphics\GraphicsDeviceDx12.h"
 #include "..\..\Header\Graphics\COMRelease.h"
+#include "..\..\Header\Graphics\GraphicsPipelineInfo.h"
+
 #include <string>
 #include <assert.h>
 
@@ -120,7 +122,12 @@ GE::GraphicsDeviceDx12::~GraphicsDeviceDx12()
 	cmdQueue->Signal(fence, ++fenceValue);
 	if (fence->GetCompletedValue() != fenceValue)
 	{
-		HANDLE event = CreateEvent(nullptr, false, false, nullptr);
+		HANDLE event = CreateEvent(nullptr, FALSE, FALSE, nullptr);
+		if (!event)
+		{
+			printf("ID3D12Fence:イベントエラー、正しくメモリ解放ができませんでした、アプリケーションを終了します。\n");
+			return;
+		}
 		fence->SetEventOnCompletion(fenceValue, event);
 		WaitForSingleObject(event, INFINITE);
 		CloseHandle(event);
@@ -131,7 +138,7 @@ GE::GraphicsDeviceDx12::~GraphicsDeviceDx12()
 	COM_RELEASE(cmdList);
 	COM_RELEASE(cmdQueue);
 	COM_RELEASE(swapChain);
-	COM_RELEASE(fence);
+	COM_RELEASE(fence);	
 }
 
 bool GE::GraphicsDeviceDx12::Create(const Math::Vector2& viewportSize, HWND hwnd)
@@ -161,6 +168,8 @@ void GE::GraphicsDeviceDx12::ClearDefaultRenderTarget(const Math::Vector4& color
 
 	float rgba[] = { color.x,color.y,color.z,color.w };
 	cmdList->ClearRenderTargetView(rtvHandle, rgba, 0, nullptr);
+
+	ClearDepthStencil(&depthStencil);
 }
 
 void GE::GraphicsDeviceDx12::ClearRenderTarget(IRenderTarget* renderTarget)
@@ -352,4 +361,27 @@ GE::GraphicsPipelineManager* GE::GraphicsDeviceDx12::GetGraphicsPipelineManager(
 GE::MeshManager* GE::GraphicsDeviceDx12::GetMeshManager()
 {
 	return &meshManager;
+}
+
+void GE::GraphicsDeviceDx12::SetShader(const std::string& shaderName, bool isWireframe)
+{
+	IGraphicsPipeline* usePipeline = graphicsPipelineManager.Get(shaderName);
+	ID3D12PipelineState* pipeline = (isWireframe) ? usePipeline->GetWireframePipeline() : usePipeline->GetSolidPipeline();
+	ID3D12RootSignature* rootSignature = usePipeline->GetRootSignature();
+
+	cmdList->SetPipelineState(pipeline);
+	cmdList->SetGraphicsRootSignature(rootSignature);
+
+	GraphicsPipelinePrimitiveTopolotyType topologyType = (GraphicsPipelinePrimitiveTopolotyType)usePipeline->GetTopologyType();
+	D3D_PRIMITIVE_TOPOLOGY primitiveType = {};
+
+	if (topologyType == GraphicsPipelinePrimitiveTopolotyType::UNDIFINED)primitiveType = D3D_PRIMITIVE_TOPOLOGY_UNDEFINED;
+	else if (topologyType == GraphicsPipelinePrimitiveTopolotyType::POINT)primitiveType = D3D_PRIMITIVE_TOPOLOGY_POINTLIST;
+	else if (topologyType == GraphicsPipelinePrimitiveTopolotyType::LINE)primitiveType = D3D_PRIMITIVE_TOPOLOGY_LINELIST;
+	else if (topologyType == GraphicsPipelinePrimitiveTopolotyType::TRIANGLE)primitiveType = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	else if (topologyType == GraphicsPipelinePrimitiveTopolotyType::PATCH)primitiveType = D3D_PRIMITIVE_TOPOLOGY_4_CONTROL_POINT_PATCHLIST;
+
+	cmdList->IASetPrimitiveTopology(primitiveType);
+
+
 }

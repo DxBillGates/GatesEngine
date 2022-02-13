@@ -72,5 +72,7 @@ namespace GE
 		RootSignatureManager* GetRootSignatureManager();
 		GraphicsPipelineManager* GetGraphicsPipelineManager();
 		MeshManager* GetMeshManager();
+
+		void SetShader(const std::string& shaderName,bool isWireframe = false);
 	};
 }

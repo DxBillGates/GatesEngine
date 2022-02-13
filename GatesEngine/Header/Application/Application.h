@@ -6,6 +6,7 @@
 #include "..\Audio\AudioManager.h"
 #include "..\GameFramework\Scene\SceneManager.h"
 #include "..\Graphics\GraphicsDeviceDx12.h"
+#include "..\Graphics\Camera3D.h"
 
 namespace GE
 {
@@ -19,6 +20,7 @@ namespace GE
 		AudioManager audioManager;
 		SceneManager sceneManager;
 		GraphicsDeviceDx12 graphicsDevice;
+		Camera3D* mainCamera;
 	public:
 		Application();
 		Application(const Math::Vector2& size,const std::string& title);

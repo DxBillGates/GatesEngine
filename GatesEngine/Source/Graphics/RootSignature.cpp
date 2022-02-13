@@ -73,6 +73,8 @@ void GE::RootSignature::Create(ID3D12Device* device, const std::vector<Descripto
 			rootParams[i].DescriptorTable.pDescriptorRanges = &descRanges[i];
 			rootParams[i].DescriptorTable.NumDescriptorRanges = 1;
 			rootParams[i].ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+
+			++i;
 		}
 	}
 

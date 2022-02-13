@@ -154,6 +154,9 @@ void GE::GraphicsPipeline::Create(ID3D12Device* device, const std::vector<Graphi
 	result = device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&solidPipeline));
 	psoDesc.RasterizerState.FillMode = D3D12_FILL_MODE_WIREFRAME;
 	result = device->CreateGraphicsPipelineState(&psoDesc, IID_PPV_ARGS(&wireframePipeline));
+
+	this->rootSignature = rootSignature;
+	graphicsPipelineInfo = info;
 }
 
 ID3D12PipelineState* GE::GraphicsPipeline::GetWireframePipeline()
@@ -170,4 +173,9 @@ ID3D12RootSignature* GE::GraphicsPipeline::GetRootSignature()
 {
 	if (rootSignature)return rootSignature->GetRootSignature();
 	return nullptr;
+}
+
+int GE::GraphicsPipeline::GetTopologyType()
+{
+	return (int)graphicsPipelineInfo.topologyType;
 }
