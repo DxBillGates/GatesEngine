@@ -33,6 +33,7 @@
 
 .vs/
 x64/
+Compiled/
 
 !ExeProject/Resources/
 

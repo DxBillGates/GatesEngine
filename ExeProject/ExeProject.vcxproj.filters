@@ -27,7 +27,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shader\DefaultMeshShader.hlsli">
+    <None Include="Resources\Shader\DefaultShader.hlsli">
       <Filter>シェーダー ファイル</Filter>
     </None>
   </ItemGroup>
