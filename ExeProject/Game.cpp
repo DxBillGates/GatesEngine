@@ -54,12 +54,10 @@ bool Game::Draw()
 	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(3, &directionalLight, sizeof(GE::DirectionalLightInfo));
 	graphicsDevice.GetMeshManager()->Get("Sphere")->Draw();
 
-
+	graphicsDevice.SetShader("DefaultLineShader");
 	modelMatrix = GE::Math::Matrix4x4::Identity();
-	modelMatrix *= GE::Math::Matrix4x4::Scale(1000);
-	modelMatrix *= GE::Math::Matrix4x4::RotationX(GE::Math::ConvertToRadian(0));
 	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4));
-	graphicsDevice.GetMeshManager()->Get("Plane")->Draw();
+	graphicsDevice.GetMeshManager()->Get("Grid")->Draw();
 
 	Application::Draw();
 	graphicsDevice.ScreenFlip();

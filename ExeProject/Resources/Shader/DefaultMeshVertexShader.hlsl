@@ -1,4 +1,4 @@
-#include "DefaultMeshShader.hlsli"
+#include "DefaultShader.hlsli"
 
 VSOutput main(VSInput vsInput)
 {

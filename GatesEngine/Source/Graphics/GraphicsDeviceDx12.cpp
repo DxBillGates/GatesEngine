@@ -382,6 +382,4 @@ void GE::GraphicsDeviceDx12::SetShader(const std::string& shaderName, bool isWir
 	else if (topologyType == GraphicsPipelinePrimitiveTopolotyType::PATCH)primitiveType = D3D_PRIMITIVE_TOPOLOGY_4_CONTROL_POINT_PATCHLIST;
 
 	cmdList->IASetPrimitiveTopology(primitiveType);
-
-
 }

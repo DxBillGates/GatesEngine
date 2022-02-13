@@ -13,6 +13,13 @@ struct VSOutput
 	float4 worldPosition : WORLD_POSITION;
 };
 
+struct LineVSOutput
+{
+	float4 svpos : SV_POSITION;
+	float4 pos : POSITION;
+	float4 color : COLOR;
+};
+
 cbuffer ModelInfo : register(b0)
 {
 	matrix modelMatrix;

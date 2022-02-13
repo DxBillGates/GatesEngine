@@ -140,10 +140,12 @@ bool GE::Application::LoadContents()
 	meshManager->Add(mesh, "Torus");
 
 	// shader compile
-	Shader defaultMeshVertexShader;
+	Shader defaultMeshVertexShader, defaultMeshPixelShader;
 	defaultMeshVertexShader.CompileShaderFileWithoutFormat(L"DefaultMeshVertexShader", "vs_5_0");
-	Shader defaultMeshPixelShader;
 	defaultMeshPixelShader.CompileShaderFileWithoutFormat(L"DefaultMeshPixelShader", "ps_5_0");
+	Shader defaultLineVertexShader, defaultLinePixelShader;
+	defaultLineVertexShader.CompileShaderFileWithoutFormat(L"DefaultLineVertexShader", "vs_5_0");
+	defaultLinePixelShader.CompileShaderFileWithoutFormat(L"DefaultLinePixelShader", "ps_5_0");
 
 	// rootSignatureì¬
 	auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
@@ -152,10 +154,16 @@ bool GE::Application::LoadContents()
 	rootSignatureManager->Add(defaultMeshRootSignature, "CBV4");
 
 	// demo graphicsPipelineì¬
+	GraphicsPipelineInfo pipelineInfo = GraphicsPipelineInfo();
 	auto* graphicsPipelineManager = graphicsDevice.GetGraphicsPipelineManager();
-	GraphicsPipeline* testPipeline = new GraphicsPipeline({ &defaultMeshVertexShader,nullptr,nullptr,nullptr,&defaultMeshPixelShader });
-	testPipeline->Create(graphicsDevice.GetDevice(), { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV ,GraphicsPipelineInputLayout::NORMAL }, defaultMeshRootSignature, {});
-	graphicsPipelineManager->Add(testPipeline, "DefaultMeshShader");
+	GraphicsPipeline* defaultMeshPipline = new GraphicsPipeline({ &defaultMeshVertexShader,nullptr,nullptr,nullptr,&defaultMeshPixelShader });
+	defaultMeshPipline->Create(graphicsDevice.GetDevice(), { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV ,GraphicsPipelineInputLayout::NORMAL }, defaultMeshRootSignature, pipelineInfo);
+	graphicsPipelineManager->Add(defaultMeshPipline, "DefaultMeshShader");
+	// line shader
+	pipelineInfo.topologyType = GraphicsPipelinePrimitiveTopolotyType::LINE;
+	GraphicsPipeline* dafaultLinePipeline = new GraphicsPipeline({ &defaultLineVertexShader,nullptr,nullptr,nullptr,&defaultLinePixelShader });
+	dafaultLinePipeline->Create(graphicsDevice.GetDevice(), { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::COLOR }, defaultMeshRootSignature, pipelineInfo);
+	graphicsPipelineManager->Add(dafaultLinePipeline, "DefaultLineShader");
 
 	return true;
 }
