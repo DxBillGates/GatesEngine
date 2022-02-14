@@ -10,7 +10,6 @@ namespace GE
 	class Texture : public ITexture
 	{
 	protected:
-		ID3D12GraphicsCommandList* cmdList;
 		ID3D12Resource* buffer;
 		Math::Vector2 size;
 		int srvNum;
@@ -21,6 +20,5 @@ namespace GE
 
 		// interface
 		int GetSRVNumber() override;
-		const Math::Vector2& GetSize() override;
 	};
 }

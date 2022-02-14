@@ -8,6 +8,5 @@ namespace GE
 	public:
 		virtual ~ITexture() {}
 		virtual int GetSRVNumber() = 0;
-		virtual const Math::Vector2& GetSize() = 0;
 	};
 }

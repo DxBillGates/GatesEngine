@@ -3,8 +3,7 @@
 #include "..\..\Libraries\DirectXTex\DirectXTex.h"
 
 GE::Texture::Texture()
-	: cmdList(nullptr)
-	, buffer(nullptr)
+	: buffer(nullptr)
 	, size(Math::Vector2())
 	, srvNum(0)
 {
@@ -57,9 +56,4 @@ void GE::Texture::Load(const std::string& filename, ID3D12Device* device, IShade
 int GE::Texture::GetSRVNumber()
 {
 	return srvNum;
-}
-
-const GE::Math::Vector2& GE::Texture::GetSize()
-{
-	return size;
 }

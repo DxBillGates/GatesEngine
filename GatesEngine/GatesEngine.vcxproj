@@ -37,6 +37,7 @@
     <ClInclude Include="Header\Graphics\CBufferStruct.h" />
     <ClInclude Include="Header\Graphics\COMRelease.h" />
     <ClInclude Include="Header\Graphics\DepthStencil.h" />
+    <ClInclude Include="Header\Graphics\DepthTexture.h" />
     <ClInclude Include="Header\Graphics\GraphicsDeviceDx12.h" />
     <ClInclude Include="Header\Graphics\GraphicsPipeline.h" />
     <ClInclude Include="Header\Graphics\GraphicsPipelineInfo.h" />
@@ -44,9 +45,11 @@
     <ClInclude Include="Header\Graphics\ICamera.h" />
     <ClInclude Include="Header\Graphics\ICBufferAllocater.h" />
     <ClInclude Include="Header\Graphics\IDepthStencil.h" />
+    <ClInclude Include="Header\Graphics\IDepthTexture.h" />
     <ClInclude Include="Header\Graphics\IGraphicsPipeline.h" />
     <ClInclude Include="Header\Graphics\IMesh.h" />
     <ClInclude Include="Header\Graphics\IRenderTarget.h" />
+    <ClInclude Include="Header\Graphics\IRenderTexture.h" />
     <ClInclude Include="Header\Graphics\IRootSignature.h" />
     <ClInclude Include="Header\Graphics\IShader.h" />
     <ClInclude Include="Header\Graphics\IShaderResourceHeap.h" />
@@ -56,6 +59,7 @@
     <ClInclude Include="Header\Graphics\MeshData.h" />
     <ClInclude Include="Header\Graphics\MeshManager.h" />
     <ClInclude Include="Header\Graphics\RenderTarget.h" />
+    <ClInclude Include="Header\Graphics\RenderTexture.h" />
     <ClInclude Include="Header\Graphics\RootSignature.h" />
     <ClInclude Include="Header\Graphics\RootSignatureManager.h" />
     <ClInclude Include="Header\Graphics\Shader.h" />
@@ -100,6 +104,7 @@
     <ClCompile Include="Source\Graphics\Camera3DDebug.cpp" />
     <ClCompile Include="Source\Graphics\CBufferAllocater.cpp" />
     <ClCompile Include="Source\Graphics\DepthStencil.cpp" />
+    <ClCompile Include="Source\Graphics\DepthTexture.cpp" />
     <ClCompile Include="Source\Graphics\GraphicsDeviceDx12.cpp" />
     <ClCompile Include="Source\Graphics\GraphicsPipeline.cpp" />
     <ClCompile Include="Source\Graphics\GraphicsPipelineManager.cpp" />
@@ -107,6 +112,7 @@
     <ClCompile Include="Source\Graphics\MeshCreater.cpp" />
     <ClCompile Include="Source\Graphics\MeshManager.cpp" />
     <ClCompile Include="Source\Graphics\RenderTarget.cpp" />
+    <ClCompile Include="Source\Graphics\RenderTexture.cpp" />
     <ClCompile Include="Source\Graphics\RootSignature.cpp" />
     <ClCompile Include="Source\Graphics\RootSignatureManager.cpp" />
     <ClCompile Include="Source\Graphics\Shader.cpp" />

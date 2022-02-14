@@ -33,8 +33,6 @@ GE::Application::Application(const Math::Vector2& size, const std::string& title
 	inputDevice->Create(mainWindow.GetHandle(), mainWindow.GetHInstance());
 	graphicsDevice.Create(size, mainWindow.GetHandle());
 
-	Audio::SetAudioEngine();
-
 	mainCamera = new Camera3DDebug();
 }
 
@@ -205,7 +203,7 @@ int GE::Application::Run()
 		if (!Update())return -1;
 		if (!Draw())return -1;
 
-		if (!mainWindow.ProcessMessage())return -1;
+		if (!mainWindow.ProcessMessage())return 0;
 	}
 
 	return 0;

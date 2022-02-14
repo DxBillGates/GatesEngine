@@ -82,6 +82,6 @@ void GE::RenderTarget::SetColor(const Math::Vector4& color)
 	this->color = color;
 }
 
-void GE::RenderTarget::Prepare()
+void GE::RenderTarget::Prepare(ID3D12GraphicsCommandList* cmdList)
 {
 }

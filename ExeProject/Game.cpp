@@ -19,6 +19,8 @@ Game::~Game()
 
 bool Game::LoadContents()
 {
+	renderTexture.Create(graphicsDevice.GetDevice(), graphicsDevice.GetShaderResourceHeap(), { 1920,1080 }, { 0,0,0,1 });
+	depthTexture.Create(graphicsDevice.GetDevice(), graphicsDevice.GetShaderResourceHeap(), { 1920,1080 });
 	Application::LoadContents();
 	return true;
 }
@@ -39,6 +41,11 @@ bool Game::Draw()
 {
 	graphicsDevice.ClearDefaultRenderTarget();
 	graphicsDevice.SetDefaultRenderTarget();
+
+	graphicsDevice.ClearRenderTarget(&renderTexture);
+	graphicsDevice.ClearDepthStencil(&depthTexture);
+	graphicsDevice.SetRenderTarget(&renderTexture, &depthTexture);
+
 	graphicsDevice.SetShaderResourceDescriptorHeap();
 	graphicsDevice.ResetCBufferAllocater();
 	graphicsDevice.SetShader("DefaultMeshShader");

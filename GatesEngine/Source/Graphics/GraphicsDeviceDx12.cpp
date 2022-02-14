@@ -180,7 +180,7 @@ void GE::GraphicsDeviceDx12::ClearRenderTarget(IRenderTarget* renderTarget)
 	D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget->GetHandle();
 	const Math::Vector4& color = renderTarget->GetColor();
 
-	renderTarget->Prepare();
+	renderTarget->Prepare(cmdList);
 	float rgba[] = { color.x,color.y,color.z,color.w };
 	cmdList->ClearRenderTargetView(rtvHandle, rgba, 0, nullptr);
 }
@@ -248,7 +248,7 @@ void GE::GraphicsDeviceDx12::SetRenderTarget(IRenderTarget* renderTarget,IDepthS
 	_rect.bottom = (LONG)renderTarget->GetSize().y;
 	_rect.right = (LONG)renderTarget->GetSize().x;
 
-	renderTarget->Prepare();
+	renderTarget->Prepare(cmdList);
 	cmdList->RSSetViewports(1, &viewport);
 	cmdList->RSSetScissorRects(1, &_rect);
 	cmdList->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
@@ -269,7 +269,7 @@ void GE::GraphicsDeviceDx12::SetRenderTargetWithoutDSV(IRenderTarget* renderTarg
 	_rect.bottom = (LONG)renderTarget->GetSize().y;
 	_rect.right = (LONG)renderTarget->GetSize().x;
 
-	renderTarget->Prepare();
+	renderTarget->Prepare(cmdList);
 	cmdList->RSSetViewports(1, &viewport);
 	cmdList->RSSetScissorRects(1, &_rect);
 	cmdList->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
@@ -394,6 +394,13 @@ void GE::GraphicsDeviceDx12::SetShader(const std::string& shaderName, bool isWir
 void GE::GraphicsDeviceDx12::SetTexture(const std::string& texName, int descIndex)
 {
 	cmdList->SetGraphicsRootDescriptorTable(descIndex, shaderResourceHeap.GetGPUHandleForSRV(textureManager.Get(texName)->GetSRVNumber()));
+}
+
+void GE::GraphicsDeviceDx12::SetRenderTexture(const std::string& texName, int descIndex)
+{
+	//IRenderTexture* renderTexture = layerManager.Get(texName).GetRenderTexture();
+	//renderTexture.EndDraw(cmdList);
+	//cmdList->SetGraphicsRootDescriptorTable(descIndex, shaderResourceHeap.GetGPUHandleForSRV(renderTexture->GetSRVNumber()));
 }
 
 void GE::GraphicsDeviceDx12::DrawMesh(const std::string& meshName, int instanceCount)

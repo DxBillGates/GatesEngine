@@ -2,6 +2,9 @@
 
 GE::AudioManager::AudioManager()
 {
+	HRESULT hr;
+	hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+
 	Audio::SetAudioEngine();
 }
 

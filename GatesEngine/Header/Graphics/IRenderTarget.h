@@ -1,4 +1,5 @@
 #pragma once
+#include "..\Util\Math\Vector2.h"
 #include "..\Util\Math\Vector4.h"
 #include <d3d12.h>
 
@@ -14,6 +15,6 @@ namespace GE
 		virtual const Math::Vector4& GetColor() = 0;
 		virtual void SetCurrentResourceState(D3D12_RESOURCE_STATES state) = 0;
 		virtual void SetColor(const Math::Vector4& color) = 0;
-		virtual void Prepare() = 0;
+		virtual void Prepare(ID3D12GraphicsCommandList* cmdList) = 0;
 	};
 }
