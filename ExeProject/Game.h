@@ -6,8 +6,6 @@
 class Game : public GE::Application
 {
 private:
-	GE::RenderTexture renderTexture;
-	GE::DepthTexture depthTexture;
 public:
 	Game();
 	Game(const GE::Math::Vector2& size, const std::string& title);
