@@ -32,7 +32,7 @@
 *.app
 
 .vs/
-x64/
+Bin/
 Compiled/
 
 !ExeProject/Resources/
