@@ -166,7 +166,7 @@ bool GE::GraphicsDeviceDx12::Create(const Math::Vector2& viewportSize, HWND hwnd
 void GE::GraphicsDeviceDx12::ClearDefaultRenderTarget(const Math::Vector4& color)
 {
 	D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget.GetHandle();
-	rtvHandle.ptr += (UINT64)swapChain->GetCurrentBackBufferIndex() * device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+	//rtvHandle.ptr += (UINT64)swapChain->GetCurrentBackBufferIndex() * device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 
 	float rgba[] = { color.x,color.y,color.z,color.w };
 	cmdList->ClearRenderTargetView(rtvHandle, rgba, 0, nullptr);
@@ -318,12 +318,6 @@ void GE::GraphicsDeviceDx12::ResetCBufferAllocater()
 
 bool GE::GraphicsDeviceDx12::ScreenFlip()
 {
-	if (renderTarget.GetCurrentResourceState() != D3D12_RESOURCE_STATE_PRESENT)
-	{
-		renderTarget.SetCurrentResourceState(D3D12_RESOURCE_STATE_PRESENT);
-		std::vector<ID3D12Resource*>& frameBuffers = renderTarget.GetFrameBuffers();
-		SetResourceBarrier(frameBuffers[swapChain->GetCurrentBackBufferIndex()], D3D12_RESOURCE_STATE_RENDER_TARGET, D3D12_RESOURCE_STATE_PRESENT);
-	}
 	cmdList->Close();
 	ID3D12CommandList* cmdLists[] = { cmdList };
 	cmdQueue->ExecuteCommandLists(1, cmdLists);
@@ -343,6 +337,10 @@ bool GE::GraphicsDeviceDx12::ScreenFlip()
 	cmdAlloc->Reset();
 	cmdList->Reset(cmdAlloc, nullptr);
 	swapChain->Present(0, 0);
+
+	UINT64 backBufferIndex = swapChain->GetCurrentBackBufferIndex();
+	renderTarget.SetIndex(backBufferIndex);
+
 	return true;
 }
 

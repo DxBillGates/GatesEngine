@@ -45,6 +45,7 @@ void GE::RenderTarget::Create(ID3D12Device* device)
 	// sizeにバッファのサイズを格納
 	D3D12_RESOURCE_DESC resDesc = rtvBuffer[0]->GetDesc();
 	size = { (float)resDesc.Width,(float)resDesc.Height };
+	incrementSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 }
 
 std::vector<ID3D12Resource*>& GE::RenderTarget::GetFrameBuffers()
@@ -52,9 +53,16 @@ std::vector<ID3D12Resource*>& GE::RenderTarget::GetFrameBuffers()
 	return rtvBuffer;
 }
 
+void GE::RenderTarget::SetIndex(int value)
+{
+	index = value;
+}
+
 D3D12_CPU_DESCRIPTOR_HANDLE GE::RenderTarget::GetHandle()
 {
-	return rtvHeap->GetCPUDescriptorHandleForHeapStart();
+	D3D12_CPU_DESCRIPTOR_HANDLE handle = rtvHeap->GetCPUDescriptorHandleForHeapStart();
+	handle.ptr += incrementSize * index;
+	return handle;
 }
 
 const GE::Math::Vector2& GE::RenderTarget::GetSize()

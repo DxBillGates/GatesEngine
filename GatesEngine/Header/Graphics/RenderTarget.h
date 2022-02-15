@@ -14,11 +14,14 @@ namespace GE
 		ID3D12DescriptorHeap* rtvHeap;
 		Math::Vector4 color;
 		D3D12_RESOURCE_STATES currentResourceState;
+		int index;
+		int incrementSize;
 	public:
 		RenderTarget();
 		~RenderTarget();
 		void Create(ID3D12Device* device);
 		std::vector<ID3D12Resource*>& GetFrameBuffers();
+		void SetIndex(int value);
 
 		// interface
 

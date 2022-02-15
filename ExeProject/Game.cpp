@@ -48,7 +48,7 @@ bool Game::Draw()
 	graphicsDevice.ResetCBufferAllocater();
 	graphicsDevice.SetShader("DefaultMeshShader");
 
-	GE::Math::Matrix4x4 modelMatrix = GE::Math::Matrix4x4::Scale({ 50 });
+	GE::Math::Matrix4x4 modelMatrix = GE::Math::Matrix4x4::Scale({ 100 });
 	const GE::CameraInfo& cameraInfo = mainCamera->GetCameraInfo();
 	GE::Material material;
 	GE::DirectionalLightInfo directionalLight;
