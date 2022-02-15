@@ -37,8 +37,13 @@ bool Game::Update()
 
 bool Game::Draw()
 {
+	GE::ICBufferAllocater* cbufferAllocater = graphicsDevice.GetCBufferAllocater();
+	GE::RenderQueue* renderQueue = graphicsDevice.GetRenderQueue();
+
 	graphicsDevice.ClearDefaultRenderTarget();
 	graphicsDevice.SetDefaultRenderTarget();
+	//graphicsDevice.ClearLayer("demoLayer");
+	//graphicsDevice.SetLayer("demoLayer");
 	graphicsDevice.SetShaderResourceDescriptorHeap();
 	graphicsDevice.ResetCBufferAllocater();
 	graphicsDevice.SetShader("DefaultMeshShader");
@@ -48,18 +53,20 @@ bool Game::Draw()
 	GE::Material material;
 	GE::DirectionalLightInfo directionalLight;
 
-	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4));
-	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(1, &cameraInfo, sizeof(GE::CameraInfo));
-	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(2, &material, sizeof(GE::Material));
-	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(3, &directionalLight, sizeof(GE::DirectionalLightInfo));
+	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
+	renderQueue->AddSetConstantBufferInfo({ 1,cbufferAllocater->BindAndAttachData(1, &cameraInfo, sizeof(GE::CameraInfo)) });
+	renderQueue->AddSetConstantBufferInfo({ 2,cbufferAllocater->BindAndAttachData(2, &material, sizeof(GE::Material)) });
+	renderQueue->AddSetConstantBufferInfo({ 3,cbufferAllocater->BindAndAttachData(3, &directionalLight, sizeof(GE::DirectionalLightInfo)) });
 	graphicsDevice.DrawMesh("Skydome");
 
 	graphicsDevice.SetShader("DefaultLineShader");
 	modelMatrix = GE::Math::Matrix4x4::Identity();
-	graphicsDevice.GetCBufferAllocater()->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4));
+	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
 	graphicsDevice.DrawMesh("Grid");
 
 	Application::Draw();
+
+	graphicsDevice.ExecuteRenderQueue();
 	graphicsDevice.ScreenFlip();
 	return true;
 }

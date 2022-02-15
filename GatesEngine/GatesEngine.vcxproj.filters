@@ -272,6 +272,9 @@
     <ClInclude Include="Header\Util\Manager.h">
       <Filter>Header\Util</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Graphics\RenderQueue.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -401,6 +404,9 @@
       <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Layer.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\RenderQueue.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
   </ItemGroup>

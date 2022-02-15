@@ -15,6 +15,8 @@
 
 #include "..\Util\Manager.h"
 
+#include "RenderQueue.h"
+
 #include <d3d12.h>
 #include <dxgi1_6.h>
 #include <vector>
@@ -46,6 +48,8 @@ namespace GE
 		Manager<IMesh> meshManager;
 		Manager<ITexture> textureManager;
 		Manager<ILayer> layerManager;
+
+		RenderQueue renderQueue;
 	private:
 		void CreateDxgiFactory();
 		void CreateDevice();
@@ -83,6 +87,8 @@ namespace GE
 		Manager<IMesh>* GetMeshManager();
 		Manager<ITexture>* GetTextureManager();
 		Manager<ILayer>* GetLayerManager();
+		RenderQueue* GetRenderQueue();
+		void ExecuteRenderQueue();
 
 		void SetShader(const std::string& shaderName,bool isWireframe = false);
 		void SetTexture(const std::string& texName, int descIndex);

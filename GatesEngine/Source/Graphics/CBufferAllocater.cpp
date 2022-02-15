@@ -67,7 +67,7 @@ int GE::CBufferAllocater::BindAndAttachData(int descIndex, const void* data, int
 	D3D12_GPU_DESCRIPTOR_HANDLE gpuHandle = shaderResourceHeap->GetGPUHandle();
 	gpuHandle.ptr += (UINT64)shaderResourceHeap->GetDescriptorHandleIncrementSize() * currentUsedNumber;
 
-	cmdList->SetGraphicsRootDescriptorTable(descIndex, gpuHandle);
+	//cmdList->SetGraphicsRootDescriptorTable(descIndex, gpuHandle);
 
 	int useCBVNumber = currentUsedNumber;
 	currentUsedNumber += numRequired;
