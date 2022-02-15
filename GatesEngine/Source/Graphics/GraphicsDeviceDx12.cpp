@@ -420,9 +420,15 @@ void GE::GraphicsDeviceDx12::SetTexture(const std::string& texName, int descInde
 
 void GE::GraphicsDeviceDx12::SetRenderTexture(const std::string& texName, int descIndex)
 {
-	//IRenderTexture* renderTexture = layerManager.Get(texName).GetRenderTexture();
-	//renderTexture.EndDraw(cmdList);
-	//cmdList->SetGraphicsRootDescriptorTable(descIndex, shaderResourceHeap.GetGPUHandleForSRV(renderTexture->GetSRVNumber()));
+	IRenderTexture* renderTexture = layerManager.Get(texName)->GetRenderTexture();
+	renderTexture->EndDraw(cmdList);
+	cmdList->SetGraphicsRootDescriptorTable(descIndex, shaderResourceHeap.GetGPUHandleForSRV(renderTexture->GetSRVNumber()));
+}
+
+void GE::GraphicsDeviceDx12::SetDepthTexture(const std::string& layerName, int descIndex)
+{
+	IDepthTexture* depthTexture = layerManager.Get(layerName)->GetDepthTexture();
+	cmdList->SetGraphicsRootDescriptorTable(descIndex, shaderResourceHeap.GetGPUHandleForSRV(depthTexture->GetSRVNumber()));
 }
 
 void GE::GraphicsDeviceDx12::DrawMesh(const std::string& meshName, int instanceCount)

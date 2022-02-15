@@ -87,6 +87,7 @@ namespace GE
 		void SetShader(const std::string& shaderName,bool isWireframe = false);
 		void SetTexture(const std::string& texName, int descIndex);
 		void SetRenderTexture(const std::string& texName, int descIndex);
+		void SetDepthTexture(const std::string& layerName, int descIndex);
 		void DrawMesh(const std::string& meshName,int instanceCount = 1);
 	};
 }
