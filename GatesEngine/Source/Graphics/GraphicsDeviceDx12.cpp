@@ -166,7 +166,6 @@ bool GE::GraphicsDeviceDx12::Create(const Math::Vector2& viewportSize, HWND hwnd
 void GE::GraphicsDeviceDx12::ClearDefaultRenderTarget(const Math::Vector4& color)
 {
 	D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget.GetHandle();
-	//rtvHandle.ptr += (UINT64)swapChain->GetCurrentBackBufferIndex() * device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 
 	float rgba[] = { color.x,color.y,color.z,color.w };
 	cmdList->ClearRenderTargetView(rtvHandle, rgba, 0, nullptr);
@@ -203,88 +202,21 @@ void GE::GraphicsDeviceDx12::ClearLayer(const std::string& name)
 
 void GE::GraphicsDeviceDx12::SetDefaultRenderTarget()
 {
-	//D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget.GetHandle();
-	//D3D12_CPU_DESCRIPTOR_HANDLE dsvHandle = depthStencil.GetHandle();
-
-	//rtvHandle.ptr += (UINT64)swapChain->GetCurrentBackBufferIndex() * device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
-
-	//D3D12_VIEWPORT viewport = viewPort;
-	//D3D12_RECT _rect = rect;
-
-	//viewport.Height = renderTarget.GetSize().y;
-	//viewport.Width = renderTarget.GetSize().x;
-
-	//_rect.bottom = (LONG)renderTarget.GetSize().y;
-	//_rect.right = (LONG)renderTarget.GetSize().x;
-
-	//cmdList->RSSetViewports(1, &viewport);
-	//cmdList->RSSetScissorRects(1, &_rect);
-	//cmdList->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
 	renderQueue.SetLayer(&renderTarget,&depthStencil );
 }
 
 void GE::GraphicsDeviceDx12::SetDefaultRenderTargetWithoutDSV()
 {
-	//D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget.GetHandle();
-	//rtvHandle.ptr += (UINT64)swapChain->GetCurrentBackBufferIndex() * device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
-
-	//D3D12_VIEWPORT viewport = viewPort;
-	//D3D12_RECT _rect = rect;
-
-	//viewport.Height = renderTarget.GetSize().y;
-	//viewport.Width = renderTarget.GetSize().x;
-
-	//_rect.bottom = (LONG)renderTarget.GetSize().y;
-	//_rect.right = (LONG)renderTarget.GetSize().x;
-
-	//cmdList->RSSetViewports(1, &viewport);
-	//cmdList->RSSetScissorRects(1, &_rect);
-	//cmdList->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
 	renderQueue.SetLayer(&renderTarget,nullptr);
 }
 
 void GE::GraphicsDeviceDx12::SetRenderTarget(IRenderTarget* renderTarget, IDepthStencil* depthStencil)
 {
-	//if (!renderTarget || !depthStencil)assert(true);
-
-	//D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget->GetHandle();
-	//D3D12_CPU_DESCRIPTOR_HANDLE dsvHandle = depthStencil->GetHandle();
-
-	//D3D12_VIEWPORT viewport = viewPort;
-	//D3D12_RECT _rect = rect;
-
-	//viewport.Height = renderTarget->GetSize().y;
-	//viewport.Width = renderTarget->GetSize().x;
-
-	//_rect.bottom = (LONG)renderTarget->GetSize().y;
-	//_rect.right = (LONG)renderTarget->GetSize().x;
-
-	//renderTarget->Prepare(cmdList);
-	//cmdList->RSSetViewports(1, &viewport);
-	//cmdList->RSSetScissorRects(1, &_rect);
-	//cmdList->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
 	renderQueue.SetLayer(renderTarget, depthStencil);
 }
 
 void GE::GraphicsDeviceDx12::SetRenderTargetWithoutDSV(IRenderTarget* renderTarget)
 {
-	//if (!renderTarget)assert(true);
-
-	//D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget->GetHandle();
-
-	//D3D12_VIEWPORT viewport = viewPort;
-	//D3D12_RECT _rect = rect;
-
-	//viewport.Height = renderTarget->GetSize().y;
-	//viewport.Width = renderTarget->GetSize().x;
-
-	//_rect.bottom = (LONG)renderTarget->GetSize().y;
-	//_rect.right = (LONG)renderTarget->GetSize().x;
-
-	//renderTarget->Prepare(cmdList);
-	//cmdList->RSSetViewports(1, &viewport);
-	//cmdList->RSSetScissorRects(1, &_rect);
-	//cmdList->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
 	renderQueue.SetLayer(renderTarget,nullptr);
 }
 
@@ -417,49 +349,28 @@ void GE::GraphicsDeviceDx12::ExecuteRenderQueue()
 void GE::GraphicsDeviceDx12::SetShader(const std::string& shaderName, bool isWireframe)
 {
 	IGraphicsPipeline* usePipeline = graphicsPipelineManager.Get(shaderName);
-	//ID3D12PipelineState* pipeline = (isWireframe) ? usePipeline->GetWireframePipeline() : usePipeline->GetSolidPipeline();
-	//ID3D12RootSignature* rootSignature = usePipeline->GetRootSignature();
-
-	//cmdList->SetPipelineState(pipeline);
-	//cmdList->SetGraphicsRootSignature(rootSignature);
-
-	//GraphicsPipelinePrimitiveTopolotyType topologyType = (GraphicsPipelinePrimitiveTopolotyType)usePipeline->GetTopologyType();
-	//D3D_PRIMITIVE_TOPOLOGY primitiveType = {};
-
-	//if (topologyType == GraphicsPipelinePrimitiveTopolotyType::UNDIFINED)primitiveType = D3D_PRIMITIVE_TOPOLOGY_UNDEFINED;
-	//else if (topologyType == GraphicsPipelinePrimitiveTopolotyType::POINT)primitiveType = D3D_PRIMITIVE_TOPOLOGY_POINTLIST;
-	//else if (topologyType == GraphicsPipelinePrimitiveTopolotyType::LINE)primitiveType = D3D_PRIMITIVE_TOPOLOGY_LINELIST;
-	//else if (topologyType == GraphicsPipelinePrimitiveTopolotyType::TRIANGLE)primitiveType = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-	//else if (topologyType == GraphicsPipelinePrimitiveTopolotyType::PATCH)primitiveType = D3D_PRIMITIVE_TOPOLOGY_4_CONTROL_POINT_PATCHLIST;
-
-	//cmdList->IASetPrimitiveTopology(primitiveType);
 	renderQueue.SetPipeline(usePipeline);
 }
 
 void GE::GraphicsDeviceDx12::SetTexture(const std::string& texName, int descIndex)
 {
-	//cmdList->SetGraphicsRootDescriptorTable(descIndex, shaderResourceHeap.GetGPUHandleForSRV(textureManager.Get(texName)->GetSRVNumber()));
 	renderQueue.AddSetShaderResource({ descIndex,textureManager.Get(texName)->GetSRVNumber() });
 }
 
 void GE::GraphicsDeviceDx12::SetRenderTexture(const std::string& texName, int descIndex)
 {
 	IRenderTexture* renderTexture = layerManager.Get(texName)->GetRenderTexture();
-	//renderTexture->EndDraw(cmdList);
-	//cmdList->SetGraphicsRootDescriptorTable(descIndex, shaderResourceHeap.GetGPUHandleForSRV(renderTexture->GetSRVNumber()));
 	renderQueue.AddSetShaderResource({ descIndex,renderTexture->GetSRVNumber() });
 }
 
 void GE::GraphicsDeviceDx12::SetDepthTexture(const std::string& layerName, int descIndex)
 {
 	IDepthTexture* depthTexture = layerManager.Get(layerName)->GetDepthTexture();
-	//cmdList->SetGraphicsRootDescriptorTable(descIndex, shaderResourceHeap.GetGPUHandleForSRV(depthTexture->GetSRVNumber()));
 	renderQueue.AddSetShaderResource({ descIndex,depthTexture->GetSRVNumber() });
 }
 
 void GE::GraphicsDeviceDx12::DrawMesh(const std::string& meshName, int instanceCount)
 {
-	//meshManager.Get(meshName)->Draw(instanceCount);
 	renderQueue.SetMesh(meshManager.Get(meshName));
 	renderQueue.AddCommand();
 }
