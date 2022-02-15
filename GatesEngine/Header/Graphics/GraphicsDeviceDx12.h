@@ -45,6 +45,7 @@ namespace GE
 		Manager<IGraphicsPipeline> graphicsPipelineManager;
 		Manager<IMesh> meshManager;
 		Manager<ITexture> textureManager;
+		Manager<ILayer> layerManager;
 	private:
 		void CreateDxgiFactory();
 		void CreateDevice();
@@ -61,10 +62,12 @@ namespace GE
 		void ClearDefaultRenderTarget(const Math::Vector4& color = {0,0,0,1});
 		void ClearRenderTarget(IRenderTarget* renderTarget);
 		void ClearDepthStencil(IDepthStencil* depthStencil);
+		void ClearLayer(const std::string& name);
 		void SetDefaultRenderTarget();
 		void SetDefaultRenderTargetWithoutDSV();
 		void SetRenderTarget(IRenderTarget* renderTarget,IDepthStencil* depthStencil);
 		void SetRenderTargetWithoutDSV(IRenderTarget* renderTarget);
+		void SetLayer(const std::string& name);
 		void SetShaderResourceDescriptorHeap();
 		void ResetCBufferAllocater();
 		bool ScreenFlip();
@@ -79,6 +82,7 @@ namespace GE
 		Manager<IGraphicsPipeline>* GetGraphicsPipelineManager();
 		Manager<IMesh>* GetMeshManager();
 		Manager<ITexture>* GetTextureManager();
+		Manager<ILayer>* GetLayerManager();
 
 		void SetShader(const std::string& shaderName,bool isWireframe = false);
 		void SetTexture(const std::string& texName, int descIndex);

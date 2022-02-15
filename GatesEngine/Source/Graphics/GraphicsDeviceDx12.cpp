@@ -192,6 +192,15 @@ void GE::GraphicsDeviceDx12::ClearDepthStencil(IDepthStencil* depthStencil)
 	cmdList->ClearDepthStencilView(dsvHandle, D3D12_CLEAR_FLAG_DEPTH, 1.0f, 0, 0, nullptr);
 }
 
+void GE::GraphicsDeviceDx12::ClearLayer(const std::string& name)
+{
+	IRenderTarget* layerRenderTarget = layerManager.Get(name)->GetRenderTexture();
+	IDepthStencil* layerDepthStencil = layerManager.Get(name)->GetDepthTexture();
+
+	ClearRenderTarget(layerRenderTarget);
+	ClearDepthStencil(layerDepthStencil);
+}
+
 void GE::GraphicsDeviceDx12::SetDefaultRenderTarget()
 {
 	D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget.GetHandle();
@@ -273,6 +282,14 @@ void GE::GraphicsDeviceDx12::SetRenderTargetWithoutDSV(IRenderTarget* renderTarg
 	cmdList->RSSetViewports(1, &viewport);
 	cmdList->RSSetScissorRects(1, &_rect);
 	cmdList->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
+}
+
+void GE::GraphicsDeviceDx12::SetLayer(const std::string& name)
+{
+	IRenderTarget* layerRenderTarget = layerManager.Get(name)->GetRenderTexture();
+	IDepthStencil* layerDepthStencil = layerManager.Get(name)->GetDepthTexture();
+
+	SetRenderTarget(layerRenderTarget, layerDepthStencil);
 }
 
 void GE::GraphicsDeviceDx12::SetShaderResourceDescriptorHeap()
@@ -368,6 +385,11 @@ GE::Manager<GE::IMesh>* GE::GraphicsDeviceDx12::GetMeshManager()
 GE::Manager<GE::ITexture>* GE::GraphicsDeviceDx12::GetTextureManager()
 {
 	return &textureManager;
+}
+
+GE::Manager<GE::ILayer>* GE::GraphicsDeviceDx12::GetLayerManager()
+{
+	return &layerManager;
 }
 
 void GE::GraphicsDeviceDx12::SetShader(const std::string& shaderName, bool isWireframe)

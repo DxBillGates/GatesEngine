@@ -6,18 +6,16 @@ namespace GE
 	class Layer : public ILayer
 	{
 	private:
-		std::string name;
 		IRenderTexture* renderTexture;
 		IDepthTexture* depthTexture;
 	public:
-		Layer();
+		Layer(IRenderTexture* newRenderTexture = nullptr, IDepthTexture* newDepthTexture = nullptr);
 		~Layer();
-		void Create(const std::string& name, IRenderTexture* newRenderTexture, IDepthTexture* newDepthTexture);
+		void Create(IRenderTexture* newRenderTexture, IDepthTexture* newDepthTexture);
 
 		// interface
 
-		IRenderTexture* GetRenderTexture();
-		IDepthTexture* GetDepthTexture();
-		void SetName(const std::string& name);
+		IRenderTexture* GetRenderTexture() override;
+		IDepthTexture* GetDepthTexture() override;
 	};
 }

@@ -39,6 +39,10 @@ bool Game::Draw()
 {
 	graphicsDevice.ClearDefaultRenderTarget();
 	graphicsDevice.SetDefaultRenderTarget();
+
+	graphicsDevice.ClearLayer("demoLayer");
+	graphicsDevice.SetLayer("demoLayer");
+
 	graphicsDevice.SetShaderResourceDescriptorHeap();
 	graphicsDevice.ResetCBufferAllocater();
 	graphicsDevice.SetShader("DefaultMeshShader");

@@ -8,6 +8,9 @@
 #include "..\..\Header\Graphics\VertexData.h"
 #include "..\..\Header\Graphics\MeshCreater.h"
 #include "..\..\Header\Graphics\Camera3DDebug.h"
+#include "..\..\Header\Graphics\RenderTexture.h"
+#include "..\..\Header\Graphics\DepthTexture.h"
+#include "..\..\Header\Graphics\Layer.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080),"no title")
@@ -51,89 +54,93 @@ bool GE::Application::LoadContents()
 	auto* testScene = sceneManager.AddScene(new SampleScene("SampleScene"));
 	sceneManager.ChangeScene("SampleScene");
 
+	auto* device = graphicsDevice.GetDevice();
+	auto* cmdList = graphicsDevice.GetCmdList();
+	auto* shaderResourceHeap = graphicsDevice.GetShaderResourceHeap();
+
 	auto* meshManager = graphicsDevice.GetMeshManager();
 	Mesh* mesh;
 	// 板ポリ生成
 	MeshData<Vertex_UV_Normal> meshDataPlane;
 	MeshCreater::CreatePlane(meshDataPlane);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshDataPlane);
+	mesh->Create(device, cmdList, meshDataPlane);
 	meshManager->Add(mesh, "Plane");
 
 	MeshData<Vertex_UV> meshData2DPlane;
 	MeshCreater::Create2DPlane(meshData2DPlane);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshData2DPlane);
+	mesh->Create(device, cmdList, meshData2DPlane);
 	meshManager->Add(mesh, "2DPlane");
 
 	MeshData<Vertex_UV> meshData2DPlanePivot;
-	MeshCreater::Create2DPlane(meshData2DPlanePivot, { 1 }, { 1 }, {-1,0});
+	MeshCreater::Create2DPlane(meshData2DPlanePivot, { 1 }, { 1 }, { -1,0 });
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshData2DPlanePivot);
+	mesh->Create(device, cmdList, meshData2DPlanePivot);
 	meshManager->Add(mesh, "2DPlanePivot");
 
 	// グリッド生成
 	MeshData<Vertex_Color> meshDataGrid;
 	MeshCreater::CreateGrid(meshDataGrid);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshDataGrid);
+	mesh->Create(device, cmdList, meshDataGrid);
 	meshManager->Add(mesh, "Grid");
 
 	// lineCube生成
 	MeshData<Vertex_Color> meshDataLineCube;
 	MeshCreater::CreateLineCube(meshDataLineCube);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshDataLineCube);
+	mesh->Create(device, cmdList, meshDataLineCube);
 	meshManager->Add(mesh, "LineCube");
 
 	// lineCircle生成
 	MeshData<Vertex_Color> meshDataLineCircle;
 	MeshCreater::CreateLineCircle(meshDataLineCircle);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), meshDataLineCircle);
+	mesh->Create(device, cmdList, meshDataLineCircle);
 	meshManager->Add(mesh, "LineCircle");
 
 	// model読み込み
 	MeshData<Vertex_UV_Normal> modelDataCube;
-	MeshCreater::LoadObjModelData("Resources/Model/cube",modelDataCube);
+	MeshCreater::LoadObjModelData("Resources/Model/cube", modelDataCube);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataCube);
+	mesh->Create(device, cmdList, modelDataCube);
 	meshManager->Add(mesh, "Cube");
 
 	MeshData<Vertex_UV_Normal> modelDataSphere;
 	MeshCreater::LoadObjModelData("Resources/Model/sphere", modelDataSphere);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataSphere);
+	mesh->Create(device, cmdList, modelDataSphere);
 	meshManager->Add(mesh, "Sphere");
 
 	MeshData<Vertex_UV_Normal> modelDataPlatonic;
 	MeshCreater::LoadObjModelData("Resources/Model/platonic", modelDataPlatonic);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataPlatonic);
+	mesh->Create(device, cmdList, modelDataPlatonic);
 	meshManager->Add(mesh, "Platonic");
 
 	MeshData<Vertex_UV_Normal> modelDataCorn;
 	MeshCreater::LoadObjModelData("Resources/Model/corn", modelDataCorn);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataCorn);
+	mesh->Create(device, cmdList, modelDataCorn);
 	meshManager->Add(mesh, "Corn");
 
 	MeshData<Vertex_UV_Normal> modelDataCylinder;
 	MeshCreater::LoadObjModelData("Resources/Model/cylinder", modelDataCylinder);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataCylinder);
+	mesh->Create(device, cmdList, modelDataCylinder);
 	meshManager->Add(mesh, "Cylinder");
 
 	MeshData<Vertex_UV_Normal> modelDataSkydome;
 	MeshCreater::LoadObjModelData("Resources/Model/skydome", modelDataSkydome);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataSkydome);
+	mesh->Create(device, cmdList, modelDataSkydome);
 	meshManager->Add(mesh, "Skydome");
 
 	MeshData<Vertex_UV_Normal> modelDataTorus;
 	MeshCreater::LoadObjModelData("Resources/Model/skydome", modelDataTorus);
 	mesh = new Mesh();
-	mesh->Create(graphicsDevice.GetDevice(), graphicsDevice.GetCmdList(), modelDataTorus);
+	mesh->Create(device, cmdList, modelDataTorus);
 	meshManager->Add(mesh, "Torus");
 
 	// shader compile
@@ -147,20 +154,29 @@ bool GE::Application::LoadContents()
 	// rootSignature作成
 	auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
 	RootSignature* defaultMeshRootSignature = new RootSignature();
-	defaultMeshRootSignature->Create(graphicsDevice.GetDevice(), { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV });
+	defaultMeshRootSignature->Create(device, { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV });
 	rootSignatureManager->Add(defaultMeshRootSignature, "CBV4");
 
 	// demo graphicsPipeline作成
 	GraphicsPipelineInfo pipelineInfo = GraphicsPipelineInfo();
 	auto* graphicsPipelineManager = graphicsDevice.GetGraphicsPipelineManager();
 	GraphicsPipeline* defaultMeshPipline = new GraphicsPipeline({ &defaultMeshVertexShader,nullptr,nullptr,nullptr,&defaultMeshPixelShader });
-	defaultMeshPipline->Create(graphicsDevice.GetDevice(), { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV ,GraphicsPipelineInputLayout::NORMAL }, defaultMeshRootSignature, pipelineInfo);
+	defaultMeshPipline->Create(device, { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV ,GraphicsPipelineInputLayout::NORMAL }, defaultMeshRootSignature, pipelineInfo);
 	graphicsPipelineManager->Add(defaultMeshPipline, "DefaultMeshShader");
 	// line shader
 	pipelineInfo.topologyType = GraphicsPipelinePrimitiveTopolotyType::LINE;
 	GraphicsPipeline* dafaultLinePipeline = new GraphicsPipeline({ &defaultLineVertexShader,nullptr,nullptr,nullptr,&defaultLinePixelShader });
-	dafaultLinePipeline->Create(graphicsDevice.GetDevice(), { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::COLOR }, defaultMeshRootSignature, pipelineInfo);
+	dafaultLinePipeline->Create(device, { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::COLOR }, defaultMeshRootSignature, pipelineInfo);
 	graphicsPipelineManager->Add(dafaultLinePipeline, "DefaultLineShader");
+
+	// demo layer作成
+	auto* layerManager = graphicsDevice.GetLayerManager();
+	RenderTexture* demoRenderTexture = new RenderTexture();
+	DepthTexture* demoDepthTexture = new DepthTexture();
+	demoRenderTexture->Create(device,shaderResourceHeap, mainWindow.GetWindowSize(), Math::Vector4(0, 0, 0, 1));
+	demoDepthTexture->Create(device, shaderResourceHeap, mainWindow.GetWindowSize());
+	layerManager->Add(new Layer(demoRenderTexture,demoDepthTexture),"demoLayer");
+
 
 	return true;
 }
