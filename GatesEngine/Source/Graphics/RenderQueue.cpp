@@ -59,6 +59,7 @@ void GE::RenderQueue::Execute(ID3D12GraphicsCommandList* cmdList, IShaderResourc
 
 		viewport.Height = renderTarget->GetSize().y;
 		viewport.Width = renderTarget->GetSize().x;
+		viewport.MaxDepth = 1;
 
 		_rect.bottom = (LONG)renderTarget->GetSize().y;
 		_rect.right = (LONG)renderTarget->GetSize().x;
