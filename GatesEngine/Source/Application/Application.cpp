@@ -3,7 +3,6 @@
 #include "..\..\Header\Graphics\Shader.h"
 #include "..\..\Header\Graphics\RootSignature.h"
 #include "..\..\Header\Graphics\GraphicsPipeline.h"
-#include "..\..\Header\Graphics\MeshManager.h"
 #include "..\..\Header\Graphics\Mesh.h"
 #include "..\..\Header\Graphics\MeshData.h"
 #include "..\..\Header\Graphics\VertexData.h"
@@ -52,7 +51,7 @@ bool GE::Application::LoadContents()
 	auto* testScene = sceneManager.AddScene(new SampleScene("SampleScene"));
 	sceneManager.ChangeScene("SampleScene");
 
-	MeshManager* meshManager = graphicsDevice.GetMeshManager();
+	auto* meshManager = graphicsDevice.GetMeshManager();
 	Mesh* mesh;
 	// î¬É|Éäê∂ê¨
 	MeshData<Vertex_UV_Normal> meshDataPlane;

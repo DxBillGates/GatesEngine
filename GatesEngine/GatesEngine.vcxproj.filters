@@ -206,16 +206,10 @@
     <ClInclude Include="Header\Graphics\RootSignature.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Graphics\RootSignatureManager.h">
-      <Filter>Header\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Header\Graphics\IGraphicsPipeline.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Header\Graphics\GraphicsPipeline.h">
-      <Filter>Header\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Graphics\GraphicsPipelineManager.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Header\Graphics\VertexData.h">
@@ -228,9 +222,6 @@
       <Filter>Header\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Header\Graphics\Mesh.h">
-      <Filter>Header\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Header\Graphics\MeshManager.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Header\Graphics\MeshCreater.h">
@@ -260,9 +251,6 @@
     <ClInclude Include="Header\Graphics\Texture.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Graphics\TextureManager.h">
-      <Filter>Header\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Header\Graphics\DepthTexture.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
@@ -274,6 +262,15 @@
     </ClInclude>
     <ClInclude Include="Header\Graphics\RenderTexture.h">
       <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\ILayer.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\Layer.h">
+      <Filter>Header\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Util\Manager.h">
+      <Filter>Header\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -379,19 +376,10 @@
     <ClCompile Include="Source\Graphics\RootSignature.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\RootSignatureManager.cpp">
-      <Filter>Source\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\GraphicsPipeline.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\GraphicsPipelineManager.cpp">
-      <Filter>Source\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\Mesh.cpp">
-      <Filter>Source\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Graphics\MeshManager.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\MeshCreater.cpp">
@@ -406,13 +394,13 @@
     <ClCompile Include="Source\Graphics\Texture.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Graphics\TextureManager.cpp">
-      <Filter>Source\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Graphics\DepthTexture.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\RenderTexture.cpp">
+      <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Layer.cpp">
       <Filter>Source\Graphics</Filter>
     </ClCompile>
   </ItemGroup>

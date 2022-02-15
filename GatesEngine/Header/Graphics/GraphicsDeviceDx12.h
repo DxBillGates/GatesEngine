@@ -6,10 +6,14 @@
 #include "DepthStencil.h"
 #include "ShaderResourceHeap.h"
 #include "CBufferAllocater.h"
-#include "RootSignatureManager.h"
-#include "GraphicsPipelineManager.h"
-#include "MeshManager.h"
-#include "TextureManager.h"
+
+#include "IRootSignature.h"
+#include "IGraphicsPipeline.h"
+#include "IMesh.h"
+#include "ITexture.h"
+#include "ILayer.h"
+
+#include "..\Util\Manager.h"
 
 #include <d3d12.h>
 #include <dxgi1_6.h>
@@ -37,10 +41,10 @@ namespace GE
 
 		ShaderResourceHeap shaderResourceHeap;
 		CBufferAllocater cbufferAllocater;
-		RootSignatureManager rootSignatureManager;
-		GraphicsPipelineManager graphicsPipelineManager;
-		MeshManager meshManager;
-		TextureManager textureManager;
+		Manager<IRootSignature> rootSignatureManager;
+		Manager<IGraphicsPipeline> graphicsPipelineManager;
+		Manager<IMesh> meshManager;
+		Manager<ITexture> textureManager;
 	private:
 		void CreateDxgiFactory();
 		void CreateDevice();
@@ -71,10 +75,10 @@ namespace GE
 		ID3D12GraphicsCommandList* GetCmdList();
 		ShaderResourceHeap* GetShaderResourceHeap();
 		CBufferAllocater* GetCBufferAllocater();
-		RootSignatureManager* GetRootSignatureManager();
-		GraphicsPipelineManager* GetGraphicsPipelineManager();
-		MeshManager* GetMeshManager();
-		TextureManager* GetTextureManager();
+		Manager<IRootSignature>* GetRootSignatureManager();
+		Manager<IGraphicsPipeline>* GetGraphicsPipelineManager();
+		Manager<IMesh>* GetMeshManager();
+		Manager<ITexture>* GetTextureManager();
 
 		void SetShader(const std::string& shaderName,bool isWireframe = false);
 		void SetTexture(const std::string& texName, int descIndex);

@@ -111,10 +111,10 @@ GE::GraphicsDeviceDx12::GraphicsDeviceDx12()
 	, fenceValue(0)
 	, shaderResourceHeap(ShaderResourceHeap())
 	, cbufferAllocater(CBufferAllocater())
-	, rootSignatureManager(RootSignatureManager())
-	, graphicsPipelineManager(GraphicsPipelineManager())
-	, meshManager(MeshManager())
-	, textureManager(TextureManager())
+	, rootSignatureManager(Manager<IRootSignature>())
+	, graphicsPipelineManager(Manager<IGraphicsPipeline>())
+	, meshManager(Manager<IMesh>())
+	, textureManager(Manager<ITexture>())
 {
 }
 
@@ -350,22 +350,22 @@ GE::CBufferAllocater* GE::GraphicsDeviceDx12::GetCBufferAllocater()
 	return &cbufferAllocater;
 }
 
-GE::RootSignatureManager* GE::GraphicsDeviceDx12::GetRootSignatureManager()
+GE::Manager<GE::IRootSignature>* GE::GraphicsDeviceDx12::GetRootSignatureManager()
 {
 	return &rootSignatureManager;
 }
 
-GE::GraphicsPipelineManager* GE::GraphicsDeviceDx12::GetGraphicsPipelineManager()
+GE::Manager<GE::IGraphicsPipeline>* GE::GraphicsDeviceDx12::GetGraphicsPipelineManager()
 {
 	return &graphicsPipelineManager;
 }
 
-GE::MeshManager* GE::GraphicsDeviceDx12::GetMeshManager()
+GE::Manager<GE::IMesh>* GE::GraphicsDeviceDx12::GetMeshManager()
 {
 	return &meshManager;
 }
 
-GE::TextureManager* GE::GraphicsDeviceDx12::GetTextureManager()
+GE::Manager<GE::ITexture>* GE::GraphicsDeviceDx12::GetTextureManager()
 {
 	return &textureManager;
 }
