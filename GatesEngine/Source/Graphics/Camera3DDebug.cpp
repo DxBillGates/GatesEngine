@@ -71,7 +71,7 @@ void GE::Camera3DDebug::Update()
 	moveVector += wheelValue * axis.z.Normalize();
 	info.cameraPos += moveVector * moveSpeed;
 
-	info.projMatrix = Math::Matrix4x4::GetPerspectiveMatrix(90, aspect, 1, 10000);
+	info.projMatrix = Math::Matrix4x4::GetPerspectiveMatrix(90, aspect, 1, 20000);
 
 	direction = Math::Vector3(0, 0, 1);
 	rotation = Math::Matrix4x4::RotationX(pitch) * Math::Matrix4x4::RotationY(yaw);

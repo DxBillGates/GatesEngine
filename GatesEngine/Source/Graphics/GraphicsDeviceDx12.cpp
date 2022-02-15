@@ -140,7 +140,7 @@ GE::GraphicsDeviceDx12::~GraphicsDeviceDx12()
 	COM_RELEASE(cmdList);
 	COM_RELEASE(cmdQueue);
 	COM_RELEASE(swapChain);
-	COM_RELEASE(fence);	
+	COM_RELEASE(fence);
 }
 
 bool GE::GraphicsDeviceDx12::Create(const Math::Vector2& viewportSize, HWND hwnd)
@@ -197,8 +197,8 @@ void GE::GraphicsDeviceDx12::ClearLayer(const std::string& name)
 	IRenderTarget* layerRenderTarget = layerManager.Get(name)->GetRenderTexture();
 	IDepthStencil* layerDepthStencil = layerManager.Get(name)->GetDepthTexture();
 
-	ClearRenderTarget(layerRenderTarget);
-	ClearDepthStencil(layerDepthStencil);
+	if (layerRenderTarget)ClearRenderTarget(layerRenderTarget);
+	if (layerDepthStencil)ClearDepthStencil(layerDepthStencil);
 }
 
 void GE::GraphicsDeviceDx12::SetDefaultRenderTarget()
@@ -215,7 +215,7 @@ void GE::GraphicsDeviceDx12::SetDefaultRenderTarget()
 	viewport.Width = renderTarget.GetSize().x;
 
 	_rect.bottom = (LONG)renderTarget.GetSize().y;
-	_rect.right =  (LONG)renderTarget.GetSize().x;
+	_rect.right = (LONG)renderTarget.GetSize().x;
 
 	cmdList->RSSetViewports(1, &viewport);
 	cmdList->RSSetScissorRects(1, &_rect);
@@ -241,7 +241,7 @@ void GE::GraphicsDeviceDx12::SetDefaultRenderTargetWithoutDSV()
 	cmdList->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
 }
 
-void GE::GraphicsDeviceDx12::SetRenderTarget(IRenderTarget* renderTarget,IDepthStencil* depthStencil)
+void GE::GraphicsDeviceDx12::SetRenderTarget(IRenderTarget* renderTarget, IDepthStencil* depthStencil)
 {
 	if (!renderTarget || !depthStencil)assert(true);
 
@@ -288,6 +288,13 @@ void GE::GraphicsDeviceDx12::SetLayer(const std::string& name)
 {
 	IRenderTarget* layerRenderTarget = layerManager.Get(name)->GetRenderTexture();
 	IDepthStencil* layerDepthStencil = layerManager.Get(name)->GetDepthTexture();
+
+	if (!layerRenderTarget)return;
+	if (!layerDepthStencil)
+	{
+		SetRenderTargetWithoutDSV(layerRenderTarget);
+		return;
+	}
 
 	SetRenderTarget(layerRenderTarget, layerDepthStencil);
 }
