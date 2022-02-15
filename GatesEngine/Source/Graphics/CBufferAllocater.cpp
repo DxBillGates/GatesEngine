@@ -45,12 +45,12 @@ void GE::CBufferAllocater::ResetCurrentUsedNumber()
 	currentUsedNumber = 0;
 }
 
-void GE::CBufferAllocater::BindAndAttachData(int descIndex, const void* data, int size)
+int GE::CBufferAllocater::BindAndAttachData(int descIndex, const void* data, int size)
 {
 	int sizeAligned = (size + 0xff) & ~0xff;
 	int numRequired = sizeAligned / 0x100;
 
-	if (currentUsedNumber + numRequired > (int)shaderResourceHeap->GetWillUseShaderResourceCount().x)return;
+	if (currentUsedNumber + numRequired > (int)shaderResourceHeap->GetWillUseShaderResourceCount().x)return 0;
 
 	int top = currentUsedNumber;
 
@@ -69,5 +69,8 @@ void GE::CBufferAllocater::BindAndAttachData(int descIndex, const void* data, in
 
 	cmdList->SetGraphicsRootDescriptorTable(descIndex, gpuHandle);
 
+	int useCBVNumber = currentUsedNumber;
 	currentUsedNumber += numRequired;
+
+	return useCBVNumber;
 }

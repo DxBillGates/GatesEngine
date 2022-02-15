@@ -21,6 +21,6 @@ namespace GE
 
 		// interface
 		void ResetCurrentUsedNumber() override;
-		void BindAndAttachData(int descIndex, const void* data, int size) override;
+		int BindAndAttachData(int descIndex, const void* data, int size) override;
 	};
 }
