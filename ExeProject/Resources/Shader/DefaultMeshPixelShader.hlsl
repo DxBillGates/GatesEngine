@@ -8,7 +8,7 @@ float4 main(VSOutput psInput) : SV_TARGET
 	float3 halfVec = normalize(-lightDir + eyeDir);
 
 	// diffuse
-	float3 diff = dot(-lightDir, normal) * diffuse.xyz;
+	float3 diff = saturate(dot(-lightDir, normal)) * diffuse.xyz;
 
 	// specular
 	float3 spec = pow(saturate(dot(halfVec, normal)), specular.x);

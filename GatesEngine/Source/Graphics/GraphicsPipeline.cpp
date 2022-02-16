@@ -44,6 +44,7 @@ GE::GraphicsPipeline::GraphicsPipeline(const ShaderStages& shaderStages)
 	, solidPipeline(nullptr)
 	, rootSignature(nullptr)
 	, shaderStages(shaderStages)
+	, graphicsPipelineInfo(GraphicsPipelineInfo())
 {
 }
 

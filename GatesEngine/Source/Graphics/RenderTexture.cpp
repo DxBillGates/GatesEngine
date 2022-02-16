@@ -2,7 +2,11 @@
 #include "..\..\Header\Graphics\COMRelease.h"
 
 GE::RenderTexture::RenderTexture()
-	: buffer(nullptr)
+	: device(nullptr)
+	, rtvHeap(nullptr)
+	, color(Math::Vector4())
+	, currentResourceState(D3D12_RESOURCE_STATES())
+	, buffer(nullptr)
 	, size(Math::Vector2())
 	, srvNum(0)
 {

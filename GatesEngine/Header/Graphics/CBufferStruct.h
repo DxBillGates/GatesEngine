@@ -20,7 +20,7 @@ namespace GE
 
 	struct Material
 	{
-		Math::Vector4 ambient = { 0.0f };
+		Math::Vector4 ambient = { 0.05f };
 		Math::Vector4 diffuse = { 1 };
 		Math::Vector4 specular = { 50 };
 		Math::Vector4 alpha = { 1 };

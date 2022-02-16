@@ -2,7 +2,8 @@
 #include "..\..\Header\Graphics\COMRelease.h"
 
 GE::DepthTexture::DepthTexture()
-	: buffer(nullptr)
+	: dsvHeap(nullptr)
+	, buffer(nullptr)
 	, size(Math::Vector2())
 	, srvNum(0)
 {

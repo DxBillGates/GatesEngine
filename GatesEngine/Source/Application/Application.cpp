@@ -11,6 +11,7 @@
 #include "..\..\Header\Graphics\RenderTexture.h"
 #include "..\..\Header\Graphics\DepthTexture.h"
 #include "..\..\Header\Graphics\Layer.h"
+#include "..\..\Header\Graphics\Texture.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080),"no title")
@@ -143,6 +144,12 @@ bool GE::Application::LoadContents()
 	mesh->Create(device, cmdList, modelDataTorus);
 	meshManager->Add(mesh, "Torus");
 
+	// texture load
+	auto* textureManager = graphicsDevice.GetTextureManager();
+	Texture* nullTexture = new Texture();
+	nullTexture->Load("texture_null.png", device, shaderResourceHeap);
+	textureManager->Add(nullTexture, "texture_null");
+
 	// shader compile
 	Shader defaultMeshVertexShader, defaultMeshPixelShader;
 	defaultMeshVertexShader.CompileShaderFileWithoutFormat(L"DefaultMeshVertexShader", "vs_5_0");
@@ -150,12 +157,18 @@ bool GE::Application::LoadContents()
 	Shader defaultLineVertexShader, defaultLinePixelShader;
 	defaultLineVertexShader.CompileShaderFileWithoutFormat(L"DefaultLineVertexShader", "vs_5_0");
 	defaultLinePixelShader.CompileShaderFileWithoutFormat(L"DefaultLinePixelShader", "ps_5_0");
+	Shader defaultMeshWithTexturePixelShader;
+	defaultMeshWithTexturePixelShader.CompileShaderFileWithoutFormat(L"DefaultMeshWithTexturePixelShader", "ps_5_0");
 
 	// rootSignature作成
 	auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
 	RootSignature* defaultMeshRootSignature = new RootSignature();
 	defaultMeshRootSignature->Create(device, { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV });
 	rootSignatureManager->Add(defaultMeshRootSignature, "CBV4");
+	// texture 付きルートシグネチャ
+	RootSignature* defaultMeshWithOneSrvRootSignature = new RootSignature();
+	defaultMeshWithOneSrvRootSignature->Create(device, { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::SRV });
+	rootSignatureManager->Add(defaultMeshWithOneSrvRootSignature, "CBV4SRV1");
 
 	// demo graphicsPipeline作成
 	GraphicsPipelineInfo pipelineInfo = GraphicsPipelineInfo();
@@ -168,6 +181,11 @@ bool GE::Application::LoadContents()
 	GraphicsPipeline* dafaultLinePipeline = new GraphicsPipeline({ &defaultLineVertexShader,nullptr,nullptr,nullptr,&defaultLinePixelShader });
 	dafaultLinePipeline->Create(device, { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::COLOR }, defaultMeshRootSignature, pipelineInfo);
 	graphicsPipelineManager->Add(dafaultLinePipeline, "DefaultLineShader");
+	// texture draw shader
+	pipelineInfo.topologyType = GraphicsPipelinePrimitiveTopolotyType::TRIANGLE;
+	GraphicsPipeline* dafaultMeshWithTexturePipeline = new GraphicsPipeline({ &defaultMeshVertexShader,nullptr,nullptr,nullptr,&defaultMeshWithTexturePixelShader });
+	dafaultMeshWithTexturePipeline->Create(device, { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV ,GraphicsPipelineInputLayout::NORMAL }, defaultMeshWithOneSrvRootSignature, pipelineInfo);
+	graphicsPipelineManager->Add(dafaultMeshWithTexturePipeline, "DefaultMeshWithTextureShader");
 
 	// demo layer作成
 	auto* layerManager = graphicsDevice.GetLayerManager();

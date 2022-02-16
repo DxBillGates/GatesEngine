@@ -3,8 +3,12 @@
 #include <assert.h>
 
 GE::RenderTarget::RenderTarget()
-	: rtvHeap(nullptr)
+	: size(Math::Vector2())
+	, rtvHeap(nullptr)
+	, color(Math::Vector4())
 	, currentResourceState(D3D12_RESOURCE_STATES())
+	, index(0)
+	, incrementSize(0)
 {
 }
 

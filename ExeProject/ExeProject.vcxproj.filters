@@ -44,5 +44,8 @@
     <FxCompile Include="Resources\Shader\DefaultLinePixelShader.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
+    <FxCompile Include="Resources\Shader\DefaultMeshWithTexturePixelShader.hlsl">
+      <Filter>シェーダー ファイル</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

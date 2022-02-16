@@ -9,7 +9,7 @@ Game::Game()
 }
 
 Game::Game(const GE::Math::Vector2& size, const std::string& title)
-	: Application(size,title)
+	: Application(size, title)
 {
 }
 
@@ -58,6 +58,14 @@ bool Game::Draw()
 	renderQueue->AddSetConstantBufferInfo({ 2,cbufferAllocater->BindAndAttachData(2, &material, sizeof(GE::Material)) });
 	renderQueue->AddSetConstantBufferInfo({ 3,cbufferAllocater->BindAndAttachData(3, &directionalLight, sizeof(GE::DirectionalLightInfo)) });
 	graphicsDevice.DrawMesh("Sphere");
+
+	graphicsDevice.SetShader("DefaultMeshWithTextureShader");
+	modelMatrix = GE::Math::Matrix4x4::Identity();
+	modelMatrix *= GE::Math::Matrix4x4::Scale({ 50 });
+	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
+	renderQueue->AddSetShaderResource({ 4,graphicsDevice.GetTextureManager()->Get("texture_null")->GetSRVNumber() });
+	graphicsDevice.DrawMesh("Skydome");
+
 
 	graphicsDevice.SetShader("DefaultLineShader");
 	modelMatrix = GE::Math::Matrix4x4::Identity();
