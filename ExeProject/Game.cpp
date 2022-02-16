@@ -57,7 +57,7 @@ bool Game::Draw()
 	renderQueue->AddSetConstantBufferInfo({ 1,cbufferAllocater->BindAndAttachData(1, &cameraInfo, sizeof(GE::CameraInfo)) });
 	renderQueue->AddSetConstantBufferInfo({ 2,cbufferAllocater->BindAndAttachData(2, &material, sizeof(GE::Material)) });
 	renderQueue->AddSetConstantBufferInfo({ 3,cbufferAllocater->BindAndAttachData(3, &directionalLight, sizeof(GE::DirectionalLightInfo)) });
-	graphicsDevice.DrawMesh("Skydome");
+	graphicsDevice.DrawMesh("Sphere");
 
 	graphicsDevice.SetShader("DefaultLineShader");
 	modelMatrix = GE::Math::Matrix4x4::Identity();

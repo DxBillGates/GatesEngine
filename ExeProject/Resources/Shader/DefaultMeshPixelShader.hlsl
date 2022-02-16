@@ -4,9 +4,15 @@ float4 main(VSOutput psInput) : SV_TARGET
 {
 	float3 lightDir = normalize(worldLightDir.xyz);
 	float3 normal = normalize(psInput.normal);
+	float3 eyeDir = normalize(cameraPos.xyz - psInput.worldPosition.xyz);
+	float3 halfVec = normalize(-lightDir + eyeDir);
 
-	float3 diff = saturate(dot(-lightDir, normal)) * diffuse.xyz;
+	// diffuse
+	float3 diff = dot(-lightDir, normal) * diffuse.xyz;
 
-	float3 intensity = saturate(ambient.xyz + diff) * worldLightColor.xyz;
+	// specular
+	float3 spec = pow(saturate(dot(halfVec, normal)), specular.x);
+
+	float3 intensity = (ambient.rgb + diff + spec) * worldLightColor.xyz;
 	return float4(intensity, alpha.x);
 }
