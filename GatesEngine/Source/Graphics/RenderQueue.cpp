@@ -1,5 +1,14 @@
 #include "..\..\Header\Graphics\RenderQueue.h"
 
+GE::RenderQueue::RenderQueue()
+	: currentSetRenderTarget(nullptr)
+	, currentSetDepthStencil(nullptr)
+	, currentSetPipeline(nullptr)
+	, currentSetDrawMesh(nullptr)
+	, depth(0)
+{
+}
+
 void GE::RenderQueue::SetLayer(IRenderTarget* setRenderTarget, IDepthStencil* setDepthStencil)
 {
 	currentSetRenderTarget = setRenderTarget;

@@ -4,7 +4,7 @@
 GE::RenderTexture::RenderTexture()
 	: device(nullptr)
 	, rtvHeap(nullptr)
-	, color(Math::Vector4())
+	, color(Color())
 	, currentResourceState(D3D12_RESOURCE_STATES())
 	, buffer(nullptr)
 	, size(Math::Vector2())
@@ -18,7 +18,7 @@ GE::RenderTexture::~RenderTexture()
 	COM_RELEASE(rtvHeap);
 }
 
-void GE::RenderTexture::Create(ID3D12Device* device, IShaderResourceHeap* shaderResourceHeap, const Math::Vector2& setSize, const Math::Vector4& setColor)
+void GE::RenderTexture::Create(ID3D12Device* device, IShaderResourceHeap* shaderResourceHeap, const Math::Vector2& setSize, const Color& setColor)
 {
 	this->device = device;
 	size = setSize;
@@ -39,10 +39,10 @@ void GE::RenderTexture::Create(ID3D12Device* device, IShaderResourceHeap* shader
 
 	D3D12_CLEAR_VALUE clearValue = {};
 	clearValue.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	clearValue.Color[0] = (color.x > 1) ? color.x / 255.0f : color.x;
-	clearValue.Color[1] = (color.y > 1) ? color.y / 255.0f : color.y;
-	clearValue.Color[2] = (color.z > 1) ? color.z / 255.0f : color.z;
-	clearValue.Color[3] = (color.w > 1) ? color.w / 255.0f : color.w;
+	clearValue.Color[0] = (color.r > 1) ? color.r / 255.0f : color.r;
+	clearValue.Color[1] = (color.g > 1) ? color.g / 255.0f : color.g;
+	clearValue.Color[2] = (color.b > 1) ? color.b / 255.0f : color.b;
+	clearValue.Color[3] = (color.a > 1) ? color.a / 255.0f : color.a;
 
 	device->CreateCommittedResource(&heapProp, D3D12_HEAP_FLAG_NONE, &resDesc, D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE, &clearValue, IID_PPV_ARGS(&buffer));
 
@@ -106,7 +106,7 @@ D3D12_RESOURCE_STATES GE::RenderTexture::GetCurrentResourceState()
 	return currentResourceState;
 }
 
-const GE::Math::Vector4& GE::RenderTexture::GetColor()
+const GE::Color& GE::RenderTexture::GetColor()
 {
 	return color;
 }
@@ -116,7 +116,7 @@ void GE::RenderTexture::SetCurrentResourceState(D3D12_RESOURCE_STATES state)
 	currentResourceState = state;
 }
 
-void GE::RenderTexture::SetColor(const Math::Vector4& color)
+void GE::RenderTexture::SetColor(const Color& color)
 {
 	this->color = color;
 }

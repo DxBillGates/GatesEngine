@@ -10,6 +10,7 @@ float GE::Math::ConvertToRadian(float value)
 
 float GE::Math::Lerp(float s, float e, float t)
 {
+	if (t >= 1)t = 1;
 	return s * (1.0f - t) + e * t;
 }
 

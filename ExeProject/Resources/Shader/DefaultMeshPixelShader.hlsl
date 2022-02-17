@@ -1,6 +1,6 @@
 #include "DefaultShader.hlsli"
 
-float4 main(VSOutput psInput) : SV_TARGET
+float4 main(DefaultMeshVSOutput psInput) : SV_TARGET
 {
 	float3 lightDir = normalize(worldLightDir.xyz);
 	float3 normal = normalize(psInput.normal);

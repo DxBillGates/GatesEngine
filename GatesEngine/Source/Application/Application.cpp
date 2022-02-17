@@ -191,7 +191,7 @@ bool GE::Application::LoadContents()
 	auto* layerManager = graphicsDevice.GetLayerManager();
 	RenderTexture* demoRenderTexture = new RenderTexture();
 	DepthTexture* demoDepthTexture = new DepthTexture();
-	demoRenderTexture->Create(device,shaderResourceHeap, mainWindow.GetWindowSize(), Math::Vector4(0, 0, 0, 1));
+	demoRenderTexture->Create(device,shaderResourceHeap, mainWindow.GetWindowSize(), Color::Black());
 	demoDepthTexture->Create(device, shaderResourceHeap, mainWindow.GetWindowSize());
 	layerManager->Add(new Layer(demoRenderTexture,demoDepthTexture),"demoLayer");
 

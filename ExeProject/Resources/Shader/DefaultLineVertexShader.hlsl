@@ -1,10 +1,10 @@
 #include "DefaultShader.hlsli"
 
-LineVSOutput main(float4 pos : POSITION, float4 color : COLOR)
+DefaultLineVSOutput main(DefaultLineVSInput input)
 {
-	LineVSOutput o;
-	o.svpos = mul(projMatrix, mul(viewMatrix, mul(modelMatrix, pos)));
-	o.pos = pos;
-	o.color = color;
-	return o;
+	DefaultLineVSOutput output;
+	output.svpos = mul(projMatrix, mul(viewMatrix, mul(modelMatrix, input.pos)));
+	output.pos = input.pos;
+	output.color = input.color;
+	return output;
 }

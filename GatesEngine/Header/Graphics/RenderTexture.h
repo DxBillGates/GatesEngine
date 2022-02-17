@@ -14,7 +14,7 @@ namespace GE
 		// renderTarget
 
 		ID3D12DescriptorHeap* rtvHeap;
-		Math::Vector4 color;
+		Color color;
 		D3D12_RESOURCE_STATES currentResourceState;
 
 		// texture
@@ -25,16 +25,16 @@ namespace GE
 	public:
 		RenderTexture();
 		~RenderTexture();
-		void Create(ID3D12Device* device, IShaderResourceHeap* shaderResourceHeap,const Math::Vector2& setSize, const Math::Vector4& setColor);
+		void Create(ID3D12Device* device, IShaderResourceHeap* shaderResourceHeap,const Math::Vector2& setSize, const Color& setColor);
 
 		// IRenderTarget interface
 
 		D3D12_CPU_DESCRIPTOR_HANDLE GetHandle() override;
 		const Math::Vector2& GetSize() override;
 		D3D12_RESOURCE_STATES GetCurrentResourceState() override;
-		const Math::Vector4& GetColor() override;
+		const Color& GetColor() override;
 		void SetCurrentResourceState(D3D12_RESOURCE_STATES state) override;
-		void SetColor(const Math::Vector4& color) override;
+		void SetColor(const Color& color) override;
 		void Prepare(ID3D12GraphicsCommandList* cmdList) override;
 
 		// ITexture interface

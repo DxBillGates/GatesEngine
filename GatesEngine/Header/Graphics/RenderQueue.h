@@ -41,6 +41,7 @@ namespace GE
 		IMesh* currentSetDrawMesh;
 		float depth;
 	public:
+		RenderQueue();
 		void SetLayer(IRenderTarget* setRenderTarget,IDepthStencil* setDepthStencil);
 		void SetPipeline(IGraphicsPipeline* setPipeline);
 		void AddSetShaderResource(const ShaderResourceCommand& command);

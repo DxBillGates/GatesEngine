@@ -63,7 +63,7 @@ void GE::MeshCreater::CreateGrid(MeshData<Vertex_Color>& meshData, float spaceIn
 	for (int w = 0; w <= width; ++w)
 	{
 		float x = w * spaceInterval;
-		Math::Vector4 color = { 0.5f,0.5f,0.5f,1 };
+		Color color = { 0.5f,0.5f,0.5f,1 };
 		if (offset.x + x == 0)color = { 0,0,1,1 };
 		vertices->push_back({ Math::Vector3(offset.x + x,0,offset.y),color });
 		vertices->push_back({ Math::Vector3(offset.x + x,0,maxOffset.y),color });
@@ -72,7 +72,7 @@ void GE::MeshCreater::CreateGrid(MeshData<Vertex_Color>& meshData, float spaceIn
 	for (int d = 0; d <= depth; ++d)
 	{
 		float z = d * spaceInterval;
-		Math::Vector4 color = { 0.5f,0.5f,0.5f,1 };
+		Color color = { 0.5f,0.5f,0.5f,1 };
 		if (offset.y + z == 0)color = { 1,0,0,1 };
 		vertices->push_back({ Math::Vector3(offset.x,0   ,offset.y + z),color });
 		vertices->push_back({ Math::Vector3(maxOffset.x,0,offset.y + z),color });
@@ -85,7 +85,7 @@ void GE::MeshCreater::CreateGrid(MeshData<Vertex_Color>& meshData, float spaceIn
 	}
 }
 
-void GE::MeshCreater::CreateLine(MeshData<Vertex_Color>& meshData, const Math::Vector3& size, const Math::Vector4& color)
+void GE::MeshCreater::CreateLine(MeshData<Vertex_Color>& meshData, const Math::Vector3& size, const Color& color)
 {
 	std::vector<Vertex_Color>* vertices = meshData.GetVertices();
 	std::vector<unsigned int>* indices = meshData.GetIndices();
@@ -97,7 +97,7 @@ void GE::MeshCreater::CreateLine(MeshData<Vertex_Color>& meshData, const Math::V
 	indices->push_back(1);
 }
 
-void GE::MeshCreater::CreateLineCube(MeshData<Vertex_Color>& meshData, const Math::Vector3& size, const Math::Vector4& color)
+void GE::MeshCreater::CreateLineCube(MeshData<Vertex_Color>& meshData, const Math::Vector3& size, const Color& color)
 {
 	std::vector<Vertex_Color>* vertices = meshData.GetVertices();
 	std::vector<unsigned int>* indices = meshData.GetIndices();
@@ -142,7 +142,7 @@ void GE::MeshCreater::CreateLineCube(MeshData<Vertex_Color>& meshData, const Mat
 	indices->push_back(6);
 }
 
-void GE::MeshCreater::CreateLineCircle(MeshData<Vertex_Color>& meshData, float vertexCount, const Math::Vector3& size, const Math::Vector4& color)
+void GE::MeshCreater::CreateLineCircle(MeshData<Vertex_Color>& meshData, float vertexCount, const Math::Vector3& size, const Color& color)
 {
 	std::vector<Vertex_Color>* vertices = meshData.GetVertices();
 	std::vector<unsigned int>* indices = meshData.GetIndices();

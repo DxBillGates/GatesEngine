@@ -40,7 +40,7 @@ bool Game::Draw()
 	GE::ICBufferAllocater* cbufferAllocater = graphicsDevice.GetCBufferAllocater();
 	GE::RenderQueue* renderQueue = graphicsDevice.GetRenderQueue();
 
-	graphicsDevice.ClearDefaultRenderTarget();
+	graphicsDevice.ClearDefaultRenderTarget(GE::Color::Blue());
 	graphicsDevice.SetDefaultRenderTarget();
 	//graphicsDevice.ClearLayer("demoLayer");
 	//graphicsDevice.SetLayer("demoLayer");

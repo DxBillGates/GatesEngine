@@ -35,6 +35,7 @@
     <ClInclude Include="Header\Graphics\Camera3DDebug.h" />
     <ClInclude Include="Header\Graphics\CBufferAllocater.h" />
     <ClInclude Include="Header\Graphics\CBufferStruct.h" />
+    <ClInclude Include="Header\Graphics\Color.h" />
     <ClInclude Include="Header\Graphics\COMRelease.h" />
     <ClInclude Include="Header\Graphics\DepthStencil.h" />
     <ClInclude Include="Header\Graphics\DepthTexture.h" />
@@ -103,6 +104,7 @@
     <ClCompile Include="Source\Graphics\Camera3D.cpp" />
     <ClCompile Include="Source\Graphics\Camera3DDebug.cpp" />
     <ClCompile Include="Source\Graphics\CBufferAllocater.cpp" />
+    <ClCompile Include="Source\Graphics\Color.cpp" />
     <ClCompile Include="Source\Graphics\DepthStencil.cpp" />
     <ClCompile Include="Source\Graphics\DepthTexture.cpp" />
     <ClCompile Include="Source\Graphics\GraphicsDeviceDx12.cpp" />

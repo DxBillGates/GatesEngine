@@ -163,11 +163,11 @@ bool GE::GraphicsDeviceDx12::Create(const Math::Vector2& viewportSize, HWND hwnd
 	return true;
 }
 
-void GE::GraphicsDeviceDx12::ClearDefaultRenderTarget(const Math::Vector4& color)
+void GE::GraphicsDeviceDx12::ClearDefaultRenderTarget(const Color& color)
 {
 	D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget.GetHandle();
 
-	float rgba[] = { color.x,color.y,color.z,color.w };
+	float rgba[] = { color.r,color.g,color.b,color.a };
 	cmdList->ClearRenderTargetView(rtvHandle, rgba, 0, nullptr);
 
 	ClearDepthStencil(&depthStencil);
@@ -177,10 +177,10 @@ void GE::GraphicsDeviceDx12::ClearRenderTarget(IRenderTarget* renderTarget)
 {
 	if (!renderTarget)assert(true);
 	D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget->GetHandle();
-	const Math::Vector4& color = renderTarget->GetColor();
+	const Color& color = renderTarget->GetColor();
 
 	renderTarget->Prepare(cmdList);
-	float rgba[] = { color.x,color.y,color.z,color.w };
+	float rgba[] = { color.r,color.g,color.b,color.a };
 	cmdList->ClearRenderTargetView(rtvHandle, rgba, 0, nullptr);
 }
 

@@ -12,7 +12,7 @@ namespace GE
 		Math::Vector2 size;
 		std::vector<ID3D12Resource*> rtvBuffer;
 		ID3D12DescriptorHeap* rtvHeap;
-		Math::Vector4 color;
+		Color color;
 		D3D12_RESOURCE_STATES currentResourceState;
 		int index;
 		int incrementSize;
@@ -28,9 +28,9 @@ namespace GE
 		D3D12_CPU_DESCRIPTOR_HANDLE GetHandle() override;
 		const Math::Vector2& GetSize() override;
 		D3D12_RESOURCE_STATES GetCurrentResourceState() override;
-		const Math::Vector4& GetColor() override;
+		const Color& GetColor() override;
 		void SetCurrentResourceState(D3D12_RESOURCE_STATES state) override;
-		void SetColor(const Math::Vector4& color) override;
+		void SetColor(const Color& color) override;
 		void Prepare(ID3D12GraphicsCommandList* cmdList) override;
 	};
 }

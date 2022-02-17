@@ -1,6 +1,6 @@
 #pragma once
 #include "..\Util\Math\Vector2.h"
-#include "..\Util\Math\Vector4.h"
+#include "Color.h"
 
 #include "RenderTarget.h"
 #include "DepthStencil.h"
@@ -63,7 +63,7 @@ namespace GE
 		~GraphicsDeviceDx12();
 		bool Create(const Math::Vector2& viewportSize, HWND hwnd);
 
-		void ClearDefaultRenderTarget(const Math::Vector4& color = {0,0,0,1});
+		void ClearDefaultRenderTarget(const Color& color = {0,0,0,1});
 		void ClearRenderTarget(IRenderTarget* renderTarget);
 		void ClearDepthStencil(IDepthStencil* depthStencil);
 		void ClearLayer(const std::string& name);

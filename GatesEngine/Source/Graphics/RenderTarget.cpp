@@ -5,7 +5,7 @@
 GE::RenderTarget::RenderTarget()
 	: size(Math::Vector2())
 	, rtvHeap(nullptr)
-	, color(Math::Vector4())
+	, color(Color())
 	, currentResourceState(D3D12_RESOURCE_STATES())
 	, index(0)
 	, incrementSize(0)
@@ -65,7 +65,7 @@ void GE::RenderTarget::SetIndex(int value)
 D3D12_CPU_DESCRIPTOR_HANDLE GE::RenderTarget::GetHandle()
 {
 	D3D12_CPU_DESCRIPTOR_HANDLE handle = rtvHeap->GetCPUDescriptorHandleForHeapStart();
-	handle.ptr += incrementSize * index;
+	handle.ptr += (UINT64)incrementSize * index;
 	return handle;
 }
 
@@ -79,7 +79,7 @@ D3D12_RESOURCE_STATES GE::RenderTarget::GetCurrentResourceState()
 	return currentResourceState;
 }
 
-const GE::Math::Vector4& GE::RenderTarget::GetColor()
+const GE::Color& GE::RenderTarget::GetColor()
 {
 	return color;
 }
@@ -89,7 +89,7 @@ void GE::RenderTarget::SetCurrentResourceState(D3D12_RESOURCE_STATES state)
 	currentResourceState = state;
 }
 
-void GE::RenderTarget::SetColor(const Math::Vector4& color)
+void GE::RenderTarget::SetColor(const Color& color)
 {
 	this->color = color;
 }

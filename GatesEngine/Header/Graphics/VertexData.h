@@ -1,7 +1,7 @@
 #pragma once
 #include "..\Util\Math\Vector2.h"
 #include "..\Util\Math\Vector3.h"
-#include "..\Util\Math\Vector4.h"
+#include "Color.h"
 
 namespace GE
 {
@@ -46,12 +46,12 @@ namespace GE
 		Math::Vector3 point;
 		Math::Vector2 uv;
 		Math::Vector3 normal;
-		Math::Vector4 color;
+		Color color;
 	};
 
 	struct Vertex_Color
 	{
 		Math::Vector3 pos;
-		Math::Vector4 color;
+		Color color;
 	};
 }
