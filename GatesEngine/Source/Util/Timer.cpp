@@ -5,7 +5,7 @@
 #include <string>
 #pragma comment(lib,"winmm.lib")
 
-GE::Utilty::Timer::Timer()
+GE::Utility::Timer::Timer()
 	:isShow(true)
 	, fps(0)
 	, frameTime(0)
@@ -22,31 +22,31 @@ GE::Utilty::Timer::Timer()
 	QueryPerformanceCounter(&timeStart);
 }
 
-GE::Utilty::Timer::~Timer()
+GE::Utility::Timer::~Timer()
 {
 }
 
-void GE::Utilty::Timer::SetIsShow(bool b)
+void GE::Utility::Timer::SetIsShow(bool b)
 {
 	isShow = b;
 }
 
-float GE::Utilty::Timer::GetElapsedTime()
+float GE::Utility::Timer::GetElapsedTime()
 {
 	return (float)frameTime;
 }
 
-float GE::Utilty::Timer::GetElapsedApplicationTime()
+float GE::Utility::Timer::GetElapsedApplicationTime()
 {
 	return elapsedApplicationTime;
 }
 
-void GE::Utilty::Timer::Start()
+void GE::Utility::Timer::Start()
 {
 	QueryPerformanceCounter(&startBuffer);
 }
 
-void GE::Utilty::Timer::End(bool isShow, const char* addComment)
+void GE::Utility::Timer::End(bool isShow, const char* addComment)
 {
 	QueryPerformanceCounter(&endBuffer);
 	double elapsedTime = static_cast<double>(endBuffer.QuadPart - startBuffer.QuadPart) / static_cast<double>(timeFreq.QuadPart);
@@ -54,7 +54,7 @@ void GE::Utilty::Timer::End(bool isShow, const char* addComment)
 	if (isShow)Utility::Printf("%3.5fms : %3.0f : %s\n", (float)(elapsedTime * 1000), fps, addComment);
 }
 
-bool GE::Utilty::Timer::Update()
+bool GE::Utility::Timer::Update()
 {
 	if (!isSetFrameRate)return false;
 	if (setFrameRate <= 0)return false;
@@ -85,7 +85,7 @@ bool GE::Utilty::Timer::Update()
 	return false;
 }
 
-void GE::Utilty::Timer::SetFrameRate(float value)
+void GE::Utility::Timer::SetFrameRate(float value)
 {
 	setFrameRate = value;
 	isSetFrameRate = true;
