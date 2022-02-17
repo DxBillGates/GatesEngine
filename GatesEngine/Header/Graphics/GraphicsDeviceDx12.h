@@ -7,15 +7,7 @@
 #include "ShaderResourceHeap.h"
 #include "CBufferAllocater.h"
 
-#include "IRootSignature.h"
-#include "IGraphicsPipeline.h"
-#include "IMesh.h"
-#include "ITexture.h"
-#include "ILayer.h"
-
-#include "..\Util\Manager.h"
-
-#include "RenderQueue.h"
+#include "IGraphicsDeviceDx12.h"
 
 #include <d3d12.h>
 #include <dxgi1_6.h>
@@ -23,7 +15,7 @@
 
 namespace GE
 {
-	class GraphicsDeviceDx12
+	class GraphicsDeviceDx12 : public IGraphicsDeviceDx12
 	{
 	private:
 		D3D12_VIEWPORT viewPort;
@@ -63,37 +55,39 @@ namespace GE
 		~GraphicsDeviceDx12();
 		bool Create(const Math::Vector2& viewportSize, HWND hwnd);
 
-		void ClearDefaultRenderTarget(const Color& color = {0,0,0,1});
-		void ClearRenderTarget(IRenderTarget* renderTarget);
-		void ClearDepthStencil(IDepthStencil* depthStencil);
-		void ClearLayer(const std::string& name);
-		void SetDefaultRenderTarget();
-		void SetDefaultRenderTargetWithoutDSV();
-		void SetRenderTarget(IRenderTarget* renderTarget,IDepthStencil* depthStencil);
-		void SetRenderTargetWithoutDSV(IRenderTarget* renderTarget);
-		void SetLayer(const std::string& name);
-		void SetShaderResourceDescriptorHeap();
-		void ResetCBufferAllocater();
-		bool ScreenFlip();
-		void SetResourceBarrier(ID3D12Resource* resource, D3D12_RESOURCE_STATES before, D3D12_RESOURCE_STATES after);
-		void SetViewport(const Math::Vector2& size, const Math::Vector2& pos = {});
+		// interface
 
-		ID3D12Device* GetDevice();
-		ID3D12GraphicsCommandList* GetCmdList();
-		ShaderResourceHeap* GetShaderResourceHeap();
-		CBufferAllocater* GetCBufferAllocater();
-		Manager<IRootSignature>* GetRootSignatureManager();
-		Manager<IGraphicsPipeline>* GetGraphicsPipelineManager();
-		Manager<IMesh>* GetMeshManager();
-		Manager<ITexture>* GetTextureManager();
-		Manager<ILayer>* GetLayerManager();
-		RenderQueue* GetRenderQueue();
-		void ExecuteRenderQueue();
+		void ClearDefaultRenderTarget(const Color& color = {0,0,0,1}) override;
+		void ClearRenderTarget(IRenderTarget* renderTarget) override;
+		void ClearDepthStencil(IDepthStencil* depthStencil) override;
+		void ClearLayer(const std::string& name) override;
+		void SetDefaultRenderTarget() override;
+		void SetDefaultRenderTargetWithoutDSV() override;
+		void SetRenderTarget(IRenderTarget* renderTarget,IDepthStencil* depthStencil) override;
+		void SetRenderTargetWithoutDSV(IRenderTarget* renderTarget) override;
+		void SetLayer(const std::string& name) override;
+		void SetShaderResourceDescriptorHeap() override;
+		void ResetCBufferAllocater() override;
+		bool ScreenFlip() override;
+		void SetResourceBarrier(ID3D12Resource* resource, D3D12_RESOURCE_STATES before, D3D12_RESOURCE_STATES after) override;
+		void SetViewport(const Math::Vector2& size, const Math::Vector2& pos = {}) override;
 
-		void SetShader(const std::string& shaderName,bool isWireframe = false);
-		void SetTexture(const std::string& texName, int descIndex);
-		void SetRenderTexture(const std::string& texName, int descIndex);
-		void SetDepthTexture(const std::string& layerName, int descIndex);
-		void DrawMesh(const std::string& meshName,int instanceCount = 1);
+		ID3D12Device* GetDevice() override;
+		ID3D12GraphicsCommandList* GetCmdList() override;
+		IShaderResourceHeap* GetShaderResourceHeap() override;
+		ICBufferAllocater* GetCBufferAllocater();
+		Manager<IRootSignature>* GetRootSignatureManager() override;
+		Manager<IGraphicsPipeline>* GetGraphicsPipelineManager() override;
+		Manager<IMesh>* GetMeshManager() override;
+		Manager<ITexture>* GetTextureManager() override;
+		Manager<ILayer>* GetLayerManager() override;
+		RenderQueue* GetRenderQueue() override;
+		void ExecuteRenderQueue() override;
+
+		void SetShader(const std::string& shaderName,bool isWireframe = false) override;
+		void SetTexture(const std::string& texName, int descIndex) override;
+		void SetRenderTexture(const std::string& texName, int descIndex) override;
+		void SetDepthTexture(const std::string& layerName, int descIndex) override;
+		void DrawMesh(const std::string& meshName,int instanceCount = 1) override;
 	};
 }

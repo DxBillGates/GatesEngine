@@ -1,6 +1,7 @@
 #pragma once
 #include "..\Util\Math\Matrix4.h"
 #include "..\Util\Math\Vector4.h"
+#include "Color.h"
 
 namespace GE
 {
@@ -23,8 +24,7 @@ namespace GE
 		Math::Vector4 ambient = { 0.05f };
 		Math::Vector4 diffuse = { 1 };
 		Math::Vector4 specular = { 50 };
-		Math::Vector4 alpha = { 1 };
-		Math::Vector4 threshold = { 1 };
+		Color color = { 1 };
 	};
 
 	struct DirectionalLightInfo

@@ -12,6 +12,7 @@
 #include "..\..\Header\Graphics\DepthTexture.h"
 #include "..\..\Header\Graphics\Layer.h"
 #include "..\..\Header\Graphics\Texture.h"
+#include "..\..\Header\GameFramework\GameObject\GameObject.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080),"no title")
@@ -19,7 +20,7 @@ GE::Application::Application()
 }
 
 GE::Application::Application(const Math::Vector2& size, const std::string& title)
-	: timer(Util::Timer())
+	: timer(Utility::Timer())
 	, mainWindow(Window())
 	, inputDevice(InputDevice::GetInstance())
 	, audioManager(AudioManager())
@@ -37,6 +38,8 @@ GE::Application::Application(const Math::Vector2& size, const std::string& title
 	graphicsDevice.Create(size, mainWindow.GetHandle());
 
 	mainCamera = new Camera3DDebug();
+
+	GameObject::SetGraphicsDevice(&graphicsDevice);
 }
 
 GE::Application::~Application()
@@ -201,7 +204,7 @@ bool GE::Application::LoadContents()
 
 bool GE::Application::Initialize()
 {
-	SceneInitializer sceneInitializer = { &audioManager,inputDevice };
+	SceneInitializer sceneInitializer = { &audioManager,inputDevice,&graphicsDevice };
 	sceneManager.Initialize(sceneInitializer);
 
 	mainCamera->Initialize();

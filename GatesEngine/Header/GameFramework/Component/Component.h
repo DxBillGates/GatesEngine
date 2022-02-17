@@ -10,6 +10,8 @@ namespace GE
 		GameObject* gameObject;
 		Transform* transform;
 		bool enabled;
+
+		IGraphicsDeviceDx12* graphicsDevice;
 	public:
 		Component();
 		virtual ~Component() {}
@@ -27,5 +29,6 @@ namespace GE
 		void SetGameObject(GameObject* object);
 		void SetTransform(Transform* transform);
 		void SetEnabled(bool flag);
+		void SetGraphicsDevice(IGraphicsDeviceDx12* graphicsDevice);
 	};
 }

@@ -1,5 +1,8 @@
 #include "..\..\..\Header\GameFramework\GameObject\GameObject.h"
 #include "..\..\..\Header\GameFramework\Component\Component.h"
+#include "..\..\..\Header\Util\Utility.h"
+
+GE::IGraphicsDeviceDx12* GE::GameObject::graphicsDevice = nullptr;
 
 GE::GameObject::GameObject(const std::string& name, const std::string& tag)
 	: parent(nullptr)
@@ -21,10 +24,12 @@ GE::GameObject::~GameObject()
 
 void GE::GameObject::Awake()
 {
+	if (!IsSetGraphicsDevice())Utility::Printf("GameObject : IGraphicsDevice‚ªƒZƒbƒg‚³‚ê‚Ä‚¢‚Ü‚¹‚ñ\n");
 	for (auto& component : components)
 	{
 		component->SetGameObject(this);
 		component->SetTransform(&transform);
+		component->SetGraphicsDevice(graphicsDevice);
 		component->Awake();
 	}
 }
@@ -101,4 +106,14 @@ void GE::GameObject::SetTag(const std::string& tag)
 void GE::GameObject::SetEnabled(bool flag)
 {
 	enabled = flag;
+}
+
+void GE::GameObject::SetGraphicsDevice(IGraphicsDeviceDx12* gDevice)
+{
+	graphicsDevice = gDevice;
+}
+
+bool GE::GameObject::IsSetGraphicsDevice()
+{
+	return (graphicsDevice) ? true : false;
 }

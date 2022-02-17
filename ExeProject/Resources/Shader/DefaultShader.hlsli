@@ -57,8 +57,7 @@ cbuffer Material : register(b2)
 	float4 ambient;
 	float4 diffuse;
 	float4 specular;
-	float4 alpha;
-	float4 threshold;
+	float4 color;
 }
 
 cbuffer DirectionalLightInfo : register(b3)

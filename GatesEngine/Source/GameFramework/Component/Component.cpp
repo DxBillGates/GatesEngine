@@ -4,6 +4,7 @@ GE::Component::Component()
 	: gameObject(nullptr)
 	, transform(nullptr)
 	, enabled(true)
+	, graphicsDevice(nullptr)
 {
 }
 
@@ -30,4 +31,9 @@ void GE::Component::SetTransform(Transform* transform)
 void GE::Component::SetEnabled(bool flag)
 {
 	enabled = flag;
+}
+
+void GE::Component::SetGraphicsDevice(IGraphicsDeviceDx12* graphicsDevice)
+{
+	this->graphicsDevice = graphicsDevice;
 }

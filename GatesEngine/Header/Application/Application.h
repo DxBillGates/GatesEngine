@@ -14,7 +14,7 @@ namespace GE
 	class Application
 	{
 	protected:
-		Util::Timer timer;
+		Utility::Timer timer;
 		Window mainWindow;
 		InputDevice* inputDevice;
 		AudioManager audioManager;

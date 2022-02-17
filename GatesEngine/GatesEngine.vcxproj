@@ -46,6 +46,7 @@
     <ClInclude Include="Header\Graphics\ICBufferAllocater.h" />
     <ClInclude Include="Header\Graphics\IDepthStencil.h" />
     <ClInclude Include="Header\Graphics\IDepthTexture.h" />
+    <ClInclude Include="Header\Graphics\IGraphicsDeviceDx12.h" />
     <ClInclude Include="Header\Graphics\IGraphicsPipeline.h" />
     <ClInclude Include="Header\Graphics\ILayer.h" />
     <ClInclude Include="Header\Graphics\IMesh.h" />

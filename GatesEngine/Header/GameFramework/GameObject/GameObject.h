@@ -1,5 +1,6 @@
 #pragma once
 #include "..\..\Util\Math\Transform.h"
+#include "..\..\Graphics\IGraphicsDeviceDx12.h"
 
 #include <vector>
 #include <string>
@@ -16,6 +17,8 @@ namespace GE
 		bool enabled;
 		std::string name;
 		std::string tag;
+
+		static IGraphicsDeviceDx12* graphicsDevice;
 	public:
 		GameObject(const std::string& name = "unknown", const std::string& tag = "none");
 		~GameObject();
@@ -34,6 +37,8 @@ namespace GE
 		void SetName(const std::string& name);
 		void SetTag(const std::string & tag);
 		void SetEnabled(bool flag);
+		static void SetGraphicsDevice(IGraphicsDeviceDx12* gDevice);
+		static bool IsSetGraphicsDevice();
 
 		template<typename T>
 		T* AddComponent();

@@ -2,7 +2,7 @@
 #include <Windows.h>
 namespace GE
 {
-	namespace Util
+	namespace Utilty
 	{
 		class Timer
 		{

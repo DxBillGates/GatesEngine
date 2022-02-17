@@ -14,5 +14,5 @@ float4 main(DefaultMeshVSOutput psInput) : SV_TARGET
 	float3 spec = pow(saturate(dot(halfVec, normal)), specular.x);
 
 	float3 intensity = (ambient.rgb + diff + spec) * worldLightColor.xyz;
-	return float4(intensity, alpha.x);
+	return float4(color.rgb * intensity,color.a);
 }

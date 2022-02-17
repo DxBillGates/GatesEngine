@@ -34,5 +34,6 @@ void GE::Scene::SetSceneInitializer(const SceneInitializer& initializer)
 {
 	audioManager = initializer.audioManager;
 	inputDevice = initializer.inputDevice;
+	graphicsDevice = initializer.graphicsDevice;
 	isSetInitializer = true;
 }

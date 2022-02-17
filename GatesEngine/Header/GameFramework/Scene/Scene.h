@@ -1,6 +1,7 @@
 #pragma once
 #include "..\..\Audio\AudioManager.h"
 #include "..\..\Input\InputDevice.h"
+#include "..\..\Graphics\IGraphicsDeviceDx12.h"
 #include "..\..\GameFramework\GameObject\GameObjectManager.h"
 
 #include <string>
@@ -11,16 +12,19 @@ namespace GE
 	{
 		AudioManager* audioManager;
 		InputDevice* inputDevice;
+		IGraphicsDeviceDx12* graphicsDevice;
 
 		SceneInitializer()
 			: audioManager(nullptr)
 			, inputDevice(nullptr)
+			, graphicsDevice(nullptr)
 		{
 		}
 
-		SceneInitializer(AudioManager* audioManager, InputDevice* inputDevice)
+		SceneInitializer(AudioManager* audioManager, InputDevice* inputDevice,IGraphicsDeviceDx12* grpahicsDevice)
 			: audioManager(audioManager)
 			, inputDevice(inputDevice)
+			, graphicsDevice(graphicsDevice)
 		{
 		}
 	};
@@ -49,6 +53,7 @@ namespace GE
 		ChangeSceneInfo changeSceneInfo;
 		AudioManager* audioManager;
 		InputDevice* inputDevice;
+		IGraphicsDeviceDx12* graphicsDevice;
 		GameObjectManager gameObjectManager;
 	public:
 		Scene();

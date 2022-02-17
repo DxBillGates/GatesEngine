@@ -271,7 +271,7 @@ bool GE::GraphicsDeviceDx12::ScreenFlip()
 	swapChain->Present(0, 0);
 
 	UINT64 backBufferIndex = swapChain->GetCurrentBackBufferIndex();
-	renderTarget.SetIndex(backBufferIndex);
+	renderTarget.SetIndex((int)backBufferIndex);
 
 	return true;
 }
@@ -301,12 +301,12 @@ ID3D12GraphicsCommandList* GE::GraphicsDeviceDx12::GetCmdList()
 	return cmdList;
 }
 
-GE::ShaderResourceHeap* GE::GraphicsDeviceDx12::GetShaderResourceHeap()
+GE::IShaderResourceHeap* GE::GraphicsDeviceDx12::GetShaderResourceHeap()
 {
 	return &shaderResourceHeap;
 }
 
-GE::CBufferAllocater* GE::GraphicsDeviceDx12::GetCBufferAllocater()
+GE::ICBufferAllocater* GE::GraphicsDeviceDx12::GetCBufferAllocater()
 {
 	return &cbufferAllocater;
 }
