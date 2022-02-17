@@ -85,6 +85,10 @@ namespace GE
 		/// <returns>ピクセル位置</returns>
 		Vector2 GetMousePos();
 
+		Vector2 GetClientMousePos();
+
+		Vector2 GetScreenMousePos();
+
 		/// <summary>
 		/// マウスカーソルを指定したピクセルに固定する関数
 		/// </summary>

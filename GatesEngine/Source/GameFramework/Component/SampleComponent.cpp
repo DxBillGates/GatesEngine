@@ -1,4 +1,5 @@
 #include "..\..\..\Header\GameFramework\Component\SampleComponent.h"
+#include "..\..\..\Header\Graphics\CBufferStruct.h"
 #include "..\..\..\Header\Util\Utility.h"
 
 GE::SampleComponent::SampleComponent()
@@ -41,4 +42,37 @@ void GE::SampleComponent::Update(float deltaTime)
 
 void GE::SampleComponent::Draw()
 {
+	const float DRAW_SIZE = 100;
+	GE::ICBufferAllocater* cbufferAllocater = graphicsDevice->GetCBufferAllocater();
+	GE::RenderQueue* renderQueue = graphicsDevice->GetRenderQueue();
+
+	graphicsDevice->SetShader("DefaultMeshShader");
+
+	GE::Math::Matrix4x4 modelMatrix = GE::Math::Matrix4x4::Scale({ DRAW_SIZE });
+	modelMatrix *= GE::Math::Matrix4x4::Translate({transform->position});
+
+	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
+	graphicsDevice->DrawMesh("Sphere");
+}
+
+void GE::SampleComponent::LateDraw()
+{
+	const float SPRITE_SIZE = 100;
+
+	GE::ICBufferAllocater* cbufferAllocater = graphicsDevice->GetCBufferAllocater();
+	GE::RenderQueue* renderQueue = graphicsDevice->GetRenderQueue();
+
+	graphicsDevice->SetShader("DefaultSpriteShader");
+
+	GE::Math::Matrix4x4 modelMatrix = GE::Math::Matrix4x4::Scale({ SPRITE_SIZE });
+	GE::Math::Vector2 mousePos = inputDevice->GetMouse()->GetClientMousePos();
+	GE::Utility::Printf("%d,%d\n",(int)mousePos.x, (int)mousePos.y);
+
+	modelMatrix *= GE::Math::Matrix4x4::Translate({mousePos.x,mousePos.y,0});
+	GE::CameraInfo cameraInfo;
+	cameraInfo.projMatrix = GE::Math::Matrix4x4::GetOrthographMatrix({ 1920,1080 });
+
+	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
+	renderQueue->AddSetConstantBufferInfo({ 1,cbufferAllocater->BindAndAttachData(1, &cameraInfo, sizeof(GE::CameraInfo)) });
+	graphicsDevice->DrawMesh("2DPlane");
 }

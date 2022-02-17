@@ -4,6 +4,7 @@ GE::RenderQueue::RenderQueue()
 	: currentSetRenderTarget(nullptr)
 	, currentSetDepthStencil(nullptr)
 	, currentSetPipeline(nullptr)
+	, currentSetPipelineIsWireframe(false)
 	, currentSetDrawMesh(nullptr)
 	, depth(0)
 {
@@ -15,9 +16,10 @@ void GE::RenderQueue::SetLayer(IRenderTarget* setRenderTarget, IDepthStencil* se
 	currentSetDepthStencil = setDepthStencil;
 }
 
-void GE::RenderQueue::SetPipeline(IGraphicsPipeline* setPipeline)
+void GE::RenderQueue::SetPipeline(IGraphicsPipeline* setPipeline,bool isWireframe)
 {
 	currentSetPipeline = setPipeline;
+	currentSetPipelineIsWireframe = isWireframe;
 }
 
 void GE::RenderQueue::AddSetShaderResource(const ShaderResourceCommand& command)
@@ -42,7 +44,19 @@ void GE::RenderQueue::SetDepth(float value)
 
 void GE::RenderQueue::AddCommand()
 {
-	renderingCommands.push_back({currentSetRenderTarget,currentSetDepthStencil,currentSetPipeline,currentSetShaderResources,currentSetConstantBufferViews,currentSetDrawMesh,depth});
+	RenderingCommand addCommand;
+	addCommand =
+	{
+		currentSetRenderTarget,
+		currentSetDepthStencil,
+		currentSetPipeline,
+		currentSetPipelineIsWireframe,
+		currentSetShaderResources,
+		currentSetConstantBufferViews,
+		currentSetDrawMesh,
+		depth 
+	};
+	renderingCommands.emplace_back(addCommand);
 
 	currentSetConstantBufferViews.clear();
 	currentSetShaderResources.clear();
@@ -61,7 +75,7 @@ void GE::RenderQueue::Execute(ID3D12GraphicsCommandList* cmdList, IShaderResourc
 		IGraphicsPipeline* usePipeline = command.pipeline;
 
 		D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget->GetHandle();
-		D3D12_CPU_DESCRIPTOR_HANDLE dsvHandle = depthStencil->GetHandle();
+		D3D12_CPU_DESCRIPTOR_HANDLE dsvHandle = (depthStencil) ? depthStencil->GetHandle() : D3D12_CPU_DESCRIPTOR_HANDLE();
 
 		D3D12_VIEWPORT viewport = {};
 		D3D12_RECT _rect = {};
@@ -76,9 +90,12 @@ void GE::RenderQueue::Execute(ID3D12GraphicsCommandList* cmdList, IShaderResourc
 		renderTarget->Prepare(cmdList);
 		cmdList->RSSetViewports(1, &viewport);
 		cmdList->RSSetScissorRects(1, &_rect);
-		cmdList->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
 
-		cmdList->SetPipelineState(usePipeline->GetSolidPipeline());
+		if(depthStencil)cmdList->OMSetRenderTargets(1, &rtvHandle, false, &dsvHandle);
+		else cmdList->OMSetRenderTargets(1, &rtvHandle, false, nullptr);
+
+		ID3D12PipelineState* pipeline = (command.isWireframe) ? usePipeline->GetWireframePipeline() : usePipeline->GetSolidPipeline();
+		cmdList->SetPipelineState(pipeline);
 		cmdList->SetGraphicsRootSignature(usePipeline->GetRootSignature());
 
 		for (auto& shaderResourceCommand : command.shaderResources)

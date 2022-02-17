@@ -56,7 +56,7 @@ void GE::GraphicsDeviceDx12::CreateSwapChain(HWND hwnd)
 	//ApplicationからgameWindowのハンドルを取得しそのハンドルとそのほかの設定からSwapChainを生成
 	HRESULT result;
 	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {};
-	swapChainDesc.Width = (UINT)viewPort.Width;
+	swapChainDesc.Width =  (UINT)viewPort.Width ;
 	swapChainDesc.Height = (UINT)viewPort.Height;
 	swapChainDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
 	swapChainDesc.SampleDesc.Count = 1;
@@ -349,7 +349,7 @@ void GE::GraphicsDeviceDx12::ExecuteRenderQueue()
 void GE::GraphicsDeviceDx12::SetShader(const std::string& shaderName, bool isWireframe)
 {
 	IGraphicsPipeline* usePipeline = graphicsPipelineManager.Get(shaderName);
-	renderQueue.SetPipeline(usePipeline);
+	renderQueue.SetPipeline(usePipeline,isWireframe);
 }
 
 void GE::GraphicsDeviceDx12::SetTexture(const std::string& texName, int descIndex)

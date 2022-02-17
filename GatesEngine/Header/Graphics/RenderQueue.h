@@ -13,19 +13,20 @@ namespace GE
 {
 	struct ShaderResourceCommand
 	{
-		int descIndex;
-		int viewNumber;
+		int descIndex = 0;
+		int viewNumber = 0;
 	};
 
 	struct RenderingCommand
 	{
-		IRenderTarget* renderTarget;
-		IDepthStencil* depthStencil;
-		IGraphicsPipeline* pipeline;
+		IRenderTarget* renderTarget = nullptr;
+		IDepthStencil* depthStencil = nullptr;
+		IGraphicsPipeline* pipeline = nullptr;
+		bool isWireframe = false;
 		std::vector<ShaderResourceCommand> shaderResources;
 		std::vector<ShaderResourceCommand> constantBufferViews;
-		IMesh* drawMesh;
-		float depth;
+		IMesh* drawMesh = nullptr;
+		float depth = 0;
 	};
 
 	class RenderQueue
@@ -36,6 +37,7 @@ namespace GE
 		IRenderTarget* currentSetRenderTarget;
 		IDepthStencil* currentSetDepthStencil;
 		IGraphicsPipeline* currentSetPipeline;
+		bool currentSetPipelineIsWireframe;
 		std::vector<ShaderResourceCommand> currentSetShaderResources;
 		std::vector<ShaderResourceCommand> currentSetConstantBufferViews;
 		IMesh* currentSetDrawMesh;
@@ -43,7 +45,7 @@ namespace GE
 	public:
 		RenderQueue();
 		void SetLayer(IRenderTarget* setRenderTarget,IDepthStencil* setDepthStencil);
-		void SetPipeline(IGraphicsPipeline* setPipeline);
+		void SetPipeline(IGraphicsPipeline* setPipeline,bool isWireframe = false);
 		void AddSetShaderResource(const ShaderResourceCommand& command);
 		void AddSetConstantBufferInfo(const ShaderResourceCommand& command);
 		void SetMesh(IMesh* drawMesh);

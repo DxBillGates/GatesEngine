@@ -90,9 +90,23 @@ Vector2 GE::Mouse::GetMouseMove()
 Vector2 GE::Mouse::GetMousePos()
 {
 	POINT point = { (LONG)mousePos.x,(LONG)mousePos.y };
-	ScreenToClient(hwnd, &point);
+	//ScreenToClient(hwnd, &point);
 	//float a = (point.y / 1080.0f) * 23 * 3;
 	return {(float)point.x,(float)point.y/* + a*/};
+}
+
+Vector2 GE::Mouse::GetClientMousePos()
+{
+	POINT point = { (LONG)mousePos.x,(LONG)mousePos.y };
+	ScreenToClient(hwnd, &point);
+	return { (float)point.x,(float)point.y };
+}
+
+Vector2 GE::Mouse::GetScreenMousePos()
+{
+	POINT point = { (LONG)mousePos.x,(LONG)mousePos.y };
+	ClientToScreen(hwnd, &point);
+	return { (float)point.x,(float)point.y };
 }
 
 void GE::Mouse::SetMouseCursor(const Vector2& setPos)

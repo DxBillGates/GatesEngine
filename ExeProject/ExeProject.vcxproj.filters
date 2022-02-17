@@ -50,5 +50,8 @@
     <FxCompile Include="Resources\Shader\DefaultSpriteVertexShader.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
+    <FxCompile Include="Resources\Shader\DefaultSpritePixelShader.hlsl">
+      <Filter>シェーダー ファイル</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

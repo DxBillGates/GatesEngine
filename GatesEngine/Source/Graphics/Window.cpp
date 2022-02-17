@@ -36,10 +36,10 @@ bool GE::Window::Create(const Vector2& windowSize,const std::string& title)
 
 	// WindowÇÃê∂ê¨
 	RECT rect = { 0,0,(LONG)windowSize.x,(LONG)windowSize.y };
-	AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+	AdjustWindowRect(&rect, WS_POPUP, false);
 	hwnd = CreateWindow(wndClass.lpszClassName,
 		wndClass.lpszClassName,
-		WS_OVERLAPPEDWINDOW,
+		WS_POPUP,
 		0,
 		0,
 		rect.right - rect.left,
@@ -57,7 +57,7 @@ bool GE::Window::Create(const Vector2& windowSize,const std::string& title)
 
 void GE::Window::PreviewWindow()
 {
-	ShowWindow(hwnd, SW_SHOWMAXIMIZED);
+	ShowWindow(hwnd, SW_SHOW);
 }
 
 bool GE::Window::Window::ProcessMessage()

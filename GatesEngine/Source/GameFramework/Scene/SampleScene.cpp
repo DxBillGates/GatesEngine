@@ -10,7 +10,8 @@ GE::SampleScene::SampleScene(const std::string& sceneName)
 	: Scene(sceneName)
 {
 	auto* testObject = gameObjectManager.AddGameObject(new GameObject());
-	testObject->AddComponent<SampleComponent>();
+	testObject->GetTransform()->position = { 1000,0,0 };
+	auto* sampleComponent = testObject->AddComponent<SampleComponent>();
 }
 
 GE::SampleScene::~SampleScene()
