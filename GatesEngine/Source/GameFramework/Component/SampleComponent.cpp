@@ -76,9 +76,11 @@ void GE::SampleComponent::LateDraw()
 	//GE::Utility::Printf("%d,%d\n",(int)mousePos.x, (int)mousePos.y);
 
 	modelMatrix *= GE::Math::Matrix4x4::Translate({mousePos.x,mousePos.y,0});
-	GE::CameraInfo cameraInfo;
 	Material material;
 	material.color = Color::White();
+
+	GE::CameraInfo cameraInfo;
+	cameraInfo.viewMatrix = GE::Math::Matrix4x4::GetViewMatrixLookTo({0,1,0}, {0,0,1}, {0,1,0});
 	cameraInfo.projMatrix = GE::Math::Matrix4x4::GetOrthographMatrix({ 1920,1080 });
 
 	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
