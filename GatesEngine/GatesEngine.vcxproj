@@ -25,6 +25,7 @@
     <ClInclude Include="Header\Audio\WaveAudioData.h" />
     <ClInclude Include="Header\GameFramework\Collision\ColliderInfo.h" />
     <ClInclude Include="Header\GameFramework\Collision\ICollider.h" />
+    <ClInclude Include="Header\GameFramework\Component\BoxCollider.h" />
     <ClInclude Include="Header\GameFramework\Component\Collider.h" />
     <ClInclude Include="Header\GameFramework\Component\Component.h" />
     <ClInclude Include="Header\GameFramework\Component\SampleComponent.h" />
@@ -100,6 +101,7 @@
     <ClCompile Include="Source\Audio\Audio.cpp" />
     <ClCompile Include="Source\Audio\AudioManager.cpp" />
     <ClCompile Include="Source\Audio\WaveAudioData.cpp" />
+    <ClCompile Include="Source\GameFramework\Component\BoxCollider.cpp" />
     <ClCompile Include="Source\GameFramework\Component\Collider.cpp" />
     <ClCompile Include="Source\GameFramework\Component\Component.cpp" />
     <ClCompile Include="Source\GameFramework\Component\SampleComponent.cpp" />

@@ -299,6 +299,9 @@
     <ClInclude Include="Header\GameFramework\FlagController.h">
       <Filter>Header\GameFramework</Filter>
     </ClInclude>
+    <ClInclude Include="Header\GameFramework\Component\BoxCollider.h">
+      <Filter>Header\GameFramework\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -444,6 +447,9 @@
     </ClCompile>
     <ClCompile Include="Source\GameFramework\FlagController.cpp">
       <Filter>Source\GameFramework</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\Component\BoxCollider.cpp">
+      <Filter>Source\GameFramework\Conponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

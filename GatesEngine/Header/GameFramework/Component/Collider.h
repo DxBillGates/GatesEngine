@@ -19,6 +19,8 @@ namespace GE
 		virtual ~Collider() = 0;
 
 		void Update(float deltaTime) override;
+		void SetLocalRotation(const Math::Vector3& axis,float angle);
+		void SetLocalRotation(const Math::Vector3& value);
 
 		// ICollider interface
 

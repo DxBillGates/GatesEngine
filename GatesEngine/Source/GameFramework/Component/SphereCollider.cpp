@@ -21,6 +21,7 @@ void GE::SphereCollider::Awake()
 
 void GE::SphereCollider::Draw()
 {
+	if (!drawEnabled)return;
 	// sphere model とかぶってしまうため描画オブジェクトより少し大きめに設定
 	const float ADD_SCALE = 0.005f;
 	Math::Matrix4x4 scaleMatrix = Math::Matrix4x4::Scale(r + ADD_SCALE);
