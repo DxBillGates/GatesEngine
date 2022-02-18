@@ -1,6 +1,7 @@
 #include "..\..\..\Header\GameFramework\Component\SampleComponent.h"
 #include "..\..\..\Header\Graphics\CBufferStruct.h"
 #include "..\..\..\Header\Util\Utility.h"
+#include "..\..\..\Header\Util\Random.h"
 
 GE::SampleComponent::SampleComponent()
 	: inputDevice(nullptr)
@@ -20,6 +21,7 @@ void GE::SampleComponent::Start()
 {
 	Utility::Printf("SampleComponent Start()\n");
 	inputDevice = InputDevice::GetInstance();
+	random = { RandomMaker::GetFloat(-1,1),RandomMaker::GetFloat(-1,1),RandomMaker::GetFloat(-1,1) };
 }
 
 void GE::SampleComponent::Update(float deltaTime)
@@ -38,6 +40,8 @@ void GE::SampleComponent::Update(float deltaTime)
 	{
 		Utility::Printf("SampleComponent Update() : press b button\n");
 	}
+
+	transform->rotation += random / 100;
 }
 
 void GE::SampleComponent::Draw()
@@ -50,9 +54,12 @@ void GE::SampleComponent::Draw()
 
 	transform->scale = DRAW_SIZE;
 	Math::Matrix4x4 modelMatrix = transform->GetMatrix();
+	Material material;
+	material.color = Color::White();
 
 	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
-	graphicsDevice->DrawMesh("Sphere");
+	renderQueue->AddSetConstantBufferInfo({ 2,cbufferAllocater->BindAndAttachData(2,&material,sizeof(Material)) });
+	graphicsDevice->DrawMesh("Cube");
 }
 
 void GE::SampleComponent::LateDraw()

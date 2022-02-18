@@ -8,7 +8,7 @@ namespace GE
 	template<typename T>
 	class Manager
 	{
-	private:
+	protected:
 		std::map<std::string, T*> mapList;
 	public:
 		Manager() {}

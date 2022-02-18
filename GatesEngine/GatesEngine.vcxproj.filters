@@ -72,6 +72,9 @@
     <Filter Include="Header\GameFramework\Collision">
       <UniqueIdentifier>{c525fba7-0b1f-403e-ae9a-b733167e7319}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameFramework\Collision">
+      <UniqueIdentifier>{37a9a57c-340f-4f6e-ae19-f598205cde7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Application\Application.h">
@@ -302,6 +305,9 @@
     <ClInclude Include="Header\GameFramework\Component\BoxCollider.h">
       <Filter>Header\GameFramework\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Header\GameFramework\Collision\CollisionManager.h">
+      <Filter>Header\GameFramework\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -450,6 +456,9 @@
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\BoxCollider.cpp">
       <Filter>Source\GameFramework\Conponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\Collision\CollisionManager.cpp">
+      <Filter>Source\GameFramework\Collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

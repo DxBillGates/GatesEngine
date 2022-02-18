@@ -68,6 +68,22 @@ void GE::GameObject::LateDraw()
 	}
 }
 
+void GE::GameObject::OnCollision(GameObject* other)
+{
+	for (auto& component : components)
+	{
+		component->OnCollision(other);
+	}
+}
+
+void GE::GameObject::OnCollision(Collider* hitCollider)
+{
+	for (auto& component : components)
+	{
+		component->OnCollision(hitCollider);
+	}
+}
+
 GE::Transform* GE::GameObject::GetTransform()
 {
 	return &transform;

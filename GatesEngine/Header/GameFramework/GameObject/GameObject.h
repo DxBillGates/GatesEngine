@@ -8,6 +8,7 @@
 namespace GE
 {
 	class Component;
+	class Collider;
 	class GameObject
 	{
 	private:
@@ -27,6 +28,8 @@ namespace GE
 		void Update(float deltaTime);
 		void Draw();
 		void LateDraw();
+		void OnCollision(GameObject* other);
+		void OnCollision(Collider* hitCollider);
 
 		Transform* GetTransform();
 		bool IsEnabled();

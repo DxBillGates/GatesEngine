@@ -8,6 +8,7 @@ namespace GE
 	{
 	private:
 		InputDevice* inputDevice;
+		Math::Vector3 random;
 	public:
 		SampleComponent();
 		~SampleComponent();
