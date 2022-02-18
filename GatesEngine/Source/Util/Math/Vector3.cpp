@@ -1,5 +1,6 @@
 #include "..\..\..\Header\Util\Math\Vector3.h"
-#include <math.h>
+#include <cmath>
+
 GE::Math::Vector3::Vector3() :x(0), y(0), z(0)
 {
 }
@@ -14,7 +15,7 @@ GE::Math::Vector3::Vector3(float x, float y, float z) : x(x), y(y), z(z)
 
 float GE::Math::Vector3::Length() const
 {
-	return sqrtf(x * x + y * y + z * z);
+	return std::sqrtf(x * x + y * y + z * z);
 }
 
 GE::Math::Vector3 GE::Math::Vector3::Normalize()

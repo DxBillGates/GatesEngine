@@ -42,6 +42,7 @@ namespace GE
 		Manager<ILayer> layerManager;
 
 		RenderQueue renderQueue;
+		Camera* mainCamera;
 	private:
 		void CreateDxgiFactory();
 		void CreateDevice();
@@ -54,6 +55,7 @@ namespace GE
 		GraphicsDeviceDx12();
 		~GraphicsDeviceDx12();
 		bool Create(const Math::Vector2& viewportSize, HWND hwnd);
+		void SetMainCamera(Camera* camera);
 
 		// interface
 
@@ -82,6 +84,7 @@ namespace GE
 		Manager<ITexture>* GetTextureManager() override;
 		Manager<ILayer>* GetLayerManager() override;
 		RenderQueue* GetRenderQueue() override;
+		Camera* GetMainCamera() override;
 		void ExecuteRenderQueue() override;
 
 		void SetShader(const std::string& shaderName,bool isWireframe = false) override;

@@ -23,8 +23,13 @@
     <ClInclude Include="Header\Audio\Audio.h" />
     <ClInclude Include="Header\Audio\AudioManager.h" />
     <ClInclude Include="Header\Audio\WaveAudioData.h" />
+    <ClInclude Include="Header\GameFramework\Collision\ColliderInfo.h" />
+    <ClInclude Include="Header\GameFramework\Collision\ICollider.h" />
+    <ClInclude Include="Header\GameFramework\Component\Collider.h" />
     <ClInclude Include="Header\GameFramework\Component\Component.h" />
     <ClInclude Include="Header\GameFramework\Component\SampleComponent.h" />
+    <ClInclude Include="Header\GameFramework\Component\SphereCollider.h" />
+    <ClInclude Include="Header\GameFramework\FlagController.h" />
     <ClInclude Include="Header\GameFramework\GameObject\GameObject.h" />
     <ClInclude Include="Header\GameFramework\GameObject\GameObjectManager.h" />
     <ClInclude Include="Header\GameFramework\Scene\SampleScene.h" />
@@ -95,8 +100,11 @@
     <ClCompile Include="Source\Audio\Audio.cpp" />
     <ClCompile Include="Source\Audio\AudioManager.cpp" />
     <ClCompile Include="Source\Audio\WaveAudioData.cpp" />
+    <ClCompile Include="Source\GameFramework\Component\Collider.cpp" />
     <ClCompile Include="Source\GameFramework\Component\Component.cpp" />
     <ClCompile Include="Source\GameFramework\Component\SampleComponent.cpp" />
+    <ClCompile Include="Source\GameFramework\Component\SphereCollider.cpp" />
+    <ClCompile Include="Source\GameFramework\FlagController.cpp" />
     <ClCompile Include="Source\GameFramework\GameObject\GameObject.cpp" />
     <ClCompile Include="Source\GameFramework\GameObject\GameObjectManager.cpp" />
     <ClCompile Include="Source\GameFramework\Scene\SampleScene.cpp" />

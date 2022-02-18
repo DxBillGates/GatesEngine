@@ -39,6 +39,7 @@ GE::Application::Application(const Math::Vector2& size, const std::string& title
 
 	mainCamera = new Camera3DDebug();
 
+	graphicsDevice.SetMainCamera(mainCamera);
 	GameObject::SetGraphicsDevice(&graphicsDevice);
 }
 

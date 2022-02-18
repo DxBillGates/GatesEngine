@@ -10,6 +10,7 @@
 #include "ITexture.h"
 #include "ILayer.h"
 #include "RenderQueue.h"
+#include "Camera.h"
 
 #include "..\Util\Manager.h"
 
@@ -48,6 +49,7 @@ namespace GE
 		virtual Manager<ITexture>* GetTextureManager() = 0;
 		virtual Manager<ILayer>* GetLayerManager() = 0;
 		virtual RenderQueue* GetRenderQueue() = 0;
+		virtual Camera* GetMainCamera() = 0;
 
 		virtual void ExecuteRenderQueue() = 0;
 		virtual void SetShader(const std::string& shaderName, bool isWireframe = false) = 0;

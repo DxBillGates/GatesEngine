@@ -48,8 +48,8 @@ void GE::SampleComponent::Draw()
 
 	graphicsDevice->SetShader("DefaultMeshShader");
 
-	GE::Math::Matrix4x4 modelMatrix = GE::Math::Matrix4x4::Scale({ DRAW_SIZE });
-	modelMatrix *= GE::Math::Matrix4x4::Translate({transform->position});
+	transform->scale = DRAW_SIZE;
+	Math::Matrix4x4 modelMatrix = transform->GetMatrix();
 
 	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
 	graphicsDevice->DrawMesh("Sphere");
@@ -70,9 +70,12 @@ void GE::SampleComponent::LateDraw()
 
 	modelMatrix *= GE::Math::Matrix4x4::Translate({mousePos.x,mousePos.y,0});
 	GE::CameraInfo cameraInfo;
+	Material material;
+	material.color = Color::White();
 	cameraInfo.projMatrix = GE::Math::Matrix4x4::GetOrthographMatrix({ 1920,1080 });
 
 	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
 	renderQueue->AddSetConstantBufferInfo({ 1,cbufferAllocater->BindAndAttachData(1, &cameraInfo, sizeof(GE::CameraInfo)) });
+	renderQueue->AddSetConstantBufferInfo({ 2,cbufferAllocater->BindAndAttachData(2,&material,sizeof(Material)) });
 	graphicsDevice->DrawMesh("2DPlane");
 }

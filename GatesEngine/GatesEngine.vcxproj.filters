@@ -69,6 +69,9 @@
     <Filter Include="Source\GameFramework\GameObject">
       <UniqueIdentifier>{0c145c6b-e422-403a-b323-5ecb177e9b0b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header\GameFramework\Collision">
+      <UniqueIdentifier>{c525fba7-0b1f-403e-ae9a-b733167e7319}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Application\Application.h">
@@ -281,6 +284,21 @@
     <ClInclude Include="Header\Graphics\IGraphicsDeviceDx12.h">
       <Filter>Header\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="Header\GameFramework\Component\Collider.h">
+      <Filter>Header\GameFramework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameFramework\Collision\ICollider.h">
+      <Filter>Header\GameFramework\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameFramework\Collision\ColliderInfo.h">
+      <Filter>Header\GameFramework\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameFramework\Component\SphereCollider.h">
+      <Filter>Header\GameFramework\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GameFramework\FlagController.h">
+      <Filter>Header\GameFramework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -417,6 +435,15 @@
     </ClCompile>
     <ClCompile Include="Source\Graphics\Color.cpp">
       <Filter>Source\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\Component\Collider.cpp">
+      <Filter>Source\GameFramework\Conponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\Component\SphereCollider.cpp">
+      <Filter>Source\GameFramework\Conponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GameFramework\FlagController.cpp">
+      <Filter>Source\GameFramework</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

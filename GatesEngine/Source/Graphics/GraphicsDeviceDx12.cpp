@@ -115,6 +115,8 @@ GE::GraphicsDeviceDx12::GraphicsDeviceDx12()
 	, graphicsPipelineManager(Manager<IGraphicsPipeline>())
 	, meshManager(Manager<IMesh>())
 	, textureManager(Manager<ITexture>())
+	, renderQueue(RenderQueue())
+	, mainCamera(nullptr)
 {
 }
 
@@ -161,6 +163,11 @@ bool GE::GraphicsDeviceDx12::Create(const Math::Vector2& viewportSize, HWND hwnd
 	cbufferAllocater.Create();
 
 	return true;
+}
+
+void GE::GraphicsDeviceDx12::SetMainCamera(Camera* camera)
+{
+	mainCamera = camera;
 }
 
 void GE::GraphicsDeviceDx12::ClearDefaultRenderTarget(const Color& color)
@@ -339,6 +346,11 @@ GE::Manager<GE::ILayer>* GE::GraphicsDeviceDx12::GetLayerManager()
 GE::RenderQueue* GE::GraphicsDeviceDx12::GetRenderQueue()
 {
 	return &renderQueue;
+}
+
+GE::Camera* GE::GraphicsDeviceDx12::GetMainCamera()
+{
+	return mainCamera;
 }
 
 void GE::GraphicsDeviceDx12::ExecuteRenderQueue()

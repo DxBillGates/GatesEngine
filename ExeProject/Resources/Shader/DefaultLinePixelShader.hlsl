@@ -2,5 +2,5 @@
 
 float4 main(DefaultLineVSOutput i) : SV_TARGET
 {
-	return i.color * worldLightColor;
+	return i.color * color;
 }

@@ -9,17 +9,17 @@ float GE::Math::Easing::Lerp(float s, float e, float t)
 
 float GE::Math::Easing::EaseInSine(float t)
 {
-	return 1 - cosf((t * PI) / 2);
+	return 1 - std::cosf((t * PI) / 2);
 }
 
 float GE::Math::Easing::EaseOutSine(float t)
 {
-	return sinf((t * PI) / 2);
+	return std::sinf((t * PI) / 2);
 }
 
 float GE::Math::Easing::EaseInOutSine(float t)
 {
-	return -(cosf(PI * t) - 1) / 2;
+	return -(std::cosf(PI * t) - 1) / 2;
 }
 
 float GE::Math::Easing::EaseInQuad(float t)
@@ -34,7 +34,7 @@ float GE::Math::Easing::EaseOutQuad(float x)
 
 float GE::Math::Easing::EaseInOutQuad(float x)
 {
-	return x < 0.5f ? 2 * x * x : 1 - powf(-2 * x + 2, 2) / 2;
+	return x < 0.5f ? 2 * x * x : 1 - std::powf(-2 * x + 2, 2) / 2;
 }
 
 float GE::Math::Easing::EaseInCubic(float x)
@@ -44,12 +44,12 @@ float GE::Math::Easing::EaseInCubic(float x)
 
 float GE::Math::Easing::EaseOutCubic(float x)
 {
-	return 1 - powf(1 - x, 3);
+	return 1 - std::powf(1 - x, 3);
 }
 
 float GE::Math::Easing::EaseInOutCubic(float x)
 {
-	return x < 0.5f ? 4 * x * x * x : 1 - powf(-2 * x + 2, 3) / 2;
+	return x < 0.5f ? 4 * x * x * x : 1 - std::powf(-2 * x + 2, 3) / 2;
 }
 
 float GE::Math::Easing::EaseInQuart(float x)
@@ -59,12 +59,12 @@ float GE::Math::Easing::EaseInQuart(float x)
 
 float GE::Math::Easing::EaseOutQuart(float x)
 {
-	return 1 - powf(1 - x, 4);
+	return 1 - std::powf(1 - x, 4);
 }
 
 float GE::Math::Easing::EaseInOutQuart(float x)
 {
-	return x < 0.5f ? 8 * x * x * x * x : 1 - powf(-2 * x + 2, 4) / 2;
+	return x < 0.5f ? 8 * x * x * x * x : 1 - std::powf(-2 * x + 2, 4) / 2;
 }
 
 float GE::Math::Easing::EaseInQuint(float x)
@@ -74,42 +74,42 @@ float GE::Math::Easing::EaseInQuint(float x)
 
 float GE::Math::Easing::EaseOutQuint(float x)
 {
-	return 1 - powf(1 - x, 5);
+	return 1 - std::powf(1 - x, 5);
 }
 
 float GE::Math::Easing::EaseInOutQuint(float x)
 {
-	return x < 0.5f ? 16 * x * x * x * x * x : 1 - powf(-2 * x + 2, 5) / 2;
+	return x < 0.5f ? 16 * x * x * x * x * x : 1 - std::powf(-2 * x + 2, 5) / 2;
 }
 
 float GE::Math::Easing::EaseInExpo(float x)
 {
-	return x == 0 ? 0 : powf(2, 10 * x - 10);
+	return x == 0 ? 0 : std::powf(2, 10 * x - 10);
 }
 
 float GE::Math::Easing::EaseOutExpo(float x)
 {
-	return x == 1 ? 1 : 1 - powf(2, -10 * x);
+	return x == 1 ? 1 : 1 - std::powf(2, -10 * x);
 }
 
 float GE::Math::Easing::EaseInOutExpo(float x)
 {
-	return x == 0 ? 0 : x == 1 ? 1 : x < 0.5f ? powf(2, 20 * x - 10) / 2 : (2 - powf(2, -20 * x + 10)) / 2;
+	return x == 0 ? 0 : x == 1 ? 1 : x < 0.5f ? std::powf(2, 20 * x - 10) / 2 : (2 - std::powf(2, -20 * x + 10)) / 2;
 }
 
 float GE::Math::Easing::EaseInCirc(float x)
 {
-	return 1 - sqrtf(1 - powf(x, 2));
+	return 1 - std::sqrtf(1 - std::powf(x, 2));
 }
 
 float GE::Math::Easing::EaseOutCirc(float x)
 {
-	return sqrtf(1 - powf(x - 1, 2));
+	return std::sqrtf(1 - std::powf(x - 1, 2));
 }
 
 float GE::Math::Easing::EaseInOutCirc(float x)
 {
-	return x < 0.5f ? (1 - sqrtf(1 - powf(2 * x, 2))) / 2 : (sqrtf(1 - powf(-2 * x + 2, 2)) + 1) / 2;
+	return x < 0.5f ? (1 - std::sqrtf(1 - std::powf(2 * x, 2))) / 2 : (std::sqrtf(1 - std::powf(-2 * x + 2, 2)) + 1) / 2;
 }
 
 float GE::Math::Easing::EaseInBack(float x)
@@ -125,7 +125,7 @@ float GE::Math::Easing::EaseOutBack(float x)
 	const float c1 = 1.70158f;
 	const float c3 = c1 + 1;
 
-	return 1 + c3 * powf(x - 1, 3) + c1 * powf(x - 1, 2);
+	return 1 + c3 * std::powf(x - 1, 3) + c1 * std::powf(x - 1, 2);
 }
 
 float GE::Math::Easing::EaseInOutBack(float x)
@@ -133,14 +133,14 @@ float GE::Math::Easing::EaseInOutBack(float x)
 	const float c1 = 1.70158f;
 	const float c2 = c1 * 1.525f;
 
-	return x < 0.5 ? (powf(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2 : (powf(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;
+	return x < 0.5 ? (std::powf(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2 : (std::powf(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;
 }
 
 float GE::Math::Easing::EaseInElastic(float x)
 {
 	const float c4 = (2 * PI) / 3;
 
-	return x == 0 ? 0 : x == 1 ? 1 : -powf(2, 10 * x - 10) * sinf((x * 10 - 10.75f) * c4);
+	return x == 0 ? 0 : x == 1 ? 1 : -std::powf(2, 10 * x - 10) * std::sinf((x * 10 - 10.75f) * c4);
 }
 
 float GE::Math::Easing::EaseOutElastic(float x)
@@ -151,7 +151,7 @@ float GE::Math::Easing::EaseOutElastic(float x)
 		? 0
 		: x == 1
 		? 1
-		: powf(2, -10 * x) * sinf((x * 10 - 0.75f) * c4) + 1;
+		: std::powf(2, -10 * x) * std::sinf((x * 10 - 0.75f) * c4) + 1;
 }
 
 float GE::Math::Easing::EaseInOutElastic(float x)
@@ -163,8 +163,8 @@ float GE::Math::Easing::EaseInOutElastic(float x)
 		: x == 1
 		? 1
 		: x < 0.5
-		? -(powf(2, 20 * x - 10) * sinf((20 * x - 11.125f) * c5)) / 2
-		: (powf(2, -20 * x + 10) * sinf((20 * x - 11.125f) * c5)) / 2 + 1;
+		? -(std::powf(2, 20 * x - 10) * std::sinf((20 * x - 11.125f) * c5)) / 2
+		: (std::powf(2, -20 * x + 10) * std::sinf((20 * x - 11.125f) * c5)) / 2 + 1;
 }
 
 float GE::Math::Easing::EaseInBounce(float x)
