@@ -73,7 +73,7 @@ void GE::SampleComponent::LateDraw()
 
 	GE::Math::Matrix4x4 modelMatrix = GE::Math::Matrix4x4::Scale({ SPRITE_SIZE });
 	GE::Math::Vector2 mousePos = inputDevice->GetMouse()->GetClientMousePos();
-	GE::Utility::Printf("%d,%d\n",(int)mousePos.x, (int)mousePos.y);
+	//GE::Utility::Printf("%d,%d\n",(int)mousePos.x, (int)mousePos.y);
 
 	modelMatrix *= GE::Math::Matrix4x4::Translate({mousePos.x,mousePos.y,0});
 	GE::CameraInfo cameraInfo;
