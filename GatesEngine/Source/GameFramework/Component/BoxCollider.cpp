@@ -17,35 +17,43 @@ void GE::BoxCollider::Awake()
 void GE::BoxCollider::Draw()
 {
 	if (!drawEnabled)return;
-	// sphere model とかぶってしまうため描画オブジェクトより少し大きめに設定
-	const float ADD_SCALE = 0.005f;
-	Math::Matrix4x4 scaleMatrix = Math::Matrix4x4::Scale(bounds.size + ADD_SCALE);
-	Math::Matrix4x4 rotateMatrix = localRotation;
-	Math::Matrix4x4 translateMatrix = Math::Matrix4x4::Translate(bounds.center);
-	Math::Matrix4x4 modelMatrix;
-	Material material;
-	material.color = hitFlagController.GetFlag() ? Color::Red() : Color::Green();
-	const CameraInfo& cameraInfo = graphicsDevice->GetMainCamera()->GetCameraInfo();
-
 	ICBufferAllocater* cbufferAllocater = graphicsDevice->GetCBufferAllocater();
 	RenderQueue* renderQueue = graphicsDevice->GetRenderQueue();
 
-	graphicsDevice->SetDefaultRenderTarget();
-	graphicsDevice->SetShader("DefaultLineShader");
+	// sphere model とかぶってしまうため描画オブジェクトより少し大きめに設定
+	const float ADD_SCALE = 0.005f;
+	Math::Matrix4x4 scaleMatrix = Math::Matrix4x4::Scale(bounds.size + ADD_SCALE);
+	Math::Matrix4x4 translateMatrix = Math::Matrix4x4::Translate(bounds.center);
+	Math::Matrix4x4 parentMatrix;
+	Math::Matrix4x4 localMatrix;
+	Math::Matrix4x4 worldMatrix;
 
-	Math::Matrix4x4 gameObjectMatrix;
+	// AABBとOBBでバウンディングボックスに回転行列の有無があるのでここで設定
 	if (type == ColliderType::AABB)
 	{
-		gameObjectMatrix = Math::Matrix4x4::Scale(transform->scale) * Math::Matrix4x4::Translate(transform->position);
-		modelMatrix = scaleMatrix * translateMatrix * transform->GetMatrix();
+		parentMatrix = Math::Matrix4x4::Scale(transform->scale) * Math::Matrix4x4::Translate(transform->position);
+		localMatrix = scaleMatrix * translateMatrix;
+		worldMatrix = localMatrix * parentMatrix;
 	}
 	else
 	{
-		modelMatrix = scaleMatrix * localRotation * translateMatrix * transform->GetMatrix();
+		localMatrix = scaleMatrix * localRotation * translateMatrix;
+		worldMatrix = localMatrix * transform->GetMatrix();
 	}
-	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0,&modelMatrix,sizeof(Math::Matrix4x4)) });
+
+	// 描画コールをキューに積む
+	graphicsDevice->SetDefaultRenderTarget();
+	graphicsDevice->SetShader("DefaultLineShader");
+
+	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0,&worldMatrix,sizeof(Math::Matrix4x4)) });
+
+	const CameraInfo& cameraInfo = graphicsDevice->GetMainCamera()->GetCameraInfo();
 	renderQueue->AddSetConstantBufferInfo({ 1,cbufferAllocater->BindAndAttachData(1,&cameraInfo,sizeof(CameraInfo)) });
+
+	Material material;
+	material.color = hitFlagController.GetFlag() ? Color::Red() : Color::Green();
 	renderQueue->AddSetConstantBufferInfo({ 2,cbufferAllocater->BindAndAttachData(2,&material,sizeof(Material)) });
+
 	graphicsDevice->DrawMesh("LineCube");
 }
 

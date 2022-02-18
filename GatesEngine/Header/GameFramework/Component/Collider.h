@@ -28,6 +28,7 @@ namespace GE
 		const Math::Axis& GetAxis() override;
 		const Bounds& GetBounds() override;
 		Transform* GetParent() override;
+		Math::Matrix4x4 GetMatrix() override;
 		void Hit() override;
 	};
 }

@@ -143,6 +143,8 @@ namespace GE
 			/// <returns></returns>
 			Axis GetAxis() const;
 
+			Math::Vector3 GetPosition();
+
 			/// <summary>
 			/// 位置、視点位置、上ベクトルを指定してビュー行列を生成する関数
 			/// </summary>

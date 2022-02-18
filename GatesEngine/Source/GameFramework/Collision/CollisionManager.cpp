@@ -10,17 +10,23 @@ bool GE::CollisionManager::CheckHit(ICollider* col1, ICollider* col2)
 
 	if (col1Type == col2Type)
 	{
-		if (col1Type == ColliderType::SPHERE)CheckSphere(col1,col2);
-		else if (col1Type == ColliderType::AABB)CheckAABB(col1, col2);
-		else if (col1Type == ColliderType::OBB)CheckOBB(col1, col2);
+		if (col1Type == ColliderType::SPHERE)return CheckSphere(col1, col2);
+		else if (col1Type == ColliderType::AABB)return CheckAABB(col1, col2);
+		else if (col1Type == ColliderType::OBB)return CheckOBB(col1, col2);
 	}
 	return false;
 }
 
 bool GE::CollisionManager::CheckSphere(ICollider* col1, ICollider* col2)
 {
-	float distance = Math::Vector3::Distance(col1->GetBounds().center, col2->GetBounds().center);
-	return (distance <= col1->GetBounds().size.x * col2->GetBounds().size.x);
+	Math::Vector3 center1 = col1->GetMatrix().GetPosition();
+	Math::Vector3 center2 = col2->GetMatrix().GetPosition();
+
+	Math::Vector3 scale1 = col1->GetBounds().size * col1->GetParent()->scale;
+	Math::Vector3 scale2 = col2->GetBounds().size * col2->GetParent()->scale;
+
+	float distance = Math::Vector3::Distance(center1, center2);
+	return (distance * distance <= scale1.x * scale2.x);
 }
 
 bool GE::CollisionManager::CheckAABB(ICollider* col1, ICollider* col2)
@@ -47,15 +53,21 @@ bool GE::CollisionManager::CheckOBB(ICollider* col1, ICollider* col2)
 	const Math::Axis& axis1 = col1->GetAxis();
 	const Math::Axis& axis2 = col2->GetAxis();
 
-	const Math::Vector3 intervalVec = bound2.center - bound1.center;
+
+	Math::Vector3 center1 = col1->GetMatrix().GetPosition();
+	Math::Vector3 center2 = col2->GetMatrix().GetPosition();
+	const Math::Vector3 intervalVec = center2 - center1;
 
 
-	Math::Vector3 ae1 = axis1.x * bound1.size.x;
-	Math::Vector3 ae2 = axis1.y * bound1.size.y;
-	Math::Vector3 ae3 = axis1.z * bound1.size.z;
-	Math::Vector3 be1 = axis2.x * bound2.size.x;
-	Math::Vector3 be2 = axis2.y * bound2.size.y;
-	Math::Vector3 be3 = axis2.z * bound2.size.z;
+	Math::Vector3 scale1 = bound1.size * col1->GetParent()->scale/2;
+	Math::Vector3 scale2 = bound2.size * col2->GetParent()->scale/2;
+
+	Math::Vector3 ae1 = axis1.x * scale1.x;
+	Math::Vector3 ae2 = axis1.y * scale1.y;
+	Math::Vector3 ae3 = axis1.z * scale1.z;
+	Math::Vector3 be1 = axis2.x * scale2.x;
+	Math::Vector3 be2 = axis2.y * scale2.y;
+	Math::Vector3 be3 = axis2.z * scale2.z;
 
 	auto LengthSegmentSeparateAxis = [](const Math::Vector3& sep, const Math::Vector3& e1, const Math::Vector3& e2, const Math::Vector3& e3 = 0)
 	{
@@ -104,7 +116,7 @@ bool GE::CollisionManager::CheckOBB(ICollider* col1, ICollider* col2)
 	// •ª—£Ž² C11
 	Math::Vector3 cross = Math::Vector3::Cross(axis1.x, axis2.x);
 	rA = LengthSegmentSeparateAxis(cross, ae2, ae3);
-	rB = LengthSegmentSeparateAxis(cross, be3, be3);
+	rB = LengthSegmentSeparateAxis(cross, be2, be3);
 	l = std::fabs(Math::Vector3::Dot(intervalVec, cross));
 	if (l > rA + rB)return false;
 
@@ -158,7 +170,7 @@ bool GE::CollisionManager::CheckOBB(ICollider* col1, ICollider* col2)
 	if (l > rA + rB)return false;
 
 	// •ª—£Ž² C33
-	cross = Math::Vector3::Cross(axis1.z, axis2.y);
+	cross = Math::Vector3::Cross(axis1.z, axis2.z);
 	rA = LengthSegmentSeparateAxis(cross, ae1, ae2);
 	rB = LengthSegmentSeparateAxis(cross, be1, be2);
 	l = std::fabs(Math::Vector3::Dot(intervalVec, cross));

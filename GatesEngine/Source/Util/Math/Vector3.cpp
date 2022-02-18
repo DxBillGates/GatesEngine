@@ -114,6 +114,14 @@ GE::Math::Vector3 & GE::Math::Vector3::operator*=(float s)
 	return *this;
 }
 
+GE::Math::Vector3& GE::Math::Vector3::operator*=(const Vector3& v)
+{
+	x *= v.x;
+	y *= v.y;
+	z *= v.z;
+	return *this;
+}
+
 GE::Math::Vector3 & GE::Math::Vector3::operator/=(float s)
 {
 	x /= s;
@@ -143,6 +151,12 @@ const GE::Math::Vector3 GE::Math::operator*(const Vector3& v, float s)
 const GE::Math::Vector3 GE::Math::operator*(float s, const Vector3& v)
 {
 	return v * s;
+}
+
+const GE::Math::Vector3 GE::Math::operator*(const Vector3& v1, const Vector3& v2)
+{
+	Vector3 a(v1);
+	return a *= v2;
 }
 
 const GE::Math::Vector3 GE::Math::operator/(const Vector3& v, float s)

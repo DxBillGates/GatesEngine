@@ -16,13 +16,32 @@ GE::Collider::~Collider()
 
 void GE::Collider::Update(float deltaTime)
 {
-	localAxis = localRotation.GetAxis();
-	bounds.max = Math::Matrix4x4::Transform(bounds.center + bounds.size / 2,localRotation);
-	bounds.min = Math::Matrix4x4::Transform(bounds.center + -bounds.size / 2, localRotation);
+	// 親の回転行列と自身の回転行列から軸を取得
+	localAxis = Math::Matrix4x4(localRotation * Math::Matrix4x4::RotationZXY(transform->rotation)).GetAxis();
 
+	// ワールド行列から実際の座標を取得
+	Math::Matrix4x4 worldMatrix = GetMatrix();
+	Math::Vector3 pos = worldMatrix.GetPosition();
 
-	const float MAX_HIT_TIME = 0.5f;
+	// 実際のスケールを取得
+	Math::Vector3 scale = bounds.size * transform->scale / 2;
+
+	// AABBとOBBでmaxとminの座標が異なるので修正
+	if (type == ColliderType::AABB)
+	{
+		bounds.max = pos + scale;
+		bounds.min = pos - scale;
+	}
+	else
+	{
+		bounds.max = pos + (localAxis.x + localAxis.y + localAxis.z) / 3 * scale;
+		bounds.min = pos - (localAxis.x + localAxis.y + localAxis.z) / 3 * scale;
+	}
+
+	// hit判定フラグ管理
+	const float MAX_HIT_TIME = 0.1f;
 	hitFlagController.SetMaxTimeProperty(MAX_HIT_TIME);
+	if (hitFlagController.GetOverTimeTrigger())hitFlagController.SetFlag(false);
 	hitFlagController.Update(deltaTime);
 }
 
@@ -33,8 +52,7 @@ void GE::Collider::SetLocalRotation(const Math::Vector3& axis, float angle)
 
 void GE::Collider::SetLocalRotation(const Math::Vector3& value)
 {
-	Math::Vector3 vec = { value.z,value.x,value.y };
-	localRotation = Math::Matrix4x4::RotationZXY(vec);
+	localRotation = Math::Matrix4x4::RotationZXY(value);
 }
 
 GE::ColliderType GE::Collider::GetType()
@@ -44,21 +62,24 @@ GE::ColliderType GE::Collider::GetType()
 
 const GE::Math::Axis& GE::Collider::GetAxis()
 {
-	localAxis = localRotation.GetAxis();
 	return localAxis;
 }
 
 const GE::Bounds& GE::Collider::GetBounds()
 {
-	bounds.max = Math::Matrix4x4::Transform(bounds.center + bounds.size / 2, localRotation);
-	bounds.min = Math::Matrix4x4::Transform(bounds.center + -bounds.size / 2, localRotation);
-
 	return bounds;
 }
 
 GE::Transform* GE::Collider::GetParent()
 {
 	return transform;
+}
+
+GE::Math::Matrix4x4 GE::Collider::GetMatrix()
+{
+	Math::Matrix4x4 scaleMatrix = Math::Matrix4x4::Scale(bounds.size);
+	Math::Matrix4x4 translateMatrix = Math::Matrix4x4::Translate(bounds.center);
+	return scaleMatrix * localRotation * translateMatrix * transform->GetMatrix();
 }
 
 void GE::Collider::Hit()

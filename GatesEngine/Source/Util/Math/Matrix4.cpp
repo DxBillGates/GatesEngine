@@ -42,9 +42,9 @@ GE::Math::Matrix4x4 GE::Math::Matrix4x4::Identity()
 GE::Math::Axis GE::Math::Matrix4x4::GetAxis(const Matrix4x4& m)
 {
 	Axis result;
-	result.x = Vector3(m._11, m._12, m._13);
-	result.y = Vector3(m._21, m._22, m._23);
-	result.z = Vector3(m._31, m._32, m._33);
+	result.x = Vector3(m._11, m._12, m._13).Normalize();
+	result.y = Vector3(m._21, m._22, m._23).Normalize();
+	result.z = Vector3(m._31, m._32, m._33).Normalize();
 	return result;
 }
 
@@ -201,6 +201,11 @@ float GE::Math::Matrix4x4::Determinant(const Matrix4x4 & m)
 GE::Math::Axis GE::Math::Matrix4x4::GetAxis() const
 {
 	return GetAxis(*this);
+}
+
+GE::Math::Vector3 GE::Math::Matrix4x4::GetPosition()
+{
+	return Math::Vector3(_41,_42,_43);
 }
 
 GE::Math::Matrix4x4 GE::Math::Matrix4x4::GetViewMatrixLookAt(const Vector3& pos, const Vector3& focasPos, const Vector3& upDir)
