@@ -14,10 +14,10 @@ GE::SampleScene::SampleScene(const std::string& sceneName)
 	auto* testObject = gameObjectManager.AddGameObject(new GameObject());
 	testObject->GetTransform()->position = { 1000,0,0 };
 	auto* sampleComponent = testObject->AddComponent<SampleComponent>();
-	auto* sampleCollider = testObject->AddComponent<BoxCollider>();
+	auto* sampleCollider = testObject->AddComponent<SphereCollider>();
 	sampleCollider->SetCenter({ 10,0,0 });
-	sampleCollider->SetLocalRotation({ 0,1,0 }, 180);
-	sampleCollider->SetType(ColliderType::OBB);
+	//sampleCollider->SetLocalRotation({ 0,1,0 }, 180);
+	//sampleCollider->SetType(ColliderType::OBB);
 
 	ICollider* col = sampleCollider;
 	const Math::Axis& axis = col->GetAxis();

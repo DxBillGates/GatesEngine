@@ -56,6 +56,11 @@ const GE::Bounds& GE::Collider::GetBounds()
 	return bounds;
 }
 
+GE::Transform* GE::Collider::GetParent()
+{
+	return transform;
+}
+
 void GE::Collider::Hit()
 {
 	hitFlagController.SetTime(0);

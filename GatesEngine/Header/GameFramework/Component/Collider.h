@@ -27,6 +27,7 @@ namespace GE
 		ColliderType GetType() override;
 		const Math::Axis& GetAxis() override;
 		const Bounds& GetBounds() override;
+		Transform* GetParent() override;
 		void Hit() override;
 	};
 }
