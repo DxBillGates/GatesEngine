@@ -166,6 +166,8 @@ bool GE::Application::LoadContents()
 	Shader defaultSpriteVertexShader, defaultSpritePixelShader;
 	defaultSpriteVertexShader.CompileShaderFileWithoutFormat(L"DefaultSpriteVertexShader", "vs_5_0");
 	defaultSpritePixelShader.CompileShaderFileWithoutFormat(L"DefaultSpritePixelShader", "ps_5_0");
+	Shader gaussBlurPixelShader;
+	gaussBlurPixelShader.CompileShaderFileWithoutFormat(L"GaussBlurPixelShader", "ps_5_0");
 
 	// rootSignature作成
 	auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
@@ -176,6 +178,10 @@ bool GE::Application::LoadContents()
 	RootSignature* defaultMeshWithOneSrvRootSignature = new RootSignature();
 	defaultMeshWithOneSrvRootSignature->Create(device, { DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::CBV,DescriptorRangeType::SRV });
 	rootSignatureManager->Add(defaultMeshWithOneSrvRootSignature, "CBV4SRV1");
+	// cbv5srv1ルートシグネチャ
+	RootSignature* cbv5srv1RootSignature = new RootSignature();
+	cbv5srv1RootSignature->Create(device, { DescriptorRangeType::CBV,DescriptorRangeType::CBV ,DescriptorRangeType::CBV ,DescriptorRangeType::CBV ,DescriptorRangeType::CBV ,DescriptorRangeType::SRV });
+	rootSignatureManager->Add(cbv5srv1RootSignature, "CBV5SRV1");
 
 	// demo graphicsPipeline作成
 	GraphicsPipelineInfo pipelineInfo = GraphicsPipelineInfo();
@@ -196,10 +202,13 @@ bool GE::Application::LoadContents()
 	// default sprite shader
 	pipelineInfo.topologyType = GraphicsPipelinePrimitiveTopolotyType::TRIANGLE;
 	pipelineInfo.isUseDepthStencil = false;
-
 	GraphicsPipeline* dafaultSpritePipeline = new GraphicsPipeline({ &defaultSpriteVertexShader,nullptr,nullptr,nullptr,&defaultSpritePixelShader });
 	dafaultSpritePipeline->Create(device, { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV }, defaultMeshRootSignature, pipelineInfo);
 	graphicsPipelineManager->Add(dafaultSpritePipeline, "DefaultSpriteShader");
+	// gauss blur shader
+	GraphicsPipeline* gaussBlurPipeline = new GraphicsPipeline({ &defaultSpriteVertexShader,nullptr,nullptr,nullptr,&gaussBlurPixelShader });
+	gaussBlurPipeline->Create(device, { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV }, cbv5srv1RootSignature, pipelineInfo);
+	graphicsPipelineManager->Add(gaussBlurPipeline, "GaussBlurShader");
 
 	// demo layer作成
 	auto* layerManager = graphicsDevice.GetLayerManager();

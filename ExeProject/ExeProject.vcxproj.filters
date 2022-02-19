@@ -30,6 +30,9 @@
     <None Include="Resources\Shader\DefaultShader.hlsli">
       <Filter>シェーダー ファイル</Filter>
     </None>
+    <None Include="Resources\Shader\GaussBlurShaderHeader.hlsli">
+      <Filter>シェーダー ファイル</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\Shader\DefaultMeshVertexShader.hlsl">
@@ -51,6 +54,9 @@
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
     <FxCompile Include="Resources\Shader\DefaultSpritePixelShader.hlsl">
+      <Filter>シェーダー ファイル</Filter>
+    </FxCompile>
+    <FxCompile Include="Resources\Shader\GaussBlurPixelShader.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
   </ItemGroup>
