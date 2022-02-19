@@ -29,6 +29,6 @@ namespace GE
 		const Bounds& GetBounds() override;
 		Transform* GetParent() override;
 		Math::Matrix4x4 GetMatrix() override;
-		void Hit() override;
+		void Hit(ICollider* hitCollider, GameObject* other) override;
 	};
 }

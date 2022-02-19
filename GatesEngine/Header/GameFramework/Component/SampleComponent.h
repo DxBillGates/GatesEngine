@@ -17,5 +17,7 @@ namespace GE
 		void Update(float deltaTime) override;
 		void Draw() override;
 		void LateDraw() override;
+		void OnCollision(GameObject* other) override;
+		void OnCollision(ICollider* hitCollider) override;
 	};
 }

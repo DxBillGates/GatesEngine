@@ -88,3 +88,13 @@ void GE::SampleComponent::LateDraw()
 	renderQueue->AddSetConstantBufferInfo({ 2,cbufferAllocater->BindAndAttachData(2,&material,sizeof(Material)) });
 	graphicsDevice->DrawMesh("2DPlane");
 }
+
+void GE::SampleComponent::OnCollision(GameObject* other)
+{
+	Utility::Printf("SampleComponent OnCollision(GameObject* other) : hit\n");
+}
+
+void GE::SampleComponent::OnCollision(ICollider* hitCollider)
+{
+	Utility::Printf("SampleComponent OnCollision(ICollider* other) : hit\n");
+}

@@ -3,7 +3,7 @@
 
 namespace GE
 {
-	class Collider;
+	class ICollider;
 	class Component
 	{
 	protected:
@@ -20,8 +20,18 @@ namespace GE
 		virtual void Update(float deltaTime) {}
 		virtual void Draw() {}
 		virtual void LateDraw() {}
+
+		/// <summary>
+		/// OnCollision系統の関数で一番最初に呼ばれます
+		/// </summary>
+		/// <param name="other">ヒットしたコライダーがアタッチされているゲームオブジェクト</param>
 		virtual void OnCollision(GameObject* other) {}
-		virtual void OnCollision(Collider* hitCollider) {}
+
+		/// <summary>
+		/// OnCollision(GameObject* other)のあとに呼ばれます
+		/// </summary>
+		/// <param name="hitCollider">ヒットしたコライダーのインターフェイス</param>
+		virtual void OnCollision(ICollider* hitCollider) {}
 
 		GameObject* GetGameObject();
 		bool GetEnabled();

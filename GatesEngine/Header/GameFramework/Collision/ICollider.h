@@ -5,6 +5,7 @@
 
 namespace GE
 {
+	class GameObject;
 	class ICollider
 	{
 	public:
@@ -14,6 +15,6 @@ namespace GE
 		virtual const Bounds& GetBounds() = 0;
 		virtual Transform* GetParent() = 0;
 		virtual Math::Matrix4x4 GetMatrix() = 0;
-		virtual void Hit() = 0;
+		virtual void Hit(ICollider* hitCollider,GameObject* other) = 0;
 	};
 }

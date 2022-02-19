@@ -14,7 +14,7 @@ GE::SampleScene::SampleScene(const std::string& sceneName)
 {
 	{
 		auto* testObject = gameObjectManager.AddGameObject(new GameObject());
-		testObject->GetTransform()->position = { 950,0,0 };
+		testObject->GetTransform()->position = { 1050,0,0 };
 		auto* sampleComponent = testObject->AddComponent<SampleComponent>();
 		auto* sampleCollider = testObject->AddComponent<SphereCollider>();
 		sampleCollider->SetCenter({ 0,0,0 });
@@ -51,20 +51,11 @@ void GE::SampleScene::Update(float deltaTime)
 {
 	gameObjectManager.Update(deltaTime);
 
-	col1->GetParent()->position.x += 0.1f;
 	if (CollisionManager::CheckHit(col1, col2))
 	{
-		col1->Hit();
-		col2->Hit();
+		col1->Hit(col2,nullptr);
+		col2->Hit(col1,nullptr);
 	}
-
-	int i = 1 | 1;
-	i = 1 | 2;
-	i = 1 | 4;
-	i = 1 | 8;
-	i = 2 | 2;
-	i = 2 | 4;
-	i = 2 | 8;
 }
 
 void GE::SampleScene::Draw()

@@ -76,7 +76,7 @@ void GE::GameObject::OnCollision(GameObject* other)
 	}
 }
 
-void GE::GameObject::OnCollision(Collider* hitCollider)
+void GE::GameObject::OnCollision(ICollider* hitCollider)
 {
 	for (auto& component : components)
 	{

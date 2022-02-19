@@ -82,8 +82,11 @@ GE::Math::Matrix4x4 GE::Collider::GetMatrix()
 	return scaleMatrix * localRotation * translateMatrix * transform->GetMatrix();
 }
 
-void GE::Collider::Hit()
+void GE::Collider::Hit(ICollider* hitCollider, GameObject* other)
 {
+	gameObject->OnCollision(other);
+	gameObject->OnCollision(hitCollider);
+
 	hitFlagController.SetTime(0);
 	hitFlagController.SetFlag(true);
 }
