@@ -3,6 +3,7 @@
 GE::BoxCollider::BoxCollider()
 	: isSetCenter(false)
 {
+	type = ColliderType::OBB;
 }
 
 GE::BoxCollider::~BoxCollider()
