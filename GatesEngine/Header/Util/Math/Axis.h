@@ -6,9 +6,23 @@ namespace GE
 	{
 		struct Axis
 		{
-			Vector3 x = {1,0,0};
-			Vector3 y = {0,1,0};
-			Vector3 z = {0,0,1};
+			union
+			{
+				struct
+				{
+					Vector3 x;
+					Vector3 y;
+					Vector3 z;
+				};
+				Vector3 value[3];
+			};
+
+			Axis()
+				: x({1,0,0})
+				, y({0,1,0})
+				, z({0,0,1})
+			{
+			}
 		};
 	}
 }

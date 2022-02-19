@@ -8,13 +8,46 @@ bool GE::CollisionManager::CheckHit(ICollider* col1, ICollider* col2)
 	ColliderType col1Type = col1->GetType();
 	ColliderType col2Type = col2->GetType();
 
-	if (col1Type == col2Type)
+	int bitResult = 0;
+	bitResult = (int)col2Type | (int)col1Type;
+	bool collisionCheck = false;
+
+	switch ((CollisionBitCombination)bitResult)
 	{
-		if (col1Type == ColliderType::SPHERE)return CheckSphere(col1, col2);
-		else if (col1Type == ColliderType::AABB)return CheckAABB(col1, col2);
-		else if (col1Type == ColliderType::OBB)return CheckOBB(col1, col2);
+	case GE::CollisionBitCombination::NONE:
+		break;
+	case GE::CollisionBitCombination::SPHERE_SPHERE:
+		collisionCheck = CheckSphere(col1, col2);
+		break;
+	case GE::CollisionBitCombination::SPHERE_AABB:
+		if (col1Type == ColliderType::SPHERE)collisionCheck = CheckSphereToAABB(col1,col2);
+		else collisionCheck = CheckSphereToAABB(col2, col1);
+		break;
+	case GE::CollisionBitCombination::SPHERE_OBB:
+		if (col1Type == ColliderType::SPHERE)collisionCheck = CheckSphereToOBB(col1, col2);
+		else collisionCheck = CheckSphereToOBB(col2, col1);
+		break;
+	case GE::CollisionBitCombination::SPHERE_CAPSULE:
+		break;
+	case GE::CollisionBitCombination::AABB_AABB:
+		collisionCheck = CheckAABB(col1, col2);
+		break;
+	case GE::CollisionBitCombination::AABB_OBB:
+		break;
+	case GE::CollisionBitCombination::AABB_CAPSULE:
+		break;
+	case GE::CollisionBitCombination::OBB_OBB:
+		collisionCheck = CheckOBB(col1, col2);
+		break;
+	case GE::CollisionBitCombination::OBB_CAPSULE:
+		break;
+	case GE::CollisionBitCombination::CAPSULE_CAPSULE:
+		break;
+	default:
+		break;
 	}
-	return false;
+
+	return collisionCheck;
 }
 
 bool GE::CollisionManager::CheckSphere(ICollider* col1, ICollider* col2)
@@ -59,8 +92,8 @@ bool GE::CollisionManager::CheckOBB(ICollider* col1, ICollider* col2)
 	const Math::Vector3 intervalVec = center2 - center1;
 
 
-	Math::Vector3 scale1 = bound1.size * col1->GetParent()->scale/2;
-	Math::Vector3 scale2 = bound2.size * col2->GetParent()->scale/2;
+	Math::Vector3 scale1 = bound1.size * col1->GetParent()->scale / 2;
+	Math::Vector3 scale2 = bound2.size * col2->GetParent()->scale / 2;
 
 	Math::Vector3 ae1 = axis1.x * scale1.x;
 	Math::Vector3 ae2 = axis1.y * scale1.y;
@@ -177,4 +210,76 @@ bool GE::CollisionManager::CheckOBB(ICollider* col1, ICollider* col2)
 	if (l > rA + rB)return false;
 
 	return true;
+}
+
+bool GE::CollisionManager::CheckSphereToAABB(ICollider* sphere, ICollider* box)
+{
+	const Bounds& sphereBounds = sphere->GetBounds();
+	const Bounds& boxBounds = box->GetBounds();
+
+	Math::Vector3 sphereCenter = sphere->GetMatrix().GetPosition();
+	Math::Vector3 localColliderRadius = sphereBounds.size;
+	Math::Vector3 parentScale = sphere->GetParent()->scale;
+	Math::Vector3 worldColliderSize = (localColliderRadius * parentScale) / 2;
+
+	float radius = (worldColliderSize.x + worldColliderSize.y + worldColliderSize.z) / 3;
+
+	float length = 0;
+	for (int i = 0; i < 3; ++i)
+	{
+		if (sphereCenter.value[i] < boxBounds.min.value[i])
+		{
+			length += (sphereCenter.value[i] - boxBounds.min.value[i]) * (sphereCenter.value[i] - boxBounds.min.value[i]);
+		}
+		if (sphereCenter.value[i] > boxBounds.max.value[i])
+		{
+			length += (sphereCenter.value[i] - boxBounds.max.value[i]) * (sphereCenter.value[i] - boxBounds.max.value[i]);
+		}
+	}
+
+	if (length < radius * radius)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool GE::CollisionManager::CheckSphereToOBB(ICollider* sphere, ICollider* box)
+{
+	const Bounds& sphereBounds = sphere->GetBounds();
+	const Bounds& boxBounds = box->GetBounds();
+	const Math::Axis& boxAxis = box->GetAxis();
+	Math::Vector3 boxColliderSize = boxBounds.size * box->GetParent()->scale;
+
+	Math::Vector3 boxCenter = box->GetMatrix().GetPosition();
+	Math::Vector3 sphereCenter = sphere->GetMatrix().GetPosition();
+	Math::Vector3 localColliderRadius = sphereBounds.size;
+	Math::Vector3 parentScale = sphere->GetParent()->scale;
+	Math::Vector3 worldColliderSize = (localColliderRadius * parentScale) / 2;
+
+	float radius = (worldColliderSize.x + worldColliderSize.y + worldColliderSize.z) / 3;
+
+	Math::Vector3 vec;
+	for (int i = 0; i < 3; ++i)
+	{
+		Math::Vector3 axis = boxAxis.value[i] * boxColliderSize.value[i];
+		float l = axis.Length()/2;
+		if (l <= 0)continue;
+		float s = Math::Vector3::Dot((sphereCenter - boxCenter), boxAxis.value[i]) / l;
+
+		s = std::fabs(s);
+		if (s > 1)
+		{
+			vec += (1 - s) * l * boxAxis.value[i];
+		}
+	}
+
+	float length = vec.Length();
+	if (length < radius)
+	{
+		return true;
+	}
+
+	return false;
 }

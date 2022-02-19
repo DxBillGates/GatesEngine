@@ -14,5 +14,7 @@ namespace GE
 		static bool CheckSphere(ICollider* col1, ICollider* col2);
 		static bool CheckAABB(ICollider* col1, ICollider* col2);
 		static bool CheckOBB(ICollider* col1, ICollider* col2);
+		static bool CheckSphereToAABB(ICollider* sphere, ICollider* box);
+		static bool CheckSphereToOBB(ICollider* sphere, ICollider* box);
 	};
 }

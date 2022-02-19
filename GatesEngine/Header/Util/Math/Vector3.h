@@ -5,9 +5,16 @@ namespace GE
 	{
 		struct Vector3
 		{
-			float x;
-			float y;
-			float z;
+			union
+			{
+				struct
+				{
+					float x;
+					float y;
+					float z;
+				};
+				float value[3];
+			};
 
 			/// <summary>
 			/// ゼロ初期化コンストラクタ
