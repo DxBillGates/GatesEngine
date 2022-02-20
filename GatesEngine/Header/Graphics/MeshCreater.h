@@ -14,6 +14,7 @@ namespace GE
 		void CreateLine(MeshData<Vertex_Color>& meshData, const Math::Vector3& size = { 1 }, const Color& color = { 1 });
 		void CreateLineCube(MeshData<Vertex_Color>& meshData, const Math::Vector3& size = { 1 }, const Color& color = { 1 });
 		void CreateLineCircle(MeshData<Vertex_Color>& meshData,float vertexCount = 64, const Math::Vector3& size = { 1 }, const Color& color = { 1 });
+		void CreateLineAxis(MeshData<Vertex_Color>& meshData, float size = 1);
 		void LoadObjModelData(const std::string& filename, MeshData<Vertex_UV_Normal>& meshData);
 	}
 }

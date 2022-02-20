@@ -105,6 +105,20 @@ bool GE::Application::LoadContents()
 	mesh->Create(device, cmdList, meshDataLineCircle);
 	meshManager->Add(mesh, "LineCircle");
 
+	// lineê∂ê¨
+	MeshData<Vertex_Color> meshDataLine;
+	MeshCreater::CreateLine(meshDataLine);
+	mesh = new Mesh();
+	mesh->Create(device, cmdList, meshDataLine);
+	meshManager->Add(mesh, "Line");
+
+	// lineAxisê∂ê¨
+	MeshData<Vertex_Color> meshDataLineAxis;
+	MeshCreater::CreateLineAxis(meshDataLineAxis);
+	mesh = new Mesh();
+	mesh->Create(device, cmdList, meshDataLineAxis);
+	meshManager->Add(mesh, "LineAxis");
+
 	// modelì«Ç›çûÇ›
 	MeshData<Vertex_UV_Normal> modelDataCube;
 	MeshCreater::LoadObjModelData("Resources/Model/cube", modelDataCube);

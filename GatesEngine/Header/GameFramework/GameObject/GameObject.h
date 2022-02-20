@@ -16,6 +16,8 @@ namespace GE
 		std::vector<Component*> components;
 		Transform transform;
 		bool enabled;
+		bool drawAxisEnabled;
+
 		std::string name;
 		std::string tag;
 
@@ -40,6 +42,7 @@ namespace GE
 		void SetName(const std::string& name);
 		void SetTag(const std::string & tag);
 		void SetEnabled(bool flag);
+		void SetDrawAxisEnabled(bool flag);
 		static void SetGraphicsDevice(IGraphicsDeviceDx12* gDevice);
 		static bool IsSetGraphicsDevice();
 

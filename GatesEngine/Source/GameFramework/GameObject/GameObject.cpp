@@ -8,6 +8,7 @@ GE::GameObject::GameObject(const std::string& name, const std::string& tag)
 	: parent(nullptr)
 	, transform(Transform())
 	, enabled(true)
+	, drawAxisEnabled(false)
 	, name(name)
 	, tag(tag)
 {
@@ -58,6 +59,23 @@ void GE::GameObject::Draw()
 	{
 		component->Draw();
 	}
+
+	// gameObject‚ÌŽ²‚ð•`‰æ
+	if (!drawAxisEnabled)return;
+	GE::ICBufferAllocater* cbufferAllocater = graphicsDevice->GetCBufferAllocater();
+	GE::RenderQueue* renderQueue = graphicsDevice->GetRenderQueue();
+
+	graphicsDevice->SetShader("DefaultLineShader");
+
+	Math::Matrix4x4 modelMatrix = transform.GetMatrix();
+	const CameraInfo& cameraInfo = graphicsDevice->GetMainCamera()->GetCameraInfo();
+	Material material;
+	material.color = Color::White();
+
+	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
+	renderQueue->AddSetConstantBufferInfo({ 1,cbufferAllocater->BindAndAttachData(1, &cameraInfo, sizeof(CameraInfo)) });
+	renderQueue->AddSetConstantBufferInfo({ 2,cbufferAllocater->BindAndAttachData(2,&material,sizeof(Material)) });
+	graphicsDevice->DrawMesh("LineAxis");
 }
 
 void GE::GameObject::LateDraw()
@@ -122,6 +140,11 @@ void GE::GameObject::SetTag(const std::string& tag)
 void GE::GameObject::SetEnabled(bool flag)
 {
 	enabled = flag;
+}
+
+void GE::GameObject::SetDrawAxisEnabled(bool flag)
+{
+	drawAxisEnabled = flag;
 }
 
 void GE::GameObject::SetGraphicsDevice(IGraphicsDeviceDx12* gDevice)

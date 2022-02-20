@@ -161,6 +161,26 @@ void GE::MeshCreater::CreateLineCircle(MeshData<Vertex_Color>& meshData, float v
 	}
 }
 
+void GE::MeshCreater::CreateLineAxis(MeshData<Vertex_Color>& meshData, float size)
+{
+	std::vector<Vertex_Color>* vertices = meshData.GetVertices();
+	std::vector<unsigned int>* indices = meshData.GetIndices();
+
+	vertices->push_back({ Math::Vector3(),Color::Red() });
+	vertices->push_back({ Math::Vector3(size,0,0),Color::Red() });
+	vertices->push_back({ Math::Vector3(),Color::Green() });
+	vertices->push_back({ Math::Vector3(0,size,0),Color::Green() });
+	vertices->push_back({ Math::Vector3(),Color::Blue() });
+	vertices->push_back({ Math::Vector3(0,0,size),Color::Blue() });
+
+	for (int i = 0; i < 3; ++i)
+	{
+		int offset = i * 2;
+		indices->push_back(offset);
+		indices->push_back(offset + 1);
+	}
+}
+
 void GE::MeshCreater::LoadObjModelData(const std::string& filename, MeshData<Vertex_UV_Normal>& meshData)
 {
 	std::vector<Vertex_UV_Normal>* vertices = meshData.GetVertices();

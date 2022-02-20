@@ -26,6 +26,12 @@ void GE::SampleComponent::Start()
 
 void GE::SampleComponent::Update(float deltaTime)
 {
+	const Math::Axis& axis = transform->GetMatrix().GetAxis();
+	if (inputDevice->GetKeyboard()->CheckHitKey(Keys::SPACE))
+	{
+		transform->position += axis.y;
+	}
+
 	if (inputDevice->GetKeyboard()->CheckPressTrigger(Keys::SPACE))
 	{
 		Utility::Printf("SampleComponent Update() : press space key\n");
