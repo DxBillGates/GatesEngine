@@ -38,8 +38,9 @@ namespace GE
 	{
 		GraphicsPipelineBlendMode blendMode = GraphicsPipelineBlendMode::BLENDMODE_ALPHA;
 		GraphicsPipelinePrimitiveTopolotyType topologyType = GraphicsPipelinePrimitiveTopolotyType::TRIANGLE;
-		bool isUseDepthStencil = true;
-		int renderTargetCount = 1;
+		bool isUseDepthClip = true;
+		bool isWriteDepthStencil = true;
+		int renderTargetCount = 1; 
 		bool isUseAlphaToCoverage = false;
 		GraphicsPipelineComparison depthComparison = GraphicsPipelineComparison::COMPARISON_FUNC_LESS;
 	};

@@ -215,7 +215,7 @@ bool GE::Application::LoadContents()
 	graphicsPipelineManager->Add(dafaultMeshWithTexturePipeline, "DefaultMeshWithTextureShader");
 	// default sprite shader
 	pipelineInfo.topologyType = GraphicsPipelinePrimitiveTopolotyType::TRIANGLE;
-	pipelineInfo.isUseDepthStencil = false;
+	pipelineInfo.isUseDepthClip = false;
 	GraphicsPipeline* dafaultSpritePipeline = new GraphicsPipeline({ &defaultSpriteVertexShader,nullptr,nullptr,nullptr,&defaultSpritePixelShader });
 	dafaultSpritePipeline->Create(device, { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV }, defaultMeshRootSignature, pipelineInfo);
 	graphicsPipelineManager->Add(dafaultSpritePipeline, "DefaultSpriteShader");

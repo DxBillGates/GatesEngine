@@ -123,19 +123,12 @@ void GE::GraphicsPipeline::Create(ID3D12Device* device, const std::vector<Graphi
 	psoDesc.RasterizerState.CullMode = D3D12_CULL_MODE_BACK;
 	psoDesc.RasterizerState.FillMode = D3D12_FILL_MODE_SOLID;
 
-	if (info.isUseDepthStencil)
-	{
-		psoDesc.RasterizerState.DepthClipEnable = true;
-		psoDesc.DepthStencilState.DepthEnable = true;
-		psoDesc.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
-		psoDesc.DepthStencilState.DepthFunc = (D3D12_COMPARISON_FUNC)info.depthComparison;
-		psoDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
-	}
-	else
-	{
-		psoDesc.DepthStencilState.DepthEnable = FALSE;
-		psoDesc.DepthStencilState.StencilEnable = FALSE;
-	}
+	psoDesc.RasterizerState.DepthClipEnable = info.isUseDepthClip;
+	psoDesc.DepthStencilState.DepthEnable = info.isUseDepthClip;
+	psoDesc.DepthStencilState.DepthWriteMask = (D3D12_DEPTH_WRITE_MASK)info.isWriteDepthStencil;
+	psoDesc.DepthStencilState.DepthFunc = (D3D12_COMPARISON_FUNC)info.depthComparison;
+	psoDesc.DSVFormat = DXGI_FORMAT_D32_FLOAT;
+
 	psoDesc.BlendState.AlphaToCoverageEnable = info.isUseAlphaToCoverage;
 
 	psoDesc.BlendState.RenderTarget[0].RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
