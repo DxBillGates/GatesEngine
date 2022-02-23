@@ -11,6 +11,7 @@ GE::Scene::Scene(const std::string& sceneName)
 	, isSetInitializer(false)
 	, audioManager(nullptr)
 	, inputDevice(nullptr)
+	, graphicsDevice(nullptr)
 	, gameObjectManager(GameObjectManager())
 {
 }
@@ -25,7 +26,7 @@ bool GE::Scene::IsTerminateApplication()
 	return isTerminateApplication;
 }
 
-const GE::ChangeSceneInfo& GE::Scene::IsChangeScene()
+GE::ChangeSceneInfo& GE::Scene::IsChangeScene()
 {
 	return changeSceneInfo;
 }

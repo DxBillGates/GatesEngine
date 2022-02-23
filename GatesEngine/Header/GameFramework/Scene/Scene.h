@@ -66,7 +66,7 @@ namespace GE
 
 		const std::string& GetSceneName();
 		bool IsTerminateApplication();
-		const ChangeSceneInfo& IsChangeScene();
+		ChangeSceneInfo& IsChangeScene();
 
 		void SetSceneInitializer(const SceneInitializer& initializer);
 	};

@@ -27,6 +27,7 @@ namespace GE
 		bool GetOverTimeTrigger();
 		bool GetFlag();
 		float GetTime();
+		float GetMaxTimeProperty();
 		void SetFlag(bool setFlag);
 		void SetTime(float setValue);
 		void SetMaxTimeProperty(const float value);

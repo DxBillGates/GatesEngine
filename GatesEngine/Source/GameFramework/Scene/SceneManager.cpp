@@ -15,13 +15,9 @@ GE::SceneManager::~SceneManager()
 	}
 }
 
-void GE::SceneManager::Initialize(const SceneInitializer& initializer)
+void GE::SceneManager::Initialize()
 {
-	for (auto& scene : scenes)
-	{
-		scene->Initialize();
-		scene->SetSceneInitializer(initializer);
-	}
+	currentScene->Initialize();
 }
 
 void GE::SceneManager::Update(float deltaTime)
@@ -31,11 +27,13 @@ void GE::SceneManager::Update(float deltaTime)
 	currentScene->Update(deltaTime);
 
 	// 現在のシーンがシーン変更しようとしているか確認
-	ChangeSceneInfo changeSceneInfo = currentScene->IsChangeScene();
+	ChangeSceneInfo& changeSceneInfo = currentScene->IsChangeScene();
 	if (!changeSceneInfo.flag)return;
 
 	// シーンを変更して初期化するか確認
 	ChangeScene(changeSceneInfo.name);
+	changeSceneInfo = ChangeSceneInfo();
+
 	if (!changeSceneInfo.initNextSceneFlag)return;
 
 	currentScene->Initialize();
@@ -59,6 +57,7 @@ GE::Scene* GE::SceneManager::AddScene(Scene* newScene)
 {
 	scenes.push_back(newScene);
 	addScene = newScene;
+	addScene->SetSceneInitializer(sceneInitializer);
 	return addScene;
 }
 
@@ -107,4 +106,9 @@ GE::Scene* GE::SceneManager::GetScene(const std::string& sceneName)
 	}
 
 	return returnScene;
+}
+
+void GE::SceneManager::SetSceneInitializer(const SceneInitializer& initializer)
+{
+	sceneInitializer = initializer;
 }

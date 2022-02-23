@@ -41,6 +41,9 @@ GE::Application::Application(const Math::Vector2& size, const std::string& title
 
 	graphicsDevice.SetMainCamera(mainCamera);
 	GameObject::SetGraphicsDevice(&graphicsDevice);
+
+	SceneInitializer sceneInitializer = { &audioManager,inputDevice,&graphicsDevice };
+	sceneManager.SetSceneInitializer(sceneInitializer);
 }
 
 GE::Application::~Application()
@@ -55,9 +58,6 @@ bool GE::Application::LoadContents()
 	auto* testBGM = audioManager.AddAudio(new Audio(testBGMData, "testBGM"));
 	testBGM->Start();
 	testBGM->SetVolume(0.05f);
-
-	auto* testScene = sceneManager.AddScene(new SampleScene("SampleScene"));
-	sceneManager.ChangeScene("SampleScene");
 
 	auto* device = graphicsDevice.GetDevice();
 	auto* cmdList = graphicsDevice.GetCmdList();
@@ -238,8 +238,7 @@ bool GE::Application::LoadContents()
 
 bool GE::Application::Initialize()
 {
-	SceneInitializer sceneInitializer = { &audioManager,inputDevice,&graphicsDevice };
-	sceneManager.Initialize(sceneInitializer);
+	sceneManager.Initialize();
 
 	mainCamera->Initialize();
 	return true;

@@ -11,10 +11,11 @@ namespace GE
 		Scene* currentScene;
 		Scene* beforeScene;
 		Scene* addScene;
+		SceneInitializer sceneInitializer;
 	public:
 		SceneManager();
 		~SceneManager();
-		void Initialize(const SceneInitializer& initializer);
+		void Initialize();
 		void Update(float deltaTime);
 		void Draw();
 		void LateDraw();
@@ -25,5 +26,6 @@ namespace GE
 		Scene* GetBeforeScene();
 		Scene* GetAddScene();
 		Scene* GetScene(const std::string& sceneName);
+		void SetSceneInitializer(const SceneInitializer& initializer);
 	};
 }

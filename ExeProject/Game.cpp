@@ -2,6 +2,7 @@
 #include "Header/Util/Random.h"
 #include "Header/Util/Utility.h"
 #include "Header/Graphics/CBufferStruct.h"
+#include "SampleScene.h"
 
 Game::Game()
 	: Application()
@@ -20,6 +21,9 @@ Game::~Game()
 bool Game::LoadContents()
 {
 	Application::LoadContents();
+	auto* testScene = sceneManager.AddScene(new SampleScene("SampleScene"));
+	sceneManager.ChangeScene("SampleScene");
+
 	return true;
 }
 
