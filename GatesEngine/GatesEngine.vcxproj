@@ -34,7 +34,6 @@
     <ClInclude Include="Header\GameFramework\FlagController.h" />
     <ClInclude Include="Header\GameFramework\GameObject\GameObject.h" />
     <ClInclude Include="Header\GameFramework\GameObject\GameObjectManager.h" />
-    <ClInclude Include="Header\GameFramework\Scene\SampleScene.h" />
     <ClInclude Include="Header\GameFramework\Scene\Scene.h" />
     <ClInclude Include="Header\GameFramework\Scene\SceneManager.h" />
     <ClInclude Include="Header\Graphics\Camera.h" />
@@ -111,7 +110,6 @@
     <ClCompile Include="Source\GameFramework\FlagController.cpp" />
     <ClCompile Include="Source\GameFramework\GameObject\GameObject.cpp" />
     <ClCompile Include="Source\GameFramework\GameObject\GameObjectManager.cpp" />
-    <ClCompile Include="Source\GameFramework\Scene\SampleScene.cpp" />
     <ClCompile Include="Source\GameFramework\Scene\Scene.cpp" />
     <ClCompile Include="Source\GameFramework\Scene\SceneManager.cpp" />
     <ClCompile Include="Source\Graphics\Camera3D.cpp" />

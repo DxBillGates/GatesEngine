@@ -155,9 +155,6 @@
     <ClInclude Include="Header\GameFramework\Scene\SceneManager.h">
       <Filter>Header\GameFramework\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Header\GameFramework\Scene\SampleScene.h">
-      <Filter>Header\GameFramework\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Header\GameFramework\GameObject\GameObject.h">
       <Filter>Header\GameFramework\GameObject</Filter>
     </ClInclude>
@@ -374,9 +371,6 @@
       <Filter>Source\GameFramework\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Scene\SceneManager.cpp">
-      <Filter>Source\GameFramework\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameFramework\Scene\SampleScene.cpp">
       <Filter>Source\GameFramework\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\GameObject\GameObject.cpp">
