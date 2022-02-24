@@ -1,5 +1,4 @@
 #include "..\..\Header\Application\Application.h"
-#include "..\..\Header\GameFramework\Scene\SampleScene.h"
 #include "..\..\Header\Graphics\Shader.h"
 #include "..\..\Header\Graphics\RootSignature.h"
 #include "..\..\Header\Graphics\GraphicsPipeline.h"
@@ -196,6 +195,10 @@ bool GE::Application::LoadContents()
 	RootSignature* cbv5srv1RootSignature = new RootSignature();
 	cbv5srv1RootSignature->Create(device, { DescriptorRangeType::CBV,DescriptorRangeType::CBV ,DescriptorRangeType::CBV ,DescriptorRangeType::CBV ,DescriptorRangeType::CBV ,DescriptorRangeType::SRV });
 	rootSignatureManager->Add(cbv5srv1RootSignature, "CBV5SRV1");
+	// cbv16srv16ルートシグネチャ
+	RootSignature* testRootSignature = new RootSignature();
+	testRootSignature->Create(device, {16,16,0});
+	rootSignatureManager->Add(testRootSignature, "CBV16SRV16");
 
 	// demo graphicsPipeline作成
 	GraphicsPipelineInfo pipelineInfo = GraphicsPipelineInfo();

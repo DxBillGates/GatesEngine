@@ -110,6 +110,88 @@ void GE::RootSignature::Create(ID3D12Device* device, const std::vector<Descripto
 	result = device->CreateRootSignature(0, rootBlob->GetBufferPointer(), rootBlob->GetBufferSize(), IID_PPV_ARGS(&rootSignature));
 }
 
+void GE::RootSignature::Create(ID3D12Device* device, const Math::Vector3& descRangeCounts)
+{
+	D3D12_ROOT_SIGNATURE_DESC rootSignatureDesc = {};
+	int rangeCount = (int)descRangeCounts.x + (int)descRangeCounts.y + (int)descRangeCounts.z;
+
+	std::vector<D3D12_ROOT_PARAMETER> rootParams(rangeCount);
+	std::vector<D3D12_DESCRIPTOR_RANGE> descRanges(rangeCount);
+
+	bool isSampler = false;
+
+	int count = 0;
+
+	auto SetRootParams = [](D3D12_ROOT_PARAMETER& rootParam, const D3D12_DESCRIPTOR_RANGE* settingRange)
+	{
+		rootParam.ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
+		rootParam.DescriptorTable.pDescriptorRanges = settingRange;
+		rootParam.DescriptorTable.NumDescriptorRanges = 1;
+		rootParam.ShaderVisibility = D3D12_SHADER_VISIBILITY_ALL;
+	};
+
+	// cbv range
+	for (int i = 0; i < (int)descRangeCounts.x; ++i)
+	{
+		int value = i;
+		CreateDescriptorRange(descRanges[i], DescriptorRangeType::CBV, value);
+		SetRootParams(rootParams[i], &descRanges[i]);
+		++count;
+	}
+
+	// srv range
+	int preCount = count;
+	for (int i = preCount; i < (int)descRangeCounts.y + preCount; ++i)
+	{
+		int value = i - preCount;
+		CreateDescriptorRange(descRanges[i], DescriptorRangeType::SRV, value);
+		SetRootParams(rootParams[i], &descRanges[i]);
+		isSampler = true;
+		++count;
+	}
+
+	// uav range
+	preCount = count;
+	for (int i = preCount; i < (int)descRangeCounts.z + preCount; ++i)
+	{
+		int value = i - preCount;
+		CreateDescriptorRange(descRanges[i], DescriptorRangeType::UAV, value);
+		SetRootParams(rootParams[i], &descRanges[i]);
+		++count;
+	}
+
+	// スタティックサンプラの設定
+	const int SAMPLER_COUNT = 4;
+	std::vector<D3D12_STATIC_SAMPLER_DESC> staticSamplerDescs(SAMPLER_COUNT);
+	if (isSampler)
+	{
+		CreateStaticSampler(staticSamplerDescs[0], TextureAddressMode::WRAP, D3D12Filter::POINT, 0);
+		CreateStaticSampler(staticSamplerDescs[1], TextureAddressMode::CLAMP, D3D12Filter::POINT, 1);
+		CreateStaticSampler(staticSamplerDescs[2], TextureAddressMode::WRAP, D3D12Filter::LINEAR, 2);
+		CreateStaticSampler(staticSamplerDescs[3], TextureAddressMode::CLAMP, D3D12Filter::LINEAR, 3);
+	}
+
+	// rootSignatureDescの設定
+	rootSignatureDesc.pStaticSamplers = isSampler ? staticSamplerDescs.data() : nullptr;
+	rootSignatureDesc.NumStaticSamplers = isSampler ? SAMPLER_COUNT : 0;
+	rootSignatureDesc.Flags = D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
+	rootSignatureDesc.pParameters = rootParams.data();
+	rootSignatureDesc.NumParameters = rangeCount;
+
+	// rootSignatureの生成
+	ID3DBlob* errorBlob = nullptr;
+	ID3DBlob* rootBlob = nullptr;
+	HRESULT result;
+
+	result = D3D12SerializeRootSignature(&rootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1_0, &rootBlob, &errorBlob);
+	if (errorBlob)
+	{
+		OutputDebugStringA((char*)errorBlob->GetBufferPointer());
+		errorBlob->Release();
+	}
+	result = device->CreateRootSignature(0, rootBlob->GetBufferPointer(), rootBlob->GetBufferSize(), IID_PPV_ARGS(&rootSignature));
+}
+
 ID3D12RootSignature* GE::RootSignature::GetRootSignature()
 {
 	return rootSignature;

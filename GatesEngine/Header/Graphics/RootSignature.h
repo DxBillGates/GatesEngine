@@ -1,5 +1,6 @@
 #pragma once
 #include "IRootSignature.h"
+#include "..\Util\Math\Vector3.h"
 
 #include <vector>
 
@@ -35,6 +36,7 @@ namespace GE
 		RootSignature();
 		~RootSignature();
 		void Create(ID3D12Device* device, const std::vector<DescriptorRangeType>& descriptorRangeTypes);
+		void Create(ID3D12Device* device, const Math::Vector3& descRangeCounts = { 0,0,0 });
 
 		// interface
 
