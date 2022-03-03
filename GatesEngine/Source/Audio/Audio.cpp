@@ -22,12 +22,14 @@ GE::Audio::~Audio()
 
 void GE::Audio::SetAudioEngine()
 {
+	// XAudio2の動作環境をセットアップ
 	XAudio2Create(&xAudioEngine, 0, XAUDIO2_DEFAULT_PROCESSOR);
 	xAudioEngine->CreateMasteringVoice(&masterVoice);
 }
 
 void GE::Audio::CreateVoice()
 {
+	// サウンドデータからソースボイスを作成
 	HRESULT result = xAudioEngine->CreateSourceVoice(&sourceVoice, pSoundData->GetWaveFormatEx(), 0, 2.0f, &(*this));
 }
 

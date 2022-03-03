@@ -55,6 +55,8 @@ void GE::AudioData::Skip(std::string target, std::ifstream & file)
 	auto currentPos = file.tellg();
 	std::string s = "";
 	int i = 0;
+
+	// targetで指定された文字に到達するまでファイルを走査
 	while (s != target && !file.eof())
 	{
 		char read;

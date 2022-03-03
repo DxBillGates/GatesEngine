@@ -186,6 +186,7 @@ void GE::GraphicsDeviceDx12::ClearRenderTarget(IRenderTarget* renderTarget)
 	D3D12_CPU_DESCRIPTOR_HANDLE rtvHandle = renderTarget->GetHandle();
 	const Color& color = renderTarget->GetColor();
 
+	// レンダーテクスチャの場合はSRVからRTVにリソースステートを変更する
 	renderTarget->Prepare(cmdList);
 	float rgba[] = { color.r,color.g,color.b,color.a };
 	cmdList->ClearRenderTargetView(rtvHandle, rgba, 0, nullptr);
