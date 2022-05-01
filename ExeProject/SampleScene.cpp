@@ -57,8 +57,6 @@ void SampleScene::Update(float deltaTime)
 		col1->Hit(col2, nullptr);
 		col2->Hit(col1, nullptr);
 	}
-
-	// comitte test
 }
 
 void SampleScene::Draw()
