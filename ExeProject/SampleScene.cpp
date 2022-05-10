@@ -1,8 +1,8 @@
 #include "SampleScene.h"
-#include "Header\GameFramework\Component\SampleComponent.h"
-#include "Header\GameFramework\Component\SphereCollider.h"
-#include "Header\GameFramework\Component\BoxCollider.h"
-#include "Header\GameFramework\Collision\CollisionManager.h"
+#include <GatesEngine/Header\GameFramework\Component\SampleComponent.h>
+#include <GatesEngine/Header\GameFramework\Component\SphereCollider.h>
+#include <GatesEngine/Header\GameFramework\Component\BoxCollider.h>
+#include <GatesEngine/Header\GameFramework\Collision\CollisionManager.h>
 
 SampleScene::SampleScene()
 	: SampleScene("SampleScene")

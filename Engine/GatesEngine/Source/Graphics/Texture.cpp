@@ -1,6 +1,6 @@
 #include "..\..\Header\Graphics\Texture.h"
 #include "..\..\Header\Graphics\COMRelease.h"
-#include "..\..\Libraries\DirectXTex\DirectXTex.h"
+#include "..\..\External\DirectXTex\DirectXTex.h"
 
 GE::Texture::Texture()
 	: buffer(nullptr)

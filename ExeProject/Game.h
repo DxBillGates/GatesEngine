@@ -1,7 +1,7 @@
 #pragma once
-#include "Header/Application/Application.h"
-#include "Header/Graphics/RenderTexture.h"
-#include "Header/Graphics/DepthTexture.h"
+#include <GatesEngine/Header/Application/Application.h>
+#include <GatesEngine/Header/Graphics/RenderTexture.h>
+#include <GatesEngine/Header/Graphics/DepthTexture.h>
 
 class Game : public GE::Application
 {

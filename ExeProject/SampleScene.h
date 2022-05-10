@@ -1,6 +1,6 @@
 #pragma once
-#include "Header/GameFramework/Scene/Scene.h"
-#include "Header/GameFramework/Collision/ICollider.h"
+#include <GatesEngine/Header/GameFramework/Scene/Scene.h>
+#include <GatesEngine/Header/GameFramework/Collision/ICollider.h>
 
 class SampleScene : public GE::Scene
 {

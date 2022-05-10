@@ -1,8 +1,9 @@
 #include "Game.h"
-#include "Header/Util/Random.h"
-#include "Header/Util/Utility.h"
-#include "Header/Graphics/CBufferStruct.h"
 #include "SampleScene.h"
+
+#include <GatesEngine/Header/Util/Random.h>
+#include <GatesEngine/Header/Util/Utility.h>
+#include <GatesEngine/Header/Graphics/CBufferStruct.h>
 
 Game::Game()
 	: Application()

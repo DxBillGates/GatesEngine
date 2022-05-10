@@ -9,7 +9,6 @@ int main()
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 #endif
-	using namespace GE;
 	Game game;
 
 	return game.Run();
