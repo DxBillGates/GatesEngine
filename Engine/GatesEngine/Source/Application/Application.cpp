@@ -14,11 +14,11 @@
 #include "..\..\Header\GameFramework\GameObject\GameObject.h"
 
 GE::Application::Application()
-	: Application(Math::Vector2(1920,1080),"no title")
+	: Application(Math::Vector2(1920,1080), Math::Vector2(1920, 1080))
 {
 }
 
-GE::Application::Application(const Math::Vector2& size, const std::string& title, WindowMode mode)
+GE::Application::Application(const Math::Vector2& size, const GE::Math::Vector2& resolution, const std::string& title, WindowMode mode)
 	: timer(Utility::Timer())
 	, mainWindow(Window())
 	, inputDevice(InputDevice::GetInstance())
@@ -34,7 +34,7 @@ GE::Application::Application(const Math::Vector2& size, const std::string& title
 	mainWindow.PreviewWindow();
 
 	inputDevice->Create(mainWindow.GetHandle(), mainWindow.GetHInstance());
-	graphicsDevice.Create(size, mainWindow.GetHandle());
+	graphicsDevice.Create(resolution, mainWindow.GetHandle());
 
 	mainCamera = new Camera3DDebug();
 

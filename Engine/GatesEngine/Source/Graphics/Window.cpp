@@ -78,6 +78,7 @@ bool GE::Window::Create(const Vector2& windowSize, const std::string& title, Win
 
 void GE::Window::PreviewWindow()
 {
+	ShowWindow(hwnd, SW_MAXIMIZE);
 	ShowWindow(hwnd, SW_SHOW);
 }
 

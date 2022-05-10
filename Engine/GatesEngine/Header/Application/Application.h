@@ -23,7 +23,7 @@ namespace GE
 		Camera3D* mainCamera;
 	public:
 		Application();
-		Application(const Math::Vector2& size,const std::string& title, WindowMode mode = WindowMode::POP_UP);
+		Application(const Math::Vector2& size, const GE::Math::Vector2& resolution,const std::string& title = "no title", WindowMode mode = WindowMode::POP_UP);
 		virtual ~Application();
 		virtual bool LoadContents();
 		virtual bool Initialize();

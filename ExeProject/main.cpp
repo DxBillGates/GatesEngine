@@ -9,7 +9,11 @@ int main()
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 #endif
-	Game game = Game({ 1280,720 }, "no title", GE::WindowMode::WINDOW);
+
+	GE::Math::Vector2 windowSize = GE::Math::Vector2(1280, 720);
+	GE::Math::Vector2 resolution = GE::Math::Vector2(1920, 1080);
+
+	Game game = Game(windowSize, resolution, "no title", GE::WindowMode::WINDOW);
 
 	return game.Run();
 }

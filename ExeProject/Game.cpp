@@ -10,8 +10,8 @@ Game::Game()
 {
 }
 
-Game::Game(const GE::Math::Vector2& size, const std::string& title, GE::WindowMode mode)
-	: Application(size, title, mode)
+Game::Game(const GE::Math::Vector2& size, const GE::Math::Vector2& resolution, const std::string& title, GE::WindowMode mode)
+	: Application(size,resolution, title, mode)
 {
 }
 
