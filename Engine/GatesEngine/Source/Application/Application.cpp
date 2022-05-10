@@ -18,7 +18,7 @@ GE::Application::Application()
 {
 }
 
-GE::Application::Application(const Math::Vector2& size, const std::string& title)
+GE::Application::Application(const Math::Vector2& size, const std::string& title, WindowMode mode)
 	: timer(Utility::Timer())
 	, mainWindow(Window())
 	, inputDevice(InputDevice::GetInstance())
@@ -30,7 +30,7 @@ GE::Application::Application(const Math::Vector2& size, const std::string& title
 	timer.SetFrameRate(144);
 	timer.SetIsShow(false);
 
-	mainWindow.Create(size,title);
+	mainWindow.Create(size,title,mode);
 	mainWindow.PreviewWindow();
 
 	inputDevice->Create(mainWindow.GetHandle(), mainWindow.GetHInstance());

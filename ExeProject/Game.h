@@ -8,7 +8,7 @@ class Game : public GE::Application
 private:
 public:
 	Game();
-	Game(const GE::Math::Vector2& size, const std::string& title);
+	Game(const GE::Math::Vector2& size, const std::string& title, GE::WindowMode mode = GE::WindowMode::POP_UP);
 	~Game();
 	bool LoadContents() override;
 	bool Initialize() override;

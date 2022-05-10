@@ -2,6 +2,7 @@
 #include "..\..\..\Header\Graphics\CBufferStruct.h"
 #include "..\..\..\Header\Util\Utility.h"
 #include "..\..\..\Header\Util\Random.h"
+#include "..\..\..\Header\Graphics\Window.h"
 
 GE::SampleComponent::SampleComponent()
 	: inputDevice(nullptr)
@@ -87,7 +88,7 @@ void GE::SampleComponent::LateDraw()
 
 	GE::CameraInfo cameraInfo;
 	cameraInfo.viewMatrix = GE::Math::Matrix4x4::GetViewMatrixLookTo({ 0,1,0 }, { 0,0,1 }, { 0,1,0 });
-	cameraInfo.projMatrix = GE::Math::Matrix4x4::GetOrthographMatrix({ 1920,1080 });
+	cameraInfo.projMatrix = GE::Math::Matrix4x4::GetOrthographMatrix(GE::Window::GetWindowSize());
 
 	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0, &modelMatrix, sizeof(GE::Math::Matrix4x4)) });
 	renderQueue->AddSetConstantBufferInfo({ 1,cbufferAllocater->BindAndAttachData(1, &cameraInfo, sizeof(GE::CameraInfo)) });

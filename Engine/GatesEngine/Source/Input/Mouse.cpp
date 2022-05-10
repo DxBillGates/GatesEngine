@@ -44,8 +44,6 @@ void GE::Mouse::Update()
 	}
 	POINT mousePoint{};
 	GetCursorPos(&mousePoint);
-	//ScreenToClient(hwnd, &mousePoint);
-	float a = (mousePoint.y / 1080.0f) * 23 * 3;
 	mouseMove.x = mousePos.x - mousePoint.x;
 	mouseMove.y = mousePos.y - mousePoint.y;
 	mousePos.x = (float)mousePoint.x;
@@ -83,16 +81,13 @@ float GE::Mouse::GetWheelValue()
 
 Vector2 GE::Mouse::GetMouseMove()
 {
-	//return mouseMove;
 	return { (float)-currentMouseState.lX,(float)-currentMouseState.lY };
 }
 
 Vector2 GE::Mouse::GetMousePos()
 {
 	POINT point = { (LONG)mousePos.x,(LONG)mousePos.y };
-	//ScreenToClient(hwnd, &point);
-	//float a = (point.y / 1080.0f) * 23 * 3;
-	return {(float)point.x,(float)point.y/* + a*/};
+	return {(float)point.x,(float)point.y};
 }
 
 Vector2 GE::Mouse::GetClientMousePos()
@@ -112,7 +107,6 @@ Vector2 GE::Mouse::GetScreenMousePos()
 void GE::Mouse::SetMouseCursor(const Vector2& setPos)
 {
 	POINT point = { (LONG)setPos.x,(LONG)setPos.y };
-	//ClientToScreen(hwnd, &point);
 	SetCursorPos(point.x,point.y);
 	mousePos = setPos;
 }

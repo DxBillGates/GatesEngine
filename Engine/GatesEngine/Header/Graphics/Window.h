@@ -5,6 +5,13 @@
 
 namespace GE
 {
+	enum class WindowMode
+	{
+		NONE,
+		WINDOW,
+		POP_UP,
+	};
+
 	class Window
 	{
 		using Vector2 = GE::Math::Vector2;
@@ -12,7 +19,7 @@ namespace GE
 		HWND hwnd;
 		WNDCLASSEX wndClass;
 		MSG msg;
-		Vector2 size;
+		static Vector2 size;
 		Vector2 pos;
 	public:
 		/// <summary>
@@ -27,7 +34,7 @@ namespace GE
 		/// <param name="windowSize">ウィンドウサイズ</param>
 		/// <param name="title">ウィンドウタイトル</param>
 		/// <returns>成否</returns>
-		bool Create(const Vector2& windowSize,const std::string& title);
+		bool Create(const Vector2& windowSize,const std::string& title,WindowMode mode = WindowMode::POP_UP);
 
 		/// <summary>
 		/// MainWindow表示
@@ -56,7 +63,7 @@ namespace GE
 		/// MainWindowのサイズを返す関数
 		/// </summary>
 		/// <returns>MainWindowのサイズ</returns>
-		Vector2 GetWindowSize();
+		static Vector2 GetWindowSize();
 
 		/// <summary>
 		/// MainWindowのアスペクト比を返す関数
@@ -75,5 +82,7 @@ namespace GE
 		/// </summary>
 		/// <param name="changeTitle">設定する名前</param>
 		void SetWindowTitle(const char* changeTitle);
+
+		static void SetWindowSize(const Vector2& setSize);
 	};
 }

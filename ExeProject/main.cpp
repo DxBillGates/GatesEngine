@@ -9,7 +9,7 @@ int main()
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 #endif
-	Game game;
+	Game game = Game({ 1280,720 }, "no title", GE::WindowMode::WINDOW);
 
 	return game.Run();
 }

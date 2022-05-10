@@ -1,7 +1,5 @@
 #include "..\..\Header\Graphics\Window.h"
 
-using Vector2 = GE::Math::Vector2;
-
 LRESULT CALLBACK WinProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
 	switch (msg)
@@ -9,11 +7,22 @@ LRESULT CALLBACK WinProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
+	case WM_SIZE:
+		UINT width = LOWORD(lparam);
+		UINT height = HIWORD(lparam);
+		GE::Window::SetWindowSize({ (float)width,(float)height });
+		break;
 	}
 	return DefWindowProc(hwnd, msg, wparam, lparam);
 }
 
-GE::Window::Window() :hwnd(HWND()), wndClass(WNDCLASSEX()), msg(MSG()), size(Vector2())
+GE::Math::Vector2 GE::Window::size = GE::Math::Vector2();
+
+GE::Window::Window() 
+	: hwnd(HWND())
+	, wndClass(WNDCLASSEX())
+	, msg(MSG())
+	, pos(Vector2())
 {
 }
 
@@ -22,7 +31,7 @@ GE::Window::~Window()
 	UnregisterClass(wndClass.lpszClassName, wndClass.hInstance);
 }
 
-bool GE::Window::Create(const Vector2& windowSize,const std::string& title)
+bool GE::Window::Create(const Vector2& windowSize, const std::string& title, WindowMode mode)
 {
 	// ウィンドウの設定
 	wndClass.cbSize = sizeof(WNDCLASSEX);
@@ -36,10 +45,22 @@ bool GE::Window::Create(const Vector2& windowSize,const std::string& title)
 
 	// Windowの生成
 	RECT rect = { 0,0,(LONG)windowSize.x,(LONG)windowSize.y };
-	AdjustWindowRect(&rect, WS_POPUP, false);
+
+	DWORD windowMode = 0;
+	switch (mode)
+	{
+	case GE::WindowMode::WINDOW:
+		windowMode = WS_OVERLAPPEDWINDOW;
+		break;
+	case GE::WindowMode::POP_UP:
+		windowMode = WS_POPUP;
+		break;
+	}
+
+	AdjustWindowRect(&rect, windowMode, false);
 	hwnd = CreateWindow(wndClass.lpszClassName,
 		wndClass.lpszClassName,
-		WS_POPUP,
+		windowMode,
 		0,
 		0,
 		rect.right - rect.left,
@@ -84,7 +105,7 @@ HINSTANCE GE::Window::GetHInstance()
 	return wndClass.hInstance;
 }
 
-Vector2 GE::Window::GetWindowSize()
+GE::Math::Vector2 GE::Window::GetWindowSize()
 {
 	return size;
 }
@@ -103,4 +124,9 @@ void GE::Window::SetWindowPos(const Vector2& pos)
 void GE::Window::SetWindowTitle(const char* changeTitle)
 {
 	SetWindowText(hwnd, changeTitle);
+}
+
+void GE::Window::SetWindowSize(const Vector2& setSize)
+{
+	size = setSize;
 }

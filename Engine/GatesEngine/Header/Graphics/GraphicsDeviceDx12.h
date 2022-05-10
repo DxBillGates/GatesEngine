@@ -86,6 +86,7 @@ namespace GE
 		RenderQueue* GetRenderQueue() override;
 		Camera* GetMainCamera() override;
 		void ExecuteRenderQueue() override;
+		Math::Vector2 GetViewportSize() override;
 
 		void SetShader(const std::string& shaderName,bool isWireframe = false) override;
 		void SetTexture(const std::string& texName, int descIndex) override;

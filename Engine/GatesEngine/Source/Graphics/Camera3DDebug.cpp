@@ -1,5 +1,6 @@
 #include "..\..\Header\Graphics\Camera3DDebug.h"
 #include "..\..\Header\Util\Math\Math.h"
+#include "..\..\Header\Graphics\Window.h"
 
 GE::Camera3DDebug::Camera3DDebug()
 	: keyboard(nullptr)
@@ -28,7 +29,8 @@ void GE::Camera3DDebug::Update()
 	Math::Vector3 moveVector;
 	if (mouse->GetCheckHitButton(MouseButtons::RIGHT_CLICK))
 	{
-		mouse->SetMouseCursor({ 1920 / 2,1080 / 2 });
+		windowSize = GE::Window::GetWindowSize();
+		mouse->SetMouseCursor(windowSize/2);
 		//ƒ}ƒEƒX‚ÌˆÚ“®—Ê‚ðŽæ“¾
 		Math::Vector2 inputValue = mouse->GetMouseMove() / 500.0f;
 

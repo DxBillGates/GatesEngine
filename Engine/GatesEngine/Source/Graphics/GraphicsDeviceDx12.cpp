@@ -359,6 +359,11 @@ void GE::GraphicsDeviceDx12::ExecuteRenderQueue()
 	renderQueue.Execute(cmdList,&shaderResourceHeap);
 }
 
+GE::Math::Vector2 GE::GraphicsDeviceDx12::GetViewportSize()
+{
+	return Math::Vector2(viewPort.Width,viewPort.Height);
+}
+
 void GE::GraphicsDeviceDx12::SetShader(const std::string& shaderName, bool isWireframe)
 {
 	IGraphicsPipeline* usePipeline = graphicsPipelineManager.Get(shaderName);

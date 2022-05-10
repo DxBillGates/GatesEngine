@@ -50,6 +50,7 @@ namespace GE
 		virtual Manager<ILayer>* GetLayerManager() = 0;
 		virtual RenderQueue* GetRenderQueue() = 0;
 		virtual Camera* GetMainCamera() = 0;
+		virtual Math::Vector2 GetViewportSize() = 0;
 
 		virtual void ExecuteRenderQueue() = 0;
 		virtual void SetShader(const std::string& shaderName, bool isWireframe = false) = 0;
