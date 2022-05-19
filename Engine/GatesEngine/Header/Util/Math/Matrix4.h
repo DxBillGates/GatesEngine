@@ -109,11 +109,11 @@ namespace GE
 			static Matrix4x4 Translate(const Vector3& v);
 
 			/// <summary>
-			/// ベクトルと行列から新たな行列を生成する関数
+			/// ベクトルと行列から新たなベクトルを生成する関数
 			/// </summary>
 			/// <param name="v">ベクトル</param>
 			/// <param name="m">行列</param>
-			/// <returns>生成された行列</returns>
+			/// <returns>生成されたベクトル</returns>
 			static Vector3 Transform(const Vector3& v, const Matrix4x4& m);
 
 			/// <summary>
