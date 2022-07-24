@@ -93,6 +93,7 @@ namespace GE
 		/// マウスカーソルを指定したピクセルに固定する関数
 		/// </summary>
 		/// <param name="setPos">指定ピクセル</param>
-		void SetMouseCursor(const Vector2& setPos);
+		/// <param name="isClientArea">クライアント領域を考慮したピクセル位置にするか</param>
+		void SetMouseCursor(const Vector2& setPos,bool isClientArea = true);
 	};
 }

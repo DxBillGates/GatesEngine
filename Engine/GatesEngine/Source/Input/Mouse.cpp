@@ -104,9 +104,23 @@ Vector2 GE::Mouse::GetScreenMousePos()
 	return { (float)point.x,(float)point.y };
 }
 
-void GE::Mouse::SetMouseCursor(const Vector2& setPos)
+void GE::Mouse::SetMouseCursor(const Vector2& setPos, bool isClientArea)
 {
-	POINT point = { (LONG)setPos.x,(LONG)setPos.y };
+	WINDOWINFO windowInfo = {};
+	GetWindowInfo(hwnd, &windowInfo);
+
+	Vector2 resultSetPos = setPos;
+	POINT point = {};
+
+	// WindowÇÃà íuÇçló∂Ç≥ÇπÇÈ
+	if (isClientArea)
+	{
+		resultSetPos.x += windowInfo.rcClient.left;
+		resultSetPos.y += windowInfo.rcClient.top;
+	}
+
+	point = { (LONG)resultSetPos.x,(LONG)resultSetPos.y };
+
 	SetCursorPos(point.x,point.y);
-	mousePos = setPos;
+	mousePos = resultSetPos;
 }
