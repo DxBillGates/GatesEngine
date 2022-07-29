@@ -4,6 +4,7 @@
 #include <GatesEngine/Header/Util/Random.h>
 #include <GatesEngine/Header/Util/Utility.h>
 #include <GatesEngine/Header/Graphics/CBufferStruct.h>
+#include <GatesEngine/Header/GUI/GUIManager.h>
 
 Game::Game()
 	: Application()
@@ -41,6 +42,7 @@ bool Game::Initialize()
 
 bool Game::Update()
 {
+	GE::GUIManager::StartFrame(true);
 	Application::Update();
 	return true;
 }
@@ -85,6 +87,7 @@ bool Game::Draw()
 	Application::Draw();
 
 	graphicsDevice.ExecuteRenderQueue();
+	GE::GUIManager::EndFrame();
 	graphicsDevice.ScreenFlip();
 	return true;
 }

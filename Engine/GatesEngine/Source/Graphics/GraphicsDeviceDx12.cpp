@@ -4,6 +4,7 @@
 
 #include <string>
 #include <assert.h>
+#include <wrl.h>
 
 #pragma comment(lib,"d3d12.lib")
 #pragma comment(lib,"dxgi.lib")
@@ -391,4 +392,45 @@ void GE::GraphicsDeviceDx12::DrawMesh(const std::string& meshName, int instanceC
 {
 	renderQueue.SetMesh(meshManager.Get(meshName));
 	renderQueue.AddCommand();
+}
+
+void GE::GraphicsDeviceDx12::OnResizeWindow(const Math::Vector2& size)
+{
+	// 全ての発行済みコマンドの終了を待つ.
+	Microsoft::WRL::ComPtr<ID3D12Fence1> mFence;
+	const UINT64 expectValue = 1;
+	HRESULT hr = device->CreateFence(0, D3D12_FENCE_FLAG_NONE, IID_PPV_ARGS(&mFence));
+
+	cmdQueue->Signal(mFence.Get(), expectValue);
+	if (mFence->GetCompletedValue() != expectValue)
+	{
+		HANDLE event = CreateEvent(nullptr, FALSE, FALSE, nullptr);
+		mFence->SetEventOnCompletion(expectValue, event);
+		WaitForSingleObject(event, INFINITE);
+	}
+
+	// 既存のSwapchainからFormatなどを取得
+	DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {};
+	swapChain->GetDesc1(&swapChainDesc);
+
+	// コマンドが終了しているためフレームバッファとデプスを一度削除
+	depthStencil.Cleanup();
+	renderTarget.Cleanup();
+
+	HRESULT result;
+	result = swapChain->ResizeBuffers(swapChainDesc.BufferCount,(UINT)size.x, (UINT)size.y, swapChainDesc.Format, swapChainDesc.Flags);
+
+	std::vector<ID3D12Resource*>& frameBuffers = renderTarget.GetFrameBuffers();
+	frameBuffers.resize(2);
+
+	// swapChainからフレームバッファを取得
+	for (int i = 0; i < (int)frameBuffers.size(); ++i)
+	{
+		result = swapChain->GetBuffer(i, IID_PPV_ARGS(&frameBuffers[i]));
+	}
+
+	// コマンドが終了しているためフレームバッファとデプスを再度作成
+	depthStencil.Create(size, device);
+	renderTarget.Create(device);
+	renderTarget.SetIndex(swapChain->GetCurrentBackBufferIndex());
 }

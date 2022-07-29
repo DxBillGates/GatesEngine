@@ -24,6 +24,7 @@ namespace GE
 
 		// interface
 
+		ID3D12DescriptorHeap* GetHeap() override;
 		D3D12_CPU_DESCRIPTOR_HANDLE GetCPUHandle() override;
 		D3D12_GPU_DESCRIPTOR_HANDLE GetGPUHandle() override;
 		D3D12_GPU_DESCRIPTOR_HANDLE GetGPUHandleForCBV(int value) override;

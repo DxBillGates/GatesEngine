@@ -14,6 +14,7 @@ namespace GE
 		DepthStencil();
 		~DepthStencil();
 		void Create(const Math::Vector2& size,ID3D12Device* device);
+		void Cleanup();
 
 		// interface
 

@@ -40,6 +40,11 @@ void GE::ShaderResourceHeap::Set()
 	cmdList->SetDescriptorHeaps(1, ppHeaps);
 }
 
+ID3D12DescriptorHeap* GE::ShaderResourceHeap::GetHeap()
+{
+	return heap;
+}
+
 D3D12_CPU_DESCRIPTOR_HANDLE GE::ShaderResourceHeap::GetCPUHandle()
 {
 	return heap->GetCPUDescriptorHandleForHeapStart();

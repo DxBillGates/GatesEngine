@@ -20,6 +20,8 @@ namespace GE
 		RenderTarget();
 		~RenderTarget();
 		void Create(ID3D12Device* device);
+		void Cleanup();
+
 		std::vector<ID3D12Resource*>& GetFrameBuffers();
 		void SetIndex(int value);
 

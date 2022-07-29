@@ -9,6 +9,7 @@ namespace GE
 	{
 	public:
 		virtual ~IShaderResourceHeap() {}
+		virtual ID3D12DescriptorHeap* GetHeap() = 0;
 		virtual D3D12_CPU_DESCRIPTOR_HANDLE GetCPUHandle() = 0;
 		virtual D3D12_GPU_DESCRIPTOR_HANDLE GetGPUHandle() = 0;
 		virtual D3D12_GPU_DESCRIPTOR_HANDLE GetGPUHandleForCBV(int value) = 0;

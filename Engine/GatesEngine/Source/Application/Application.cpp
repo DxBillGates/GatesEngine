@@ -12,6 +12,7 @@
 #include "..\..\Header\Graphics\Layer.h"
 #include "..\..\Header\Graphics\Texture.h"
 #include "..\..\Header\GameFramework\GameObject\GameObject.h"
+#include "..\..\Header\GUI\GUIManager.h"
 
 GE::Application::Application()
 	: Application(Math::Vector2(1920,1080), Math::Vector2(1920, 1080))
@@ -31,7 +32,6 @@ GE::Application::Application(const WindowData& windowData, const Math::Vector2& 
 	timer.SetIsShow(false);
 
 	mainWindow.Create(windowData);
-	mainWindow.PreviewWindow();
 
 	inputDevice->Create(mainWindow.GetHandle(), mainWindow.GetHInstance());
 	graphicsDevice.Create(resolution, mainWindow.GetHandle());
@@ -43,6 +43,10 @@ GE::Application::Application(const WindowData& windowData, const Math::Vector2& 
 
 	SceneInitializer sceneInitializer = { &audioManager,inputDevice,&graphicsDevice };
 	sceneManager.SetSceneInitializer(sceneInitializer);
+
+	GUIManager::Initialize(mainWindow.GetHandle(), &graphicsDevice);
+
+	mainWindow.PreviewWindow();
 }
 
 GE::Application::Application(const Math::Vector2& size, const GE::Math::Vector2& resolution, const std::string& title, WindowMode mode)
@@ -53,6 +57,8 @@ GE::Application::Application(const Math::Vector2& size, const GE::Math::Vector2&
 GE::Application::~Application()
 {
 	delete mainCamera;
+
+	GUIManager::Finalize();
 }
 
 bool GE::Application::LoadContents()

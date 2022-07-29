@@ -25,12 +25,15 @@ void GE::RenderTarget::Create(ID3D12Device* device)
 {
 	if ((int)rtvBuffer.size() <= 0)assert(true);
 
-	// ヒープの生成
-	HRESULT result;
-	D3D12_DESCRIPTOR_HEAP_DESC rtvHeapDesc = {};
-	rtvHeapDesc.NumDescriptors = (int)rtvBuffer.size();
-	rtvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
-	result = device->CreateDescriptorHeap(&rtvHeapDesc, IID_PPV_ARGS(&rtvHeap));
+	if (rtvHeap == nullptr)
+	{
+		// ヒープの生成
+		HRESULT result;
+		D3D12_DESCRIPTOR_HEAP_DESC rtvHeapDesc = {};
+		rtvHeapDesc.NumDescriptors = (int)rtvBuffer.size();
+		rtvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
+		result = device->CreateDescriptorHeap(&rtvHeapDesc, IID_PPV_ARGS(&rtvHeap));
+	}
 
 	// ビューの生成
 	D3D12_RENDER_TARGET_VIEW_DESC rtvDesc = {};
@@ -50,6 +53,14 @@ void GE::RenderTarget::Create(ID3D12Device* device)
 	D3D12_RESOURCE_DESC resDesc = rtvBuffer[0]->GetDesc();
 	size = { (float)resDesc.Width,(float)resDesc.Height };
 	incrementSize = device->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+}
+
+void GE::RenderTarget::Cleanup()
+{
+	for (auto& buffer : rtvBuffer)
+	{
+		COM_RELEASE(buffer);
+	}
 }
 
 std::vector<ID3D12Resource*>& GE::RenderTarget::GetFrameBuffers()

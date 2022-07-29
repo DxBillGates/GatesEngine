@@ -40,19 +40,27 @@ void GE::DepthStencil::Create(const Math::Vector2& size, ID3D12Device* device)
 	// Ý’è‚ð‚à‚Æ‚ÉƒfƒvƒXƒoƒbƒtƒ@‚ð¶¬
 	device->CreateCommittedResource(&heapProp, D3D12_HEAP_FLAG_NONE, &resDesc, D3D12_RESOURCE_STATE_DEPTH_WRITE, &depthClearValue, IID_PPV_ARGS(&depthBuffer));
 
-	// dsv‚ðŠi”[‚·‚é
-	D3D12_DESCRIPTOR_HEAP_DESC dsvHeapDesc = {};
-	dsvHeapDesc.NumDescriptors = 1;
-	dsvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
+	if (dsvHeap == nullptr)
+	{
+		// dsv‚ðŠi”[‚·‚é
+		D3D12_DESCRIPTOR_HEAP_DESC dsvHeapDesc = {};
+		dsvHeapDesc.NumDescriptors = 1;
+		dsvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_DSV;
 
-	// dsvƒq[ƒv‚Ì¶¬
-	result = device->CreateDescriptorHeap(&dsvHeapDesc, IID_PPV_ARGS(&dsvHeap));
+		// dsvƒq[ƒv‚Ì¶¬
+		result = device->CreateDescriptorHeap(&dsvHeapDesc, IID_PPV_ARGS(&dsvHeap));
+	}
 
 	// dsv‚Ì¶¬
 	D3D12_DEPTH_STENCIL_VIEW_DESC dsvDesc = {};
 	dsvDesc.Format = DXGI_FORMAT_D32_FLOAT;
 	dsvDesc.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
 	device->CreateDepthStencilView(depthBuffer, &dsvDesc, dsvHeap->GetCPUDescriptorHandleForHeapStart());
+}
+
+void GE::DepthStencil::Cleanup()
+{
+	COM_RELEASE(depthBuffer);
 }
 
 D3D12_CPU_DESCRIPTOR_HANDLE GE::DepthStencil::GetHandle()

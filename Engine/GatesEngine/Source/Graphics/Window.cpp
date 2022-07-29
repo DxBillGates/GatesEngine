@@ -1,7 +1,13 @@
 #include "..\..\Header\Graphics\Window.h"
+#include "../../Header/GUI/GUIManager.h"
 
 LRESULT CALLBACK WinProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
+	if (GE::GUIManager::WndProc(hwnd, msg, wparam, lparam))
+	{
+		return true;
+	}
+
 	switch (msg)
 	{
 	case WM_DESTROY:
@@ -11,6 +17,12 @@ LRESULT CALLBACK WinProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 		UINT width = LOWORD(lparam);
 		UINT height = HIWORD(lparam);
 		GE::Window::SetWindowSize({ (float)width,(float)height });
+
+		auto graphicsDevice = GE::GUIManager::GetGraphicsDevice();
+		if (graphicsDevice)
+		{
+			graphicsDevice->OnResizeWindow({ (float)width,(float)height });
+		}
 		break;
 	}
 	return DefWindowProc(hwnd, msg, wparam, lparam);

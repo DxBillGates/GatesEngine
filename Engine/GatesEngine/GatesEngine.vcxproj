@@ -75,6 +75,7 @@
     <ClInclude Include="Header\Graphics\Texture.h" />
     <ClInclude Include="Header\Graphics\VertexData.h" />
     <ClInclude Include="Header\Graphics\Window.h" />
+    <ClInclude Include="Header\GUI\GUIManager.h" />
     <ClInclude Include="Header\Input\InputDevice.h" />
     <ClInclude Include="Header\Input\Keyboard.h" />
     <ClInclude Include="Header\Input\Keys.h" />
@@ -131,6 +132,7 @@
     <ClCompile Include="Source\Graphics\ShaderResourceHeap.cpp" />
     <ClCompile Include="Source\Graphics\Texture.cpp" />
     <ClCompile Include="Source\Graphics\Window.cpp" />
+    <ClCompile Include="Source\GUI\GUIManager.cpp" />
     <ClCompile Include="Source\Input\InputDevice.cpp" />
     <ClCompile Include="Source\Input\Keyboard.cpp" />
     <ClCompile Include="Source\Input\Mouse.cpp" />

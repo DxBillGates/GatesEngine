@@ -58,5 +58,7 @@ namespace GE
 		virtual void SetRenderTexture(const std::string& texName, int descIndex) = 0;
 		virtual void SetDepthTexture(const std::string& layerName, int descIndex) = 0;
 		virtual void DrawMesh(const std::string& meshName, int instanceCount = 1) = 0;
+
+		virtual void OnResizeWindow(const Math::Vector2& size) {};
 	};
 }

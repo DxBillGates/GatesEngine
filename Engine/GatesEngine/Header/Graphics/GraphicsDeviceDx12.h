@@ -93,5 +93,7 @@ namespace GE
 		void SetRenderTexture(const std::string& texName, int descIndex) override;
 		void SetDepthTexture(const std::string& layerName, int descIndex) override;
 		void DrawMesh(const std::string& meshName,int instanceCount = 1) override;
+
+		void OnResizeWindow(const Math::Vector2& size) override;
 	};
 }
