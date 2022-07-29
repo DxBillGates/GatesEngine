@@ -18,7 +18,7 @@ GE::Application::Application()
 {
 }
 
-GE::Application::Application(const Math::Vector2& size, const GE::Math::Vector2& resolution, const std::string& title, WindowMode mode)
+GE::Application::Application(const WindowData& windowData, const Math::Vector2& resolution)
 	: timer(Utility::Timer())
 	, mainWindow(Window())
 	, inputDevice(InputDevice::GetInstance())
@@ -30,7 +30,7 @@ GE::Application::Application(const Math::Vector2& size, const GE::Math::Vector2&
 	timer.SetFrameRate(144);
 	timer.SetIsShow(false);
 
-	mainWindow.Create(size,title,mode);
+	mainWindow.Create(windowData);
 	mainWindow.PreviewWindow();
 
 	inputDevice->Create(mainWindow.GetHandle(), mainWindow.GetHInstance());
@@ -43,6 +43,11 @@ GE::Application::Application(const Math::Vector2& size, const GE::Math::Vector2&
 
 	SceneInitializer sceneInitializer = { &audioManager,inputDevice,&graphicsDevice };
 	sceneManager.SetSceneInitializer(sceneInitializer);
+}
+
+GE::Application::Application(const Math::Vector2& size, const GE::Math::Vector2& resolution, const std::string& title, WindowMode mode)
+	: Application(WindowData(NULL,NULL,NULL,size,title,mode),resolution)
+{
 }
 
 GE::Application::~Application()

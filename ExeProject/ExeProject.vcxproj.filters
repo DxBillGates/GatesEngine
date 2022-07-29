@@ -31,6 +31,9 @@
     <ClInclude Include="SampleScene.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Shader\DefaultShader.hlsli">
@@ -65,5 +68,11 @@
     <FxCompile Include="Resources\Shader\GaussBlurPixelShader.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ExeProject.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="AppIcon.ico" />
   </ItemGroup>
 </Project>

@@ -31,23 +31,69 @@ GE::Window::~Window()
 	UnregisterClass(wndClass.lpszClassName, wndClass.hInstance);
 }
 
-bool GE::Window::Create(const Vector2& windowSize, const std::string& title, WindowMode mode)
+//bool GE::Window::Create(const Vector2& windowSize, const std::string& title, WindowMode mode)
+//{
+//	// ƒEƒBƒ“ƒhƒE‚ÌÝ’è
+//	wndClass.cbSize = sizeof(WNDCLASSEX);
+//	wndClass.lpfnWndProc = (WNDPROC)WinProc;
+//	wndClass.lpszClassName = title.c_str();
+//	wndClass.hInstance = GetModuleHandle(nullptr);
+//	wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+//
+//	// Window‚Ì“o˜^
+//	RegisterClassEx(&wndClass);
+//
+//	// Window‚Ì¶¬
+//	RECT rect = { 0,0,(LONG)windowSize.x,(LONG)windowSize.y };
+//
+//	DWORD windowMode = 0;
+//	switch (mode)
+//	{
+//	case GE::WindowMode::WINDOW:
+//		windowMode = WS_OVERLAPPEDWINDOW;
+//		break;
+//	case GE::WindowMode::POP_UP:
+//		windowMode = WS_POPUP;
+//		break;
+//	}
+//
+//	AdjustWindowRect(&rect, windowMode, false);
+//	hwnd = CreateWindow(wndClass.lpszClassName,
+//		wndClass.lpszClassName,
+//		windowMode,
+//		0,
+//		0,
+//		rect.right - rect.left,
+//		rect.bottom - rect.top,
+//		nullptr,
+//		nullptr,
+//		wndClass.hInstance,
+//		nullptr);
+//
+//	this->size = windowSize;
+//
+//	if (hwnd == NULL)return false;
+//	return true;
+//}
+
+bool GE::Window::Create(const WindowData& windowData)
 {
 	// ƒEƒBƒ“ƒhƒE‚ÌÝ’è
 	wndClass.cbSize = sizeof(WNDCLASSEX);
 	wndClass.lpfnWndProc = (WNDPROC)WinProc;
-	wndClass.lpszClassName = title.c_str();
-	wndClass.hInstance = GetModuleHandle(nullptr);
-	wndClass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wndClass.lpszClassName = windowData.title.c_str();
+	wndClass.hInstance = windowData.hInstance == NULL ? GetModuleHandle(NULL) : windowData.hInstance;
+	wndClass.hCursor = windowData.cursorHandle == 0 ? nullptr : LoadCursor(wndClass.hInstance, MAKEINTRESOURCE(windowData.cursorHandle));
+	wndClass.hIcon = windowData.iconHandle == 0 ? nullptr : LoadIcon(wndClass.hInstance, MAKEINTRESOURCE(windowData.iconHandle));
 
 	// Window‚Ì“o˜^
 	RegisterClassEx(&wndClass);
 
 	// Window‚Ì¶¬
-	RECT rect = { 0,0,(LONG)windowSize.x,(LONG)windowSize.y };
+	RECT rect = { 0,0,(LONG)windowData.windowSize.x,(LONG)windowData.windowSize.y };
 
 	DWORD windowMode = 0;
-	switch (mode)
+	switch (windowData.windowMode)
 	{
 	case GE::WindowMode::WINDOW:
 		windowMode = WS_OVERLAPPEDWINDOW;
@@ -70,7 +116,7 @@ bool GE::Window::Create(const Vector2& windowSize, const std::string& title, Win
 		wndClass.hInstance,
 		nullptr);
 
-	this->size = windowSize;
+	this->size = windowData.windowSize;
 
 	if (hwnd == NULL)return false;
 	return true;

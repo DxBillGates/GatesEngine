@@ -8,6 +8,7 @@ class Game : public GE::Application
 private:
 public:
 	Game();
+	Game(const GE::WindowData& windowData, const GE::Math::Vector2& resolution);
 	Game(const GE::Math::Vector2& size, const GE::Math::Vector2& resolution = {1920,1080},const std::string & title = "no title", GE::WindowMode mode = GE::WindowMode::POP_UP);
 	~Game();
 	bool LoadContents() override;

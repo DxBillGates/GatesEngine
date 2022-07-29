@@ -10,6 +10,11 @@ Game::Game()
 {
 }
 
+Game::Game(const GE::WindowData& windowData, const GE::Math::Vector2& resolution)
+	: Application(windowData,resolution)
+{
+}
+
 Game::Game(const GE::Math::Vector2& size, const GE::Math::Vector2& resolution, const std::string& title, GE::WindowMode mode)
 	: Application(size,resolution, title, mode)
 {

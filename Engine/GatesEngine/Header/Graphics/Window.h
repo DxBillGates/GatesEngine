@@ -12,6 +12,35 @@ namespace GE
 		POP_UP,
 	};
 
+	struct WindowData
+	{
+		HINSTANCE hInstance;
+		int cursorHandle;
+		int iconHandle;
+		
+		Math::Vector2 windowSize;
+		std::string title;
+		WindowMode windowMode;
+
+		WindowData()
+			: hInstance(NULL)
+			, cursorHandle(NULL)
+			, iconHandle(NULL)
+			, windowSize(Math::Vector2())
+			, title("no title")
+			, windowMode(WindowMode::WINDOW)
+		{}
+
+		WindowData(HINSTANCE hInstance, int cHandle, int iHandle, const Math::Vector2& size, const std::string& title, WindowMode mode)
+			: hInstance(hInstance)
+			, cursorHandle(cHandle)
+			, iconHandle(iHandle)
+			, windowSize(size)
+			, title(title)
+			, windowMode(mode)
+		{}
+	};
+
 	class Window
 	{
 		using Vector2 = GE::Math::Vector2;
@@ -28,13 +57,15 @@ namespace GE
 		Window();
 		~Window();
 
-		/// <summary>
-		/// MainWindow生成関数
-		/// </summary>
-		/// <param name="windowSize">ウィンドウサイズ</param>
-		/// <param name="title">ウィンドウタイトル</param>
-		/// <returns>成否</returns>
-		bool Create(const Vector2& windowSize,const std::string& title,WindowMode mode = WindowMode::POP_UP);
+		///// <summary>
+		///// MainWindow生成関数
+		///// </summary>
+		///// <param name="windowSize">ウィンドウサイズ</param>
+		///// <param name="title">ウィンドウタイトル</param>
+		///// <returns>成否</returns>
+		//bool Create(const Vector2& windowSize,const std::string& title,WindowMode mode = WindowMode::POP_UP);
+
+		bool Create(const WindowData& windowData);
 
 		/// <summary>
 		/// MainWindow表示

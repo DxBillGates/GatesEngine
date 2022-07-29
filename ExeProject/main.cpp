@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "resource.h"
 
 #ifdef _DEBUG
 #include <crtdbg.h>
@@ -9,11 +10,16 @@ int main()
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 #endif
-
 	GE::Math::Vector2 windowSize = GE::Math::Vector2(1280, 720);
 	GE::Math::Vector2 resolution = GE::Math::Vector2(1280, 720);
 
-	Game game = Game(windowSize, resolution, "no title", GE::WindowMode::WINDOW);
+	GE::WindowData windowData;
+	windowData.title = "no title";
+	windowData.windowSize = windowSize;
+	windowData.windowMode = GE::WindowMode::WINDOW;
+	windowData.iconHandle = IDI_ICON1;
+
+	Game game = Game(windowData,resolution);
 
 	return game.Run();
 }
