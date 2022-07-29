@@ -62,6 +62,7 @@ bool GE::Application::LoadContents()
 	auto* testBGM = audioManager.AddAudio(new Audio(testBGMData, "testBGM"));
 	testBGM->Start();
 	testBGM->SetVolume(0.05f);
+	testBGM->SetPitch(1);
 
 	auto* device = graphicsDevice.GetDevice();
 	auto* cmdList = graphicsDevice.GetCmdList();

@@ -33,6 +33,16 @@ namespace GE
 		/// <returns>線形補間の値</returns>
 		float Lerp(float s, float e, float t);
 
+		/// <summary>
+		/// xをmin maxの間で返す
+		/// 例) (x = 1000,min = 0,max = 100)のときreturn = 100
+		/// </summary>
+		/// <param name="x">比較したい値</param>
+		/// <param name="min"></param>
+		/// <param name="max"></param>
+		/// <returns></returns>
+		float Clamp(float x, float min, float max);
+
 		// ガウシアンフィルタの重みを計算する関数
 		float GaussFilter(const GE::Math::Vector2& pos, float value);
 		// 参照ピクセルへの情報とガウシアンフィルタの重みを計算してセットする関数

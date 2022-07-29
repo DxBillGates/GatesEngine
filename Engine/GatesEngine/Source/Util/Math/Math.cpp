@@ -1,5 +1,5 @@
 #include "..\..\..\Header\Util\Math\Math.h"
-#include <math.h>
+#include <cmath>
 
 float GE::Math::ConvertToRadian(float value)
 {
@@ -14,9 +14,15 @@ float GE::Math::Lerp(float s, float e, float t)
 	return s * (1.0f - t) + e * t;
 }
 
+float GE::Math::Clamp(float x, float min, float max)
+{
+	float result = std::fminf(std::fmax(x, min), max);
+	return result;
+}
+
 float GE::Math::GaussFilter(const GE::Math::Vector2& pos, float value)
 {
-	return expf(-(pos.x * pos.x + pos.y * pos.y) / (2.0f * value * value));
+	return std::expf(-(pos.x * pos.x + pos.y * pos.y) / (2.0f * value * value));
 }
 
 void GE::Math::SetGaussFilterData(const GE::Math::Vector2& size, GE::Math::Vector2& dir, float gaussValue, GaussFilterData* data, int dataSize)
