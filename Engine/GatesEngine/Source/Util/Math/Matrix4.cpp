@@ -1,4 +1,5 @@
 #include "..\..\..\Header\Util\Math\Matrix4.h"
+#include "..\..\..\Header\Util\Math\Math.h"
 #include <cmath>
 
 using Vector3 = GE::Math::Vector3;
@@ -111,7 +112,7 @@ GE::Math::Matrix4x4 GE::Math::Matrix4x4::RotationZ(float angle)
 
 GE::Math::Matrix4x4 GE::Math::Matrix4x4::RotationZXY(const Vector3& angles)
 {
-	return RotationZ(angles.z) * RotationX(angles.x) * RotationY(angles.y);
+	return RotationZ(Math::ConvertToRadian(angles.z)) * RotationX(Math::ConvertToRadian(angles.x)) * RotationY(Math::ConvertToRadian(angles.y));
 }
 
 GE::Math::Matrix4x4 GE::Math::Matrix4x4::Translate(const Vector3 & v)

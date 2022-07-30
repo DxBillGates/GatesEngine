@@ -97,7 +97,7 @@ namespace GE
 			/// <summary>
 			/// ZXYの順で回転行列を生成する関数
 			/// </summary>
-			/// <param name="angles">ラジアンベクトル</param>
+			/// <param name="angles">度数法</param>
 			/// <returns>ZXY回転行列</returns>
 			static Matrix4x4 RotationZXY(const Vector3& angles);
 

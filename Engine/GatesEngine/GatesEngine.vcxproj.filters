@@ -314,6 +314,12 @@
     <ClInclude Include="Header\GUI\GUIManager.h">
       <Filter>Header\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Header\GUI\Hierarchy.h">
+      <Filter>Header\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\GUI\Inspector.h">
+      <Filter>Header\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -464,6 +470,12 @@
       <Filter>Source\GameFramework\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Source\GUI\GUIManager.cpp">
+      <Filter>Source\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\Hierarchy.cpp">
+      <Filter>Source\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\GUI\Inspector.cpp">
       <Filter>Source\GUI</Filter>
     </ClCompile>
   </ItemGroup>

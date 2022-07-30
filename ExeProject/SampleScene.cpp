@@ -16,6 +16,7 @@ SampleScene::SampleScene(const std::string& sceneName)
 {
 	{
 		auto* testObject = gameObjectManager.AddGameObject(new GE::GameObject());
+		testObject->SetName("test1");
 		testObject->GetTransform()->position = { 1050,0,0 };
 		testObject->SetDrawAxisEnabled(true);
 		auto* sampleComponent = testObject->AddComponent<GE::SampleComponent>();
@@ -27,6 +28,7 @@ SampleScene::SampleScene(const std::string& sceneName)
 
 	{
 		auto* testObject = gameObjectManager.AddGameObject(new GE::GameObject());
+		testObject->SetName("test2");
 		testObject->GetTransform()->position = { 1300,0,0 };
 		testObject->SetDrawAxisEnabled(true);
 		auto* sampleComponent = testObject->AddComponent<GE::SampleComponent>();

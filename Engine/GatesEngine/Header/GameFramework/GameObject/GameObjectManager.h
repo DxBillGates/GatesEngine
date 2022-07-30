@@ -1,5 +1,7 @@
 #pragma once
 #include "GameObject.h"
+#include "..\..\GUI\Hierarchy.h"
+#include "..\..\GUI\Inspector.h"
 #include <vector>
 
 namespace GE
@@ -8,6 +10,9 @@ namespace GE
 	{
 	private:
 		std::vector<GameObject*> gameObjects;
+
+		GUI::Hierarchy hierarchyGui;
+		GUI::Inspector inspectorGui;
 	public:
 		GameObjectManager();
 		~GameObjectManager();

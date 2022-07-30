@@ -34,7 +34,14 @@ void GE::GameObjectManager::Update(float deltaTime)
 	for (auto& object : gameObjects)
 	{
 		object->Update(deltaTime);
+
+		// Hierarchy‚ÌGameObject‚ð‘I‘ð‚µ‚½‚çInspector‚É‚»‚ÌGameObject‚ð“o˜^
+		if (hierarchyGui.OnGui(object))
+		{
+			inspectorGui.SetCurrentSelectGameObject(object);
+		}
 	}
+	inspectorGui.OnGui();
 }
 
 void GE::GameObjectManager::Draw()
