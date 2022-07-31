@@ -1,4 +1,7 @@
 #include "..\..\..\Header\GameFramework\Component\Component.h"
+#include "..\..\..\Header\GUI\GUIManager.h"
+
+#include <typeinfo>
 
 GE::Component::Component()
 	: gameObject(nullptr)
@@ -6,6 +9,16 @@ GE::Component::Component()
 	, enabled(true)
 	, graphicsDevice(nullptr)
 {
+}
+
+bool GE::Component::IsOpenTreeNodeGui()
+{
+	if (ImGui::TreeNode(typeid(*this).name()))
+	{
+		return true;
+	}
+
+	return false;
 }
 
 GE::GameObject* GE::Component::GetGameObject()

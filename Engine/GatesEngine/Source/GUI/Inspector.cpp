@@ -1,5 +1,6 @@
 #include "..\..\Header\GUI\Inspector.h"
 #include "..\..\Header\GUI\GUIManager.h"
+#include "..\..\Header\GameFramework\Component\Component.h"
 
 void GE::GUI::Inspector::SetCurrentSelectGameObject(GameObject* gameObject)
 {
@@ -24,8 +25,6 @@ void GE::GUI::Inspector::OnGui()
 
 		if (ImGui::TreeNode("Transform"))
 		{
-			ImGui::TreePop();
-
 			float dragSpeed = 1;
 			float dragMinValue = -100000;
 			float drawMaxValue = 100000;
@@ -33,6 +32,17 @@ void GE::GUI::Inspector::OnGui()
 			ImGui::DragFloat3("Position", currentSelectGameObject->GetTransform()->position.value, dragSpeed, dragMinValue, drawMaxValue);
 			ImGui::DragFloat3("Rotation", currentSelectGameObject->GetTransform()->rotation.value, dragSpeed, dragMinValue, drawMaxValue);
 			ImGui::DragFloat3("Scale   ", currentSelectGameObject->GetTransform()->scale.value   , dragSpeed, dragMinValue, drawMaxValue);
+			ImGui::TreePop();
+		}
+
+		auto components = currentSelectGameObject->GetComponents();
+		for (auto& component : *components)
+		{
+			if (component->IsOpenTreeNodeGui())
+			{
+				component->OnGui();
+				ImGui::TreePop();
+			}
 		}
 	}
 

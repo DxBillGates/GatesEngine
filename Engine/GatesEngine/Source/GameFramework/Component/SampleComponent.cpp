@@ -3,6 +3,7 @@
 #include "..\..\..\Header\Util\Utility.h"
 #include "..\..\..\Header\Util\Random.h"
 #include "..\..\..\Header\Graphics\Window.h"
+#include "..\..\..\Header\GUI\GUIManager.h"
 
 GE::SampleComponent::SampleComponent()
 	: inputDevice(nullptr)
@@ -23,6 +24,7 @@ void GE::SampleComponent::Start()
 	Utility::Printf("SampleComponent Start()\n");
 	inputDevice = InputDevice::GetInstance();
 	random = { RandomMaker::GetFloat(-1,1),RandomMaker::GetFloat(-1,1),RandomMaker::GetFloat(-1,1) };
+	speed = 1;
 }
 
 void GE::SampleComponent::Update(float deltaTime)
@@ -48,7 +50,7 @@ void GE::SampleComponent::Update(float deltaTime)
 		Utility::Printf("SampleComponent Update() : press b button\n");
 	}
 
-	transform->rotation += random / 100;
+	transform->rotation += (random / 100)*speed;
 }
 
 void GE::SampleComponent::Draw()
@@ -104,4 +106,12 @@ void GE::SampleComponent::OnCollision(GameObject* other)
 void GE::SampleComponent::OnCollision(ICollider* hitCollider)
 {
 	Utility::Printf("SampleComponent OnCollision(ICollider* other) : hit\n");
+}
+
+void GE::SampleComponent::OnGui()
+{
+	float dragSpeed = 0.1f;
+	float maxValue = 10;
+	ImGui::DragFloat("Speed", &speed, dragSpeed, 0, maxValue);
+	ImGui::DragFloat3("RandomVector", random.value,dragSpeed, 0, maxValue);
 }

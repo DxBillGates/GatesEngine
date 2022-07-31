@@ -1,4 +1,5 @@
 #include "..\..\..\Header\GameFramework\Component\BoxCollider.h"
+#include "..\..\..\Header\GUI\GUIManager.h"
 
 GE::BoxCollider::BoxCollider()
 	: isSetCenter(false)
@@ -56,6 +57,27 @@ void GE::BoxCollider::Draw()
 	renderQueue->AddSetConstantBufferInfo({ 2,cbufferAllocater->BindAndAttachData(2,&material,sizeof(Material)) });
 
 	graphicsDevice->DrawMesh("LineCube");
+}
+
+void GE::BoxCollider::OnGui()
+{
+	ImGui::Checkbox("DrawEnabled", &drawEnabled);
+	if (ImGui::TreeNode("Bounds"))
+	{
+
+		float dragSpeed = 0.1f;
+		float minMaxValue = 10000;
+		ImGui::DragFloat3("Center", bounds.center.value, dragSpeed, -minMaxValue, minMaxValue);
+
+		float minData[3] = { bounds.min.value[0],bounds.min.value[1],bounds.min.value[2] };
+		ImGui::DragFloat3("Min", minData, dragSpeed, -minMaxValue, minMaxValue);
+
+		float maxData[3] = { bounds.max.value[0],bounds.max.value[1],bounds.max.value[2] };
+		ImGui::DragFloat3("Max", maxData, dragSpeed, -minMaxValue, minMaxValue);
+
+		ImGui::DragFloat3("Size", bounds.size.value, dragSpeed, 0, minMaxValue);
+		ImGui::TreePop();
+	}
 }
 
 void GE::BoxCollider::SetSize(const Math::Vector3& size)

@@ -12,6 +12,7 @@ namespace GE
 		~BoxCollider();
 		void Awake() override;
 		void Draw() override;
+		void OnGui() override;
 		void SetSize(const Math::Vector3& size);
 		void SetCenter(const Math::Vector3& pos);
 		void DrawEnabled(bool flag);

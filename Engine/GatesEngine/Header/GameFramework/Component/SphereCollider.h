@@ -13,6 +13,7 @@ namespace GE
 		~SphereCollider();
 		void Awake() override;
 		void Draw() override;
+		void OnGui() override;
 		void SetSize(float size);
 		void SetCenter(const Math::Vector3& pos);
 		void DrawEnabled(bool flag);

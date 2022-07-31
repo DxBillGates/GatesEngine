@@ -156,3 +156,8 @@ bool GE::GameObject::IsSetGraphicsDevice()
 {
 	return (graphicsDevice) ? true : false;
 }
+
+std::vector<GE::Component*>* GE::GameObject::GetComponents()
+{
+	return &components;
+}

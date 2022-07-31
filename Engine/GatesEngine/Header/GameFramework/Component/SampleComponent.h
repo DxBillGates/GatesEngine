@@ -9,6 +9,7 @@ namespace GE
 	private:
 		InputDevice* inputDevice;
 		Math::Vector3 random;
+		float speed;
 	public:
 		SampleComponent();
 		~SampleComponent();
@@ -19,5 +20,6 @@ namespace GE
 		void LateDraw() override;
 		void OnCollision(GameObject* other) override;
 		void OnCollision(ICollider* hitCollider) override;
+		void OnGui() override;
 	};
 }

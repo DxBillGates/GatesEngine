@@ -1,5 +1,6 @@
 #include "..\..\..\Header\GameFramework\Component\SphereCollider.h"
 #include "..\..\..\Header\Graphics\CBufferStruct.h"
+#include "..\..\..\Header\GUI\GUIManager.h"
 
 GE::SphereCollider::SphereCollider()
 	: isSetCenter(false)
@@ -58,6 +59,28 @@ void GE::SphereCollider::Draw()
 	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0,&worldMatrix,sizeof(Math::Matrix4x4)) });
 	graphicsDevice->DrawMesh("LineCircle");
 
+}
+
+void GE::SphereCollider::OnGui()
+{
+	ImGui::Checkbox("DrawEnabled", &drawEnabled);
+	if (ImGui::TreeNode("Bounds"))
+	{
+
+		float dragSpeed = 0.1f;
+		float minMaxValue = 10000;
+		ImGui::DragFloat3("Center", bounds.center.value, dragSpeed, -minMaxValue, minMaxValue);
+
+		float minData[3] = { bounds.min.value[0],bounds.min.value[1],bounds.min.value[2] };
+		ImGui::DragFloat3("Min", minData, dragSpeed, -minMaxValue, minMaxValue);
+
+		float maxData[3] = { bounds.max.value[0],bounds.max.value[1],bounds.max.value[2] };
+		ImGui::DragFloat3("Max", maxData, dragSpeed, -minMaxValue, minMaxValue);
+
+		ImGui::DragFloat("Radius", &r, dragSpeed, 0, minMaxValue);
+		bounds.size = Math::Vector3(r);
+		ImGui::TreePop();
+	}
 }
 
 void GE::SphereCollider::SetSize(float size)

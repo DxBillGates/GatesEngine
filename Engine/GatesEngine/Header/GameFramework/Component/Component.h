@@ -33,6 +33,9 @@ namespace GE
 		/// <param name="hitCollider">ヒットしたコライダーのインターフェイス</param>
 		virtual void OnCollision(ICollider* hitCollider) {}
 
+		bool IsOpenTreeNodeGui();
+		virtual void OnGui() {}
+
 		GameObject* GetGameObject();
 		bool GetEnabled();
 		

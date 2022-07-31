@@ -48,6 +48,8 @@ namespace GE
 
 		template<typename T>
 		T* AddComponent();
+
+		std::vector<Component*>* GetComponents();
 	};
 
 
