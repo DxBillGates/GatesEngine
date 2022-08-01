@@ -42,7 +42,7 @@ bool Game::Initialize()
 
 bool Game::Update()
 {
-	GE::GUIManager::StartFrame(true);
+	GE::GUIManager::StartFrame();
 	Application::Update();
 	return true;
 }

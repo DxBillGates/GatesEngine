@@ -111,7 +111,7 @@ void GE::SampleComponent::OnCollision(ICollider* hitCollider)
 void GE::SampleComponent::OnGui()
 {
 	float dragSpeed = 0.1f;
-	float maxValue = 10;
+	float maxValue = 100;
 	ImGui::DragFloat("Speed", &speed, dragSpeed, 0, maxValue);
-	ImGui::DragFloat3("RandomVector", random.value,dragSpeed, 0, maxValue);
+	ImGui::DragFloat3("RandomVector", random.value,dragSpeed, -1, 1);
 }

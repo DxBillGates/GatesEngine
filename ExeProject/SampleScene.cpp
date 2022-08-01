@@ -19,8 +19,8 @@ SampleScene::SampleScene(const std::string& sceneName)
 		testObject->SetName("test1");
 		testObject->GetTransform()->position = { 1050,0,0 };
 		testObject->SetDrawAxisEnabled(true);
-		auto* sampleComponent = testObject->AddComponent<GE::SampleComponent>();
 		auto* sampleCollider = testObject->AddComponent < GE::SphereCollider >();
+		auto* sampleComponent = testObject->AddComponent<GE::SampleComponent>();
 		sampleCollider->SetCenter({ 0,0,0 });
 		sampleCollider->SetSize({ 2 });
 		col1 = sampleCollider;
@@ -31,8 +31,8 @@ SampleScene::SampleScene(const std::string& sceneName)
 		testObject->SetName("test2");
 		testObject->GetTransform()->position = { 1300,0,0 };
 		testObject->SetDrawAxisEnabled(true);
-		auto* sampleComponent = testObject->AddComponent<GE::SampleComponent>();
 		auto* sampleCollider = testObject->AddComponent<GE::BoxCollider>();
+		auto* sampleComponent = testObject->AddComponent<GE::SampleComponent>();
 		sampleCollider->SetCenter({ 0,0,0 });
 		sampleCollider->SetSize({ 2 });
 		sampleCollider->SetType(GE::ColliderType::OBB);

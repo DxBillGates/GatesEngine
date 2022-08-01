@@ -24,6 +24,7 @@ void GE::GUIManager::Initialize(HWND hwnd, IGraphicsDeviceDx12* graphicsDevice)
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 	// ドッキング可能に
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+	io.ConfigWindowsMoveFromTitleBarOnly = true;
 
 	// ImGuiのWindow色スタイルを設定
 	ImGui::StyleColorsDark();

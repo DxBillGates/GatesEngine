@@ -23,6 +23,7 @@ void GE::GUI::Inspector::OnGui()
 		ImGui::Text("tag : %s", currentSelectGameObject->GetTag().c_str());
 		ImGui::Separator();
 
+		ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
 		if (ImGui::TreeNode("Transform"))
 		{
 			float dragSpeed = 1;
@@ -38,6 +39,7 @@ void GE::GUI::Inspector::OnGui()
 		auto components = currentSelectGameObject->GetComponents();
 		for (auto& component : *components)
 		{
+			ImGui::SetNextItemOpen(true, ImGuiCond_::ImGuiCond_Once);
 			if (component->IsOpenTreeNodeGui())
 			{
 				component->OnGui();
