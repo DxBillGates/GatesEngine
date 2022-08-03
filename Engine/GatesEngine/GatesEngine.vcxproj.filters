@@ -63,9 +63,6 @@
     <Filter Include="Source\GameFramework\Scene">
       <UniqueIdentifier>{a38c2ef1-e099-4013-84a8-0bc5adeb146f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\GameFramework\Conponent">
-      <UniqueIdentifier>{16b46a75-30ff-43ff-bf56-4ba5adc48fcc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\GameFramework\GameObject">
       <UniqueIdentifier>{0c145c6b-e422-403a-b323-5ecb177e9b0b}</UniqueIdentifier>
     </Filter>
@@ -74,6 +71,9 @@
     </Filter>
     <Filter Include="Source\GameFramework\Collision">
       <UniqueIdentifier>{37a9a57c-340f-4f6e-ae19-f598205cde7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameFramework\Component">
+      <UniqueIdentifier>{16b46a75-30ff-43ff-bf56-4ba5adc48fcc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -380,10 +380,10 @@
       <Filter>Source\GameFramework\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\Component.cpp">
-      <Filter>Source\GameFramework\Conponent</Filter>
+      <Filter>Source\GameFramework\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\SampleComponent.cpp">
-      <Filter>Source\GameFramework\Conponent</Filter>
+      <Filter>Source\GameFramework\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\GraphicsDeviceDx12.cpp">
       <Filter>Source\Graphics</Filter>
@@ -440,16 +440,16 @@
       <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\Collider.cpp">
-      <Filter>Source\GameFramework\Conponent</Filter>
+      <Filter>Source\GameFramework\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\SphereCollider.cpp">
-      <Filter>Source\GameFramework\Conponent</Filter>
+      <Filter>Source\GameFramework\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\FlagController.cpp">
       <Filter>Source\GameFramework</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\BoxCollider.cpp">
-      <Filter>Source\GameFramework\Conponent</Filter>
+      <Filter>Source\GameFramework\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Collision\CollisionManager.cpp">
       <Filter>Source\GameFramework\Collision</Filter>

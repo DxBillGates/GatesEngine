@@ -33,7 +33,7 @@ void GE::SphereCollider::Draw()
 	Math::Matrix4x4 worldMatrix;
 
 
-	graphicsDevice->SetDefaultRenderTarget();
+	//graphicsDevice->SetDefaultRenderTarget();
 	graphicsDevice->SetShader("DefaultLineShader");
 
 	worldMatrix = scaleMatrix * rotateMatrix * translateMatrix * transform->GetMatrix();

@@ -43,7 +43,7 @@ void GE::BoxCollider::Draw()
 	}
 
 	// 描画コールをキューに積む
-	graphicsDevice->SetDefaultRenderTarget();
+	//graphicsDevice->SetDefaultRenderTarget();
 	graphicsDevice->SetShader("DefaultLineShader");
 
 	renderQueue->AddSetConstantBufferInfo({ 0,cbufferAllocater->BindAndAttachData(0,&worldMatrix,sizeof(Math::Matrix4x4)) });

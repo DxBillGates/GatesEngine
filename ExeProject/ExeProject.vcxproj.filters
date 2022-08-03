@@ -68,6 +68,9 @@
     <FxCompile Include="Resources\Shader\GaussBlurPixelShader.hlsl">
       <Filter>シェーダー ファイル</Filter>
     </FxCompile>
+    <FxCompile Include="Resources\Shader\DefaultSpriteWithTexturePixelShader.hlsl">
+      <Filter>シェーダー ファイル</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ExeProject.rc" />

@@ -162,7 +162,7 @@ bool GE::Application::LoadContents()
 	meshManager->Add(mesh, "Skydome");
 
 	MeshData<Vertex_UV_Normal> modelDataTorus;
-	MeshCreater::LoadObjModelData("Resources/Model/skydome", modelDataTorus);
+	MeshCreater::LoadObjModelData("Resources/Model/torus", modelDataTorus);
 	mesh = new Mesh();
 	mesh->Create(device, cmdList, modelDataTorus);
 	meshManager->Add(mesh, "Torus");
@@ -187,6 +187,8 @@ bool GE::Application::LoadContents()
 	defaultSpritePixelShader.CompileShaderFileWithoutFormat(L"DefaultSpritePixelShader", "ps_5_0");
 	Shader gaussBlurPixelShader;
 	gaussBlurPixelShader.CompileShaderFileWithoutFormat(L"GaussBlurPixelShader", "ps_5_0");
+	Shader defaultSpriteWithTexturePixelShader;
+	defaultSpriteWithTexturePixelShader.CompileShaderFileWithoutFormat(L"DefaultSpriteWithTexturePixelShader", "ps_5_0");
 
 	// rootSignatureì¬
 	auto* rootSignatureManager = graphicsDevice.GetRootSignatureManager();
@@ -228,6 +230,12 @@ bool GE::Application::LoadContents()
 	GraphicsPipeline* dafaultSpritePipeline = new GraphicsPipeline({ &defaultSpriteVertexShader,nullptr,nullptr,nullptr,&defaultSpritePixelShader });
 	dafaultSpritePipeline->Create(device, { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV }, defaultMeshRootSignature, pipelineInfo);
 	graphicsPipelineManager->Add(dafaultSpritePipeline, "DefaultSpriteShader");
+	// default sprite with texture shader
+	pipelineInfo.topologyType = GraphicsPipelinePrimitiveTopolotyType::TRIANGLE;
+	pipelineInfo.isUseDepthClip = false;
+	GraphicsPipeline* dafaultSpriteWithTexturePipeline = new GraphicsPipeline({ &defaultSpriteVertexShader,nullptr,nullptr,nullptr,&defaultSpriteWithTexturePixelShader });
+	dafaultSpriteWithTexturePipeline->Create(device, { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV }, defaultMeshWithOneSrvRootSignature, pipelineInfo);
+	graphicsPipelineManager->Add(dafaultSpriteWithTexturePipeline, "DefaultSpriteWithTextureShader");
 	// gauss blur shader
 	GraphicsPipeline* gaussBlurPipeline = new GraphicsPipeline({ &defaultSpriteVertexShader,nullptr,nullptr,nullptr,&gaussBlurPixelShader });
 	gaussBlurPipeline->Create(device, { GraphicsPipelineInputLayout::POSITION,GraphicsPipelineInputLayout::UV }, cbv5srv1RootSignature, pipelineInfo);
@@ -235,11 +243,18 @@ bool GE::Application::LoadContents()
 
 	// demo layerì¬
 	auto* layerManager = graphicsDevice.GetLayerManager();
+
 	RenderTexture* demoRenderTexture = new RenderTexture();
 	DepthTexture* demoDepthTexture = new DepthTexture();
 	demoRenderTexture->Create(device,shaderResourceHeap, mainWindow.GetWindowSize(), Color::Black());
 	demoDepthTexture->Create(device, shaderResourceHeap, mainWindow.GetWindowSize());
 	layerManager->Add(new Layer(demoRenderTexture,demoDepthTexture),"demoLayer");
+
+	RenderTexture* resultRenderTexture = new RenderTexture();
+	DepthTexture* resultDepthTexture = new DepthTexture();
+	resultRenderTexture->Create(device, shaderResourceHeap, mainWindow.GetWindowSize(), Color::Black());
+	resultDepthTexture->Create(device, shaderResourceHeap, mainWindow.GetWindowSize());
+	layerManager->Add(new Layer(resultRenderTexture, resultDepthTexture), "resultLayer");
 
 
 	return true;
