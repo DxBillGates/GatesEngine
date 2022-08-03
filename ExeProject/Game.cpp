@@ -88,6 +88,10 @@ bool Game::Draw()
 		Application::Draw();
 	}
 
+	graphicsDevice.ExecuteRenderQueue();
+	graphicsDevice.ExecuteCommands();
+
+	graphicsDevice.SetShaderResourceDescriptorHeap();
 	graphicsDevice.SetDefaultRenderTarget();
 	graphicsDevice.SetShader("DefaultSpriteWithTextureShader");
 	auto windowSize = GE::Window::GetWindowSize();
@@ -109,6 +113,7 @@ bool Game::Draw()
 	graphicsDevice.DrawMesh("2DPlane");
 
 	graphicsDevice.ExecuteRenderQueue();
+	graphicsDevice.ExecuteCommands();
 	graphicsDevice.ScreenFlip();
 	return true;
 }

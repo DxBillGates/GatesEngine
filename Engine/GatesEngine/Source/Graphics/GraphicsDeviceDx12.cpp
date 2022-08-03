@@ -258,24 +258,6 @@ void GE::GraphicsDeviceDx12::ResetCBufferAllocater()
 
 bool GE::GraphicsDeviceDx12::ScreenFlip()
 {
-	cmdList->Close();
-	ID3D12CommandList* cmdLists[] = { cmdList };
-	cmdQueue->ExecuteCommandLists(1, cmdLists);
-	cmdQueue->Signal(fence, ++fenceValue);
-	if (fence->GetCompletedValue() != fenceValue)
-	{
-		HANDLE event = CreateEvent(nullptr, FALSE, FALSE, nullptr);
-		if (!event)
-		{
-			printf("ID3D12Fence:イベントエラー、アプリケーションを終了します。");
-			return false;
-		}
-		fence->SetEventOnCompletion(fenceValue, event);
-		WaitForSingleObject(event, INFINITE);
-		//CloseHandle(event);
-	}
-	cmdAlloc->Reset();
-	cmdList->Reset(cmdAlloc, nullptr);
 	swapChain->Present(0, 0);
 
 	UINT64 backBufferIndex = swapChain->GetCurrentBackBufferIndex();
@@ -354,14 +336,36 @@ GE::Camera* GE::GraphicsDeviceDx12::GetMainCamera()
 	return mainCamera;
 }
 
+GE::Math::Vector2 GE::GraphicsDeviceDx12::GetViewportSize()
+{
+	return Math::Vector2(viewPort.Width,viewPort.Height);
+}
+
 void GE::GraphicsDeviceDx12::ExecuteRenderQueue()
 {
 	renderQueue.Execute(cmdList,&shaderResourceHeap);
 }
 
-GE::Math::Vector2 GE::GraphicsDeviceDx12::GetViewportSize()
+void GE::GraphicsDeviceDx12::ExecuteCommands()
 {
-	return Math::Vector2(viewPort.Width,viewPort.Height);
+	cmdList->Close();
+	ID3D12CommandList* cmdLists[] = { cmdList };
+	cmdQueue->ExecuteCommandLists(1, cmdLists);
+	cmdQueue->Signal(fence, ++fenceValue);
+	if (fence->GetCompletedValue() != fenceValue)
+	{
+		HANDLE event = CreateEvent(nullptr, FALSE, FALSE, nullptr);
+		if (!event)
+		{
+			printf("ID3D12Fence:イベントエラー、アプリケーションを終了します。");
+			return;
+		}
+		fence->SetEventOnCompletion(fenceValue, event);
+		WaitForSingleObject(event, INFINITE);
+		//CloseHandle(event);
+	}
+	cmdAlloc->Reset();
+	cmdList->Reset(cmdAlloc, nullptr);
 }
 
 void GE::GraphicsDeviceDx12::SetShader(const std::string& shaderName, bool isWireframe)
