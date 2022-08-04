@@ -90,7 +90,7 @@ namespace GE
 			/// <summary>
 			/// クォータニオンから回転行列を生成する関数
 			/// </summary>
-			/// <param name="q"><クォータニオン/param>
+			/// <param name="q">クォータニオン</param>
 			/// <returns>回転行列</returns>
 			static Matrix4x4 Rotation(const Quaternion& q);
 
@@ -106,6 +106,8 @@ namespace GE
 			/// <param name="q">クォータニオン</param>
 			/// <returns>軸ベクトル</returns>
 			static Vector3 GetAxis(const Quaternion& q);
+
+			static Quaternion Euler(const Math::Vector3& angle);
 
 			Quaternion operator+();
 			Quaternion operator-();

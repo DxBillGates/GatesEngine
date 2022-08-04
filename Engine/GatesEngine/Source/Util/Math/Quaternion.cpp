@@ -1,4 +1,5 @@
 #include "..\..\..\Header\Util\Math\Quaternion.h"
+#include "..\..\..\Header\Util\Math\Math.h"
 #include <cmath>
 
 using Matrix4x4 = GE::Math::Matrix4x4;
@@ -16,7 +17,7 @@ GE::Math::Quaternion::Quaternion(float x, float y, float z, float w)
 {
 }
 
-GE::Math::Quaternion::Quaternion(const Vector3 & v, float angle)
+GE::Math::Quaternion::Quaternion(const Vector3& v, float angle)
 {
 	float sin, cos;
 	sin = std::sinf(angle / 2.0f);
@@ -27,7 +28,7 @@ GE::Math::Quaternion::Quaternion(const Vector3 & v, float angle)
 	w = cos;
 }
 
-GE::Math::Quaternion::Quaternion(const Matrix4x4 & m)
+GE::Math::Quaternion::Quaternion(const Matrix4x4& m)
 {
 	Quaternion result;
 	float tr = m.m[0][0] + m.m[1][1] + m.m[2][2] + m.m[3][3];
@@ -58,7 +59,7 @@ GE::Math::Quaternion::Quaternion(const Matrix4x4 & m)
 	w = qa[3];
 }
 
-GE::Math::Quaternion GE::Math::Quaternion::Normalize(const Quaternion & q)
+GE::Math::Quaternion GE::Math::Quaternion::Normalize(const Quaternion& q)
 {
 	Quaternion result = q;
 	float length = Length(result);
@@ -70,7 +71,7 @@ GE::Math::Quaternion GE::Math::Quaternion::Normalize(const Quaternion & q)
 	return Quaternion();
 }
 
-GE::Math::Quaternion GE::Math::Quaternion::Conjugate(const Quaternion & q)
+GE::Math::Quaternion GE::Math::Quaternion::Conjugate(const Quaternion& q)
 {
 	Quaternion result = q;
 	result = -result;
@@ -78,21 +79,21 @@ GE::Math::Quaternion GE::Math::Quaternion::Conjugate(const Quaternion & q)
 	return result;
 }
 
-float GE::Math::Quaternion::Dot(const Quaternion & q1, const Quaternion & q2)
+float GE::Math::Quaternion::Dot(const Quaternion& q1, const Quaternion& q2)
 {
 	float result = 0;
 	result = q1.x * q2.x + q1.y * q2.y + q1.z * q2.z + q1.w * q2.w;
 	return result;
 }
 
-float GE::Math::Quaternion::Length(const Quaternion & q)
+float GE::Math::Quaternion::Length(const Quaternion& q)
 {
 	float result = 0;
 	result = std::sqrtf(q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w);
 	return result;
 }
 
-GE::Math::Quaternion GE::Math::Quaternion::Slerp(const Quaternion & q1, const Quaternion & q2, float t)
+GE::Math::Quaternion GE::Math::Quaternion::Slerp(const Quaternion& q1, const Quaternion& q2, float t)
 {
 	float cos = Dot(q1, q2);
 	Quaternion t2 = q2;
@@ -113,7 +114,7 @@ GE::Math::Quaternion GE::Math::Quaternion::Slerp(const Quaternion & q1, const Qu
 	return q1 * k0 + t2 * k1;
 }
 
-GE::Math::Quaternion GE::Math::Quaternion::Lerp(const Quaternion & q1, const Quaternion & q2, float t)
+GE::Math::Quaternion GE::Math::Quaternion::Lerp(const Quaternion& q1, const Quaternion& q2, float t)
 {
 	float cos = Dot(q1, q2);
 	Quaternion t2 = q2;
@@ -128,7 +129,7 @@ GE::Math::Quaternion GE::Math::Quaternion::Lerp(const Quaternion & q1, const Qua
 	return q1 * k0 + t2 * k1;
 }
 
-Matrix4x4 GE::Math::Quaternion::Rotation(const Quaternion & q)
+Matrix4x4 GE::Math::Quaternion::Rotation(const Quaternion& q)
 {
 	float xx = q.x * q.x * 2.0f;
 	float yy = q.y * q.y * 2.0f;
@@ -154,7 +155,7 @@ Matrix4x4 GE::Math::Quaternion::Rotation()
 	return Quaternion::Rotation(*this);
 }
 
-Vector3 GE::Math::Quaternion::GetAxis(const Quaternion & q)
+Vector3 GE::Math::Quaternion::GetAxis(const Quaternion& q)
 {
 	Vector3 result;
 	float x, y, z, length;
@@ -167,6 +168,29 @@ Vector3 GE::Math::Quaternion::GetAxis(const Quaternion & q)
 		x / length,y / length,z / length
 	};
 
+	return result;
+}
+
+GE::Math::Quaternion GE::Math::Quaternion::Euler(const Math::Vector3& angle)
+{
+	float xRadian = Math::ConvertToRadian(angle.x);
+	float yRadian = Math::ConvertToRadian(angle.y);
+	float zRadian = Math::ConvertToRadian(angle.z);
+
+	float xCos = std::cosf(xRadian / 2.0f);
+	float xSin = std::sinf(xRadian / 2.0f);
+	float yCos = std::cosf(yRadian / 2.0f);
+	float ySin = std::sinf(yRadian / 2.0f);
+	float zCos = std::cosf(zRadian / 2.0f);
+	float zSin = std::sinf(zRadian / 2.0f);
+
+	Quaternion result =
+	{
+		xCos * yCos * zCos + xSin * ySin * zSin,
+		xSin * yCos * zCos - xCos * ySin * zSin,
+		xCos * ySin * zCos + xSin * yCos * zSin,
+		xCos * yCos * zSin - xSin * ySin * zCos,
+	};
 	return result;
 }
 
@@ -184,7 +208,7 @@ GE::Math::Quaternion GE::Math::Quaternion::operator-()
 	return *this;
 }
 
-GE::Math::Quaternion & GE::Math::Quaternion::operator+=(const Quaternion & q)
+GE::Math::Quaternion& GE::Math::Quaternion::operator+=(const Quaternion& q)
 {
 	this->x += q.x;
 	this->y += q.y;
@@ -193,7 +217,7 @@ GE::Math::Quaternion & GE::Math::Quaternion::operator+=(const Quaternion & q)
 	return *this;
 }
 
-GE::Math::Quaternion & GE::Math::Quaternion::operator-=(const Quaternion & q)
+GE::Math::Quaternion& GE::Math::Quaternion::operator-=(const Quaternion& q)
 {
 	this->x -= q.x;
 	this->y -= q.y;
@@ -202,7 +226,7 @@ GE::Math::Quaternion & GE::Math::Quaternion::operator-=(const Quaternion & q)
 	return *this;
 }
 
-GE::Math::Quaternion & GE::Math::Quaternion::operator*=(float s)
+GE::Math::Quaternion& GE::Math::Quaternion::operator*=(float s)
 {
 	this->x *= s;
 	this->y *= s;
@@ -211,12 +235,12 @@ GE::Math::Quaternion & GE::Math::Quaternion::operator*=(float s)
 	return *this;
 }
 
-GE::Math::Quaternion & GE::Math::Quaternion::operator/=(float s)
+GE::Math::Quaternion& GE::Math::Quaternion::operator/=(float s)
 {
 	return *this *= 1.0f / s;
 }
 
-GE::Math::Quaternion & GE::Math::Quaternion::operator*=(const Quaternion & q)
+GE::Math::Quaternion& GE::Math::Quaternion::operator*=(const Quaternion& q)
 {
 	Quaternion result =
 	{
@@ -229,37 +253,37 @@ GE::Math::Quaternion & GE::Math::Quaternion::operator*=(const Quaternion & q)
 	return *this;
 }
 
-GE::Math::Quaternion GE::Math::operator+(const Quaternion & q1, const Quaternion & q2)
+GE::Math::Quaternion GE::Math::operator+(const Quaternion& q1, const Quaternion& q2)
 {
 	Quaternion result = q1;
 	return result += q2;
 }
 
-GE::Math::Quaternion GE::Math::operator-(const Quaternion & q1, const Quaternion & q2)
+GE::Math::Quaternion GE::Math::operator-(const Quaternion& q1, const Quaternion& q2)
 {
 	Quaternion result = q1;
 	return result -= q2;
 }
 
-GE::Math::Quaternion GE::Math::operator*(const Quaternion & q1, const Quaternion & q2)
+GE::Math::Quaternion GE::Math::operator*(const Quaternion& q1, const Quaternion& q2)
 {
 	Quaternion result = q1;
 	return result *= q2;
 }
 
-GE::Math::Quaternion GE::Math::operator*(const Quaternion & q, float s)
+GE::Math::Quaternion GE::Math::operator*(const Quaternion& q, float s)
 {
 	Quaternion result = q;
 	return result *= s;
 }
 
-GE::Math::Quaternion GE::Math::operator*(float s, const Quaternion & q)
+GE::Math::Quaternion GE::Math::operator*(float s, const Quaternion& q)
 {
 	Quaternion result = q;
 	return result *= s;
 }
 
-GE::Math::Quaternion GE::Math::operator/(const Quaternion & q, float s)
+GE::Math::Quaternion GE::Math::operator/(const Quaternion& q, float s)
 {
 	Quaternion result = q;
 	return result /= s;
