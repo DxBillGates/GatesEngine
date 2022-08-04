@@ -2,7 +2,7 @@
 
 GE::Math::Matrix4x4 GE::Transform::GetMatrix()
 {
-	return Math::Matrix4x4::Scale(scale) * Math::Matrix4x4::RotationZXY(rotation) * Math::Matrix4x4::Translate(position);
+	return Math::Matrix4x4::Scale(scale) * Math::Quaternion::Euler(rotation).Rotation() * Math::Matrix4x4::Translate(position);
 }
 
 GE::Math::Vector3 GE::Transform::GetEulerAngle()
