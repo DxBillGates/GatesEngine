@@ -15,8 +15,10 @@ bool GE::Component::IsOpenTreeNodeGui()
 {
 	if (ImGui::TreeNode(typeid(*this).name()))
 	{
+		ImGui::Checkbox("Enabled", &enabled);
 		return true;
 	}
+
 
 	return false;
 }

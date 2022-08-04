@@ -49,6 +49,7 @@ void GE::GameObject::Update(float deltaTime)
 
 	for (auto& component : components)
 	{
+		if (component->GetEnabled() == false)continue;
 		component->Update(deltaTime);
 	}
 }
