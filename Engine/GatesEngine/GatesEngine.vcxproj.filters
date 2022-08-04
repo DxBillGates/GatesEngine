@@ -75,6 +75,12 @@
     <Filter Include="Source\GameFramework\Component">
       <UniqueIdentifier>{16b46a75-30ff-43ff-bf56-4ba5adc48fcc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header\Graphics\PostEffect">
+      <UniqueIdentifier>{8ba46bdc-5a72-490f-95f3-ee65ad3a0468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\PostEffect">
+      <UniqueIdentifier>{a48f9cd0-4a30-46b9-affa-353ad5805eb7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Application\Application.h">
@@ -304,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="Header\GameFramework\Collision\CollisionManager.h">
       <Filter>Header\GameFramework\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Graphics\PostEffect\PostEffect.h">
+      <Filter>Header\Graphics\PostEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

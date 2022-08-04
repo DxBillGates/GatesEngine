@@ -66,6 +66,7 @@
     <ClInclude Include="Header\Graphics\Mesh.h" />
     <ClInclude Include="Header\Graphics\MeshCreater.h" />
     <ClInclude Include="Header\Graphics\MeshData.h" />
+    <ClInclude Include="Header\Graphics\PostEffect\PostEffect.h" />
     <ClInclude Include="Header\Graphics\RenderQueue.h" />
     <ClInclude Include="Header\Graphics\RenderTarget.h" />
     <ClInclude Include="Header\Graphics\RenderTexture.h" />
