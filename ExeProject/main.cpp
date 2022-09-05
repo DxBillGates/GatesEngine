@@ -10,8 +10,8 @@ int main()
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 #endif
-	GE::Math::Vector2 windowSize = GE::Math::Vector2(1280, 720);
-	GE::Math::Vector2 resolution = GE::Math::Vector2(1280, 720);
+	GE::Math::Vector2 windowSize = GE::Math::Vector2(1920, 1080);
+	GE::Math::Vector2 resolution = GE::Math::Vector2(1920, 1080);
 
 	GE::WindowData windowData;
 	windowData.title = "no title";

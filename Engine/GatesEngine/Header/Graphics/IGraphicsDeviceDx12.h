@@ -53,6 +53,7 @@ namespace GE
 		virtual Math::Vector2 GetViewportSize() = 0;
 
 		virtual void ExecuteRenderQueue() = 0;
+		virtual void ExecuteCommands() = 0;
 		virtual void SetShader(const std::string& shaderName, bool isWireframe = false) = 0;
 		virtual void SetTexture(const std::string& texName, int descIndex) = 0;
 		virtual void SetRenderTexture(const std::string& texName, int descIndex) = 0;

@@ -63,9 +63,6 @@
     <Filter Include="Source\GameFramework\Scene">
       <UniqueIdentifier>{a38c2ef1-e099-4013-84a8-0bc5adeb146f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\GameFramework\Conponent">
-      <UniqueIdentifier>{16b46a75-30ff-43ff-bf56-4ba5adc48fcc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\GameFramework\GameObject">
       <UniqueIdentifier>{0c145c6b-e422-403a-b323-5ecb177e9b0b}</UniqueIdentifier>
     </Filter>
@@ -75,11 +72,20 @@
     <Filter Include="Source\GameFramework\Collision">
       <UniqueIdentifier>{37a9a57c-340f-4f6e-ae19-f598205cde7e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header\GUI">
-      <UniqueIdentifier>{3ee426c1-e516-4afd-bd50-0e75983d4c43}</UniqueIdentifier>
+    <Filter Include="Source\GameFramework\Component">
+      <UniqueIdentifier>{16b46a75-30ff-43ff-bf56-4ba5adc48fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Graphics\PostEffect">
+      <UniqueIdentifier>{8ba46bdc-5a72-490f-95f3-ee65ad3a0468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Graphics\PostEffect">
+      <UniqueIdentifier>{a48f9cd0-4a30-46b9-affa-353ad5805eb7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\GUI">
-      <UniqueIdentifier>{ed8ecceb-8983-4bec-8b19-32892f62f58d}</UniqueIdentifier>
+      <UniqueIdentifier>{7c3565fd-1a3d-42fb-8167-0a88bd1fc16d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\GUI">
+      <UniqueIdentifier>{139e150b-60dd-4799-92a3-c013f85b9c9b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -311,6 +317,9 @@
     <ClInclude Include="Header\GameFramework\Collision\CollisionManager.h">
       <Filter>Header\GameFramework\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Graphics\PostEffect\PostEffect.h">
+      <Filter>Header\Graphics\PostEffect</Filter>
+    </ClInclude>
     <ClInclude Include="Header\GUI\GUIManager.h">
       <Filter>Header\GUI</Filter>
     </ClInclude>
@@ -395,10 +404,10 @@
       <Filter>Source\GameFramework\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\Component.cpp">
-      <Filter>Source\GameFramework\Conponent</Filter>
+      <Filter>Source\GameFramework\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\SampleComponent.cpp">
-      <Filter>Source\GameFramework\Conponent</Filter>
+      <Filter>Source\GameFramework\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\GraphicsDeviceDx12.cpp">
       <Filter>Source\Graphics</Filter>
@@ -455,16 +464,16 @@
       <Filter>Source\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\Collider.cpp">
-      <Filter>Source\GameFramework\Conponent</Filter>
+      <Filter>Source\GameFramework\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\SphereCollider.cpp">
-      <Filter>Source\GameFramework\Conponent</Filter>
+      <Filter>Source\GameFramework\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\FlagController.cpp">
       <Filter>Source\GameFramework</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Component\BoxCollider.cpp">
-      <Filter>Source\GameFramework\Conponent</Filter>
+      <Filter>Source\GameFramework\Component</Filter>
     </ClCompile>
     <ClCompile Include="Source\GameFramework\Collision\CollisionManager.cpp">
       <Filter>Source\GameFramework\Collision</Filter>

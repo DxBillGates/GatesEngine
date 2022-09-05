@@ -50,7 +50,7 @@ void GE::SampleComponent::Update(float deltaTime)
 		Utility::Printf("SampleComponent Update() : press b button\n");
 	}
 
-	transform->rotation += (random / 100)*speed;
+	transform->rotation += (random / 100) * speed;
 }
 
 void GE::SampleComponent::Draw()
@@ -113,5 +113,5 @@ void GE::SampleComponent::OnGui()
 	float dragSpeed = 0.1f;
 	float maxValue = 100;
 	ImGui::DragFloat("Speed", &speed, dragSpeed, 0, maxValue);
-	ImGui::DragFloat3("RandomVector", random.value,dragSpeed, -1, 1);
+	ImGui::DragFloat3("RandomVector", random.value, dragSpeed, -1, 1);
 }

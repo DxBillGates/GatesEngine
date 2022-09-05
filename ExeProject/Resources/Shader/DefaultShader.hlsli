@@ -70,3 +70,8 @@ float3 GetPosition(matrix mat)
 {
 	return float3(-mat[0][3], -mat[1][3], -mat[2][3]);
 }
+
+SamplerState wrapPointSampler : register(s0);
+SamplerState clampPointSampler : register(s1);
+SamplerState wrapLinearSampler  : register(s2);
+SamplerState clampLinearSampler : register(s3);
