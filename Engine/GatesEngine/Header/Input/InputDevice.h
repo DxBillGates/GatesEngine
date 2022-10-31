@@ -3,6 +3,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "XInputController.h"
+#include "Joycon.h"
 
 #include <dinput.h>
 #include <Xinput.h>
@@ -19,6 +20,8 @@ namespace GE
 		Mouse mouse;
 		XInputController xctrler;
 		//DCtrler dctrler;
+		Joycon joyconL;
+		Joycon joyconR;
 	public:
 		/// <summary>
 		/// シングルトンのポインタを返す関数
@@ -60,6 +63,9 @@ namespace GE
 		/// </summary>
 		/// <returns></returns>
 		XInputController* GetXCtrler();
+
+		Joycon* GetJoyconL();
+		Joycon* GetJoyconR();
 
 		/// <summary>
 		/// 使用しているWindowにフォーカスがあっているか確認する関数

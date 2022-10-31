@@ -50,7 +50,13 @@ void GE::SampleComponent::Update(float deltaTime)
 		Utility::Printf("SampleComponent Update() : press b button\n");
 	}
 
-	transform->rotation += (random / 100) * speed;
+	Joycon* joycon = inputDevice->GetJoyconL();
+	if (joycon == nullptr)return;
+	Vector3Int16 gyroData = joycon->GetGyroscope();
+	gyro = { (float)gyroData.y,(float)-gyroData.z,(float)-gyroData.x };
+
+	transform->rotation *= Math::Quaternion(gyro.Normalize(), Math::ConvertToRadian(gyro.Length() * 1.f / 60.f));
+	//transform->rotation = Math::Quaternion::Euler(Math::Vector3(45, 0, 0));
 }
 
 void GE::SampleComponent::Draw()
@@ -114,4 +120,5 @@ void GE::SampleComponent::OnGui()
 	float maxValue = 100;
 	ImGui::DragFloat("Speed", &speed, dragSpeed, 0, maxValue);
 	ImGui::DragFloat3("RandomVector", random.value, dragSpeed, -1, 1);
+	ImGui::DragFloat3("GyroVector", gyro.value, dragSpeed, -1, 1);
 }

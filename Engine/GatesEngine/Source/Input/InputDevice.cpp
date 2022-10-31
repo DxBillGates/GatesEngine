@@ -25,6 +25,8 @@ void GE::InputDevice::Initialize()
 	keyboard.Initialize();
 	mouse.Initialize();
 	xctrler.Initialize();
+	joyconL.SetIMU(true);
+	joyconR.SetIMU(true);
 }
 
 void GE::InputDevice::Update()
@@ -32,6 +34,8 @@ void GE::InputDevice::Update()
 	keyboard.Update();
 	mouse.Update();
 	xctrler.Update();
+	joyconL.Update();
+	joyconR.Update();
 }
 
 GE::Keyboard* GE::InputDevice::GetKeyboard()
@@ -49,6 +53,16 @@ GE::XInputController* GE::InputDevice::GetXCtrler()
 	return &xctrler;
 }
 
+GE::Joycon* GE::InputDevice::GetJoyconL()
+{
+	return &joyconL;
+}
+
+GE::Joycon* GE::InputDevice::GetJoyconR()
+{
+	return &joyconR;
+}
+
 bool GE::InputDevice::GetIsFocus()
 {
 	if (hwnd != GetFocus())return false;
@@ -60,5 +74,8 @@ GE::InputDevice::InputDevice()
 	, keyboard(Keyboard())
 	, mouse(Mouse())
 	, hwnd(HWND())
+	, xctrler(XInputController())
+	, joyconL(Joycon(JoyconType::L))
+	, joyconR(Joycon(JoyconType::R))
 {
 }

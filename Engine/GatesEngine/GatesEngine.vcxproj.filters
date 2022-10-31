@@ -329,6 +329,12 @@
     <ClInclude Include="Header\GUI\Inspector.h">
       <Filter>Header\GUI</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Input\HidDevice.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Input\Joycon.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Application\Application.cpp">
@@ -486,6 +492,12 @@
     </ClCompile>
     <ClCompile Include="Source\GUI\Inspector.cpp">
       <Filter>Source\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input\HidDevice.cpp">
+      <Filter>Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input\Joycon.cpp">
+      <Filter>Source\Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

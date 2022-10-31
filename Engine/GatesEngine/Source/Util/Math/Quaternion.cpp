@@ -186,10 +186,10 @@ GE::Math::Quaternion GE::Math::Quaternion::Euler(const Math::Vector3& angle)
 
 	Quaternion result =
 	{
-		xCos * yCos * zCos + xSin * ySin * zSin,
 		xSin * yCos * zCos - xCos * ySin * zSin,
 		xCos * ySin * zCos + xSin * yCos * zSin,
 		xCos * yCos * zSin - xSin * ySin * zCos,
+		xCos * yCos * zCos + xSin * ySin * zSin,
 	};
 	return result;
 }

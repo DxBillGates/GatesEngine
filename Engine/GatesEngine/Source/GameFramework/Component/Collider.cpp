@@ -17,7 +17,7 @@ GE::Collider::~Collider()
 void GE::Collider::Update(float deltaTime)
 {
 	// 親の回転行列と自身の回転行列から軸を取得
-	localAxis = Math::Matrix4x4(localRotation * Math::Matrix4x4::RotationZXY(transform->rotation)).GetAxis();
+	localAxis = Math::Matrix4x4(localRotation * transform->rotation.Rotation()).GetAxis();
 
 	// ワールド行列から実際の座標を取得
 	Math::Matrix4x4 worldMatrix = GetMatrix();

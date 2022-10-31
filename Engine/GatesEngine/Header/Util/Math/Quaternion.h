@@ -7,10 +7,18 @@ namespace GE
 	{
 		struct Quaternion
 		{
-			float x;
-			float y;
-			float z;
-			float w;
+			union
+			{
+				struct
+				{
+					float x;
+					float y;
+					float z;
+					float w;
+				};
+
+				float value[4];
+			};
 
 
 			/// <summary>

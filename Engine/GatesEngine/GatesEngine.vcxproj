@@ -79,7 +79,9 @@
     <ClInclude Include="Header\GUI\GUIManager.h" />
     <ClInclude Include="Header\GUI\Hierarchy.h" />
     <ClInclude Include="Header\GUI\Inspector.h" />
+    <ClInclude Include="Header\Input\HidDevice.h" />
     <ClInclude Include="Header\Input\InputDevice.h" />
+    <ClInclude Include="Header\Input\Joycon.h" />
     <ClInclude Include="Header\Input\Keyboard.h" />
     <ClInclude Include="Header\Input\Keys.h" />
     <ClInclude Include="Header\Input\Mouse.h" />
@@ -138,7 +140,9 @@
     <ClCompile Include="Source\GUI\GUIManager.cpp" />
     <ClCompile Include="Source\GUI\Hierarchy.cpp" />
     <ClCompile Include="Source\GUI\Inspector.cpp" />
+    <ClCompile Include="Source\Input\HidDevice.cpp" />
     <ClCompile Include="Source\Input\InputDevice.cpp" />
+    <ClCompile Include="Source\Input\Joycon.cpp" />
     <ClCompile Include="Source\Input\Keyboard.cpp" />
     <ClCompile Include="Source\Input\Mouse.cpp" />
     <ClCompile Include="Source\Input\XInputController.cpp" />

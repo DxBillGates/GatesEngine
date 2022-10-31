@@ -31,7 +31,7 @@ void GE::GUI::Inspector::OnGui()
 			float drawMaxValue = 100000;
 
 			ImGui::DragFloat3("Position", currentSelectGameObject->GetTransform()->position.value, dragSpeed, dragMinValue, drawMaxValue);
-			ImGui::DragFloat3("Rotation", currentSelectGameObject->GetTransform()->rotation.value, dragSpeed, dragMinValue, drawMaxValue);
+			ImGui::DragFloat4("Rotation", currentSelectGameObject->GetTransform()->rotation.value, dragSpeed, dragMinValue, drawMaxValue);
 			ImGui::DragFloat3("Scale   ", currentSelectGameObject->GetTransform()->scale.value   , dragSpeed, dragMinValue, drawMaxValue);
 			ImGui::TreePop();
 		}

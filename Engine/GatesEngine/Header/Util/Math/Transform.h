@@ -6,7 +6,7 @@ namespace GE
 	struct Transform
 	{
 		Math::Vector3 position = {};
-		Math::Vector3 rotation = {};
+		Math::Quaternion rotation = {};
 		Math::Vector3 scale = { 1,1,1 };
 
 
@@ -26,7 +26,7 @@ namespace GE
 		/// <param name="scale">ÉTÉCÉY</param>
 		Transform(const Math::Vector3& pos, const Math::Vector3& rotation, const Math::Vector3& scale)
 			: position(pos)
-			, rotation(rotation)
+			, rotation(rotation,0)
 			, scale(scale)
 		{
 		}
